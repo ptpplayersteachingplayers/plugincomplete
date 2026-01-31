@@ -1,0 +1,3222 @@
+/**
+ * PTP Camp Product Template v10.3.5 CSS
+ * CLEAN VERSION - Won't affect rest of site
+ * 
+ * @version 10.3.5
+ * 
+ * Changes in v10.3.5:
+ * - Added training platform conflict fixes (ptp-header-v88, ptp-mobile-fixes-v127)
+ * - Added Flavor theme isolation (hide duplicate headers, remove gaps)
+ * - Added comprehensive mobile button/element size resets
+ * - Enhanced body padding/overflow overrides for camp pages
+ * - Fixed scroll-fix CSS conflicts
+ * 
+ * Changes in v10.3.4:
+ * - Unified multipack pricing display (10% for 2, 20% for 3+)
+ * - Enhanced mobile visibility with higher specificity rules
+ * - Fixed quick-nav sticky positioning for all header heights
+ */
+
+/* ========================================
+   CRITICAL: MOBILE VISIBILITY FIX
+   Must override PTP header v6.3 rules for .single-product
+   These rules use maximum specificity
+======================================== */
+
+/* Force wrapper visibility on ALL viewports */
+html body.single-product.ptp-camp-page #ptp-camp-wrapper.ptp-v10,
+html body.ptp-camp-page .product #ptp-camp-wrapper,
+html body.single-product #ptp-camp-wrapper,
+body.ptp-camp-page #ptp-camp-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  z-index: 1 !important;
+}
+
+/* MOBILE SPECIFIC - Override .single-product .product > * rules from header */
+@media (max-width: 767px) {
+  html body.single-product .product > #ptp-camp-wrapper,
+  html body.single-product article.product > #ptp-camp-wrapper,
+  html body.ptp-camp-page .product > #ptp-camp-wrapper,
+  .single-product .product #ptp-camp-wrapper.ptp-v10 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    transform: none !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    height: auto !important;
+    min-height: 100px !important;
+    overflow: visible !important;
+  }
+  
+  /* Force all child sections visible on mobile */
+  html body.ptp-camp-page #ptp-camp-wrapper > *,
+  html body.ptp-camp-page #ptp-camp-wrapper .hero,
+  html body.ptp-camp-page #ptp-camp-wrapper .hero-two-col,
+  html body.ptp-camp-page #ptp-camp-wrapper section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Hero two-col mobile layout */
+  html body.ptp-camp-page #ptp-camp-wrapper .hero-two-col {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  html body.ptp-camp-page #ptp-camp-wrapper .hero-video-col,
+  html body.ptp-camp-page #ptp-camp-wrapper .hero-reserve-col {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+    flex: none !important;
+    height: auto !important;
+  }
+}
+
+/* TABLET SPECIFIC */
+@media (min-width: 768px) and (max-width: 991px) {
+  html body.ptp-camp-page #ptp-camp-wrapper.ptp-v10 {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+  }
+}
+
+/* Hide default WooCommerce elements - these must be hidden */
+html body.ptp-camp-page .woocommerce-product-gallery,
+html body.ptp-camp-page .woocommerce-product-gallery__wrapper,
+html body.ptp-camp-page .summary.entry-summary,
+html body.ptp-camp-page div.product > div.images,
+html body.ptp-camp-page div.product > div.summary {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ========================================
+   CSS VARIABLES
+======================================== */
+:root {
+  --ptp-gold: #FCB900;
+  --ptp-gold-hover: #e5a800;
+  --ptp-black: #0A0A0A;
+  --ptp-white: #FFFFFF;
+  --ptp-gray-50: #FAFAFA;
+  --ptp-gray-100: #F5F5F5;
+  --ptp-gray-200: #E5E5E5;
+  --ptp-gray-400: #A3A3AF;
+  --ptp-gray-500: #737373;
+  --ptp-gray-600: #525252;
+  --ptp-gray-800: #262626;
+  --ptp-gray-900: #171717;
+  --ptp-green: #22C55E;
+  --ptp-red: #EF4444;
+  --ptp-font-display: 'Oswald', sans-serif;
+  --ptp-font-body: 'Inter', sans-serif;
+}
+
+/* ========================================
+   TRAINING PLATFORM CONFLICT FIXES
+   Override ptp-header-v88.css, ptp-mobile-fixes-v127.css,
+   and ptp-scroll-fix-v133.css rules for camp pages
+======================================== */
+
+/* Override body padding from ptp-header-v88.css */
+body.ptp-camp-page {
+  padding-top: 56px !important; /* Camp header height */
+}
+
+@media (min-width: 480px) {
+  body.ptp-camp-page { padding-top: 60px !important; }
+}
+@media (min-width: 640px) {
+  body.ptp-camp-page { padding-top: 64px !important; }
+}
+@media (min-width: 768px) {
+  body.ptp-camp-page { padding-top: 68px !important; }
+}
+@media (min-width: 992px) {
+  body.ptp-camp-page { padding-top: 70px !important; }
+}
+
+/* Admin bar adjustment */
+body.admin-bar.ptp-camp-page {
+  padding-top: calc(56px + 32px) !important;
+}
+@media (max-width: 782px) {
+  body.admin-bar.ptp-camp-page {
+    padding-top: calc(56px + 46px) !important;
+  }
+}
+
+/* Override ptp-mobile-fixes-v127.css button min-size rules */
+@media (max-width: 768px) {
+  body.ptp-camp-page #ptp-camp-wrapper button,
+  body.ptp-camp-page #ptp-camp-wrapper a.btn,
+  body.ptp-camp-page #ptp-camp-wrapper .btn,
+  body.ptp-camp-page #ptp-camp-wrapper .button,
+  body.ptp-camp-page #ptp-camp-wrapper .quick-link,
+  body.ptp-camp-page #ptp-camp-wrapper .scroll-btn,
+  body.ptp-camp-page #ptp-camp-wrapper .reel-play,
+  body.ptp-camp-page #ptp-camp-wrapper .reel-sound {
+    min-height: auto !important;
+    min-width: auto !important;
+  }
+  
+  /* Override input sizing from training platform */
+  body.ptp-camp-page #ptp-camp-wrapper input[type="text"],
+  body.ptp-camp-page #ptp-camp-wrapper input[type="email"],
+  body.ptp-camp-page #ptp-camp-wrapper select {
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    min-height: auto !important;
+  }
+}
+
+/* Override scroll-fix overflow rules */
+body.ptp-camp-page,
+html body.ptp-camp-page,
+body.ptp-camp-page.woocommerce-page,
+body.ptp-camp-page.single-product {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  position: static !important;
+  height: auto !important;
+}
+
+/* Override Astra/Flavor header conflicts */
+body.ptp-camp-page .flavor-wrapper,
+body.ptp-camp-page #flavor-wrapper,
+body.ptp-camp-page .ast-container,
+body.ptp-camp-page #page,
+body.ptp-camp-page #content,
+body.ptp-camp-page .site-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Ensure camp wrapper is above any theme overlays */
+body.ptp-camp-page #ptp-camp-wrapper {
+  position: relative !important;
+  z-index: 1 !important;
+  isolation: isolate;
+}
+
+/* Hide Flavor/theme duplicate headers on camp pages */
+body.ptp-camp-page .flavor-header,
+body.ptp-camp-page .flavor-nav,
+body.ptp-camp-page .flavor-wrapper > header:first-child,
+body.ptp-camp-page #flavor-header,
+body.ptp-camp-page .site-header:not(.ptp-header):not(.ptp-hdr),
+body.ptp-camp-page header.flavor-header,
+body.ptp-camp-page .flavor-wrapper .site-header,
+body.ptp-camp-page body > .flavor-wrapper > header:first-of-type,
+body.ptp-camp-page .header-spacer,
+body.ptp-camp-page .nav-spacer,
+body.ptp-camp-page .top-header-spacer {
+  display: none !important;
+}
+
+/* Fix Flavor wrapper gaps */
+body.ptp-camp-page .flavor-wrapper,
+body.ptp-camp-page #flavor-wrapper {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* ========================================
+   HIDE DEFAULT WOOCOMMERCE ELEMENTS
+   Only on camp product pages
+======================================== */
+body.ptp-camp-page .woocommerce-product-gallery,
+body.ptp-camp-page div.product > div.images,
+body.ptp-camp-page div.product > div.summary,
+body.ptp-camp-page .woocommerce-tabs,
+body.ptp-camp-page .related.products,
+body.ptp-camp-page .product_meta,
+body.ptp-camp-page #reviews,
+body.ptp-camp-page .woocommerce-breadcrumb,
+body.ptp-camp-page .onsale {
+  display: none !important;
+}
+
+/* ========================================
+   THEME CONTAINER OVERRIDES
+   Force full-width by removing theme constraints
+   Only affects containers AROUND the product wrapper
+======================================== */
+body.ptp-camp-page .site-content,
+body.ptp-camp-page .content-area,
+body.ptp-camp-page .entry-content,
+body.ptp-camp-page .post-content,
+body.ptp-camp-page .page-content,
+body.ptp-camp-page .woocommerce,
+body.ptp-camp-page .woocommerce-page,
+body.ptp-camp-page article.product,
+body.ptp-camp-page .product,
+body.ptp-camp-page .type-product,
+body.ptp-camp-page main,
+body.ptp-camp-page #main,
+body.ptp-camp-page #content,
+body.ptp-camp-page .container,
+body.ptp-camp-page .wrapper,
+body.ptp-camp-page .inner,
+body.ptp-camp-page .row,
+body.ptp-camp-page [class*="container"],
+body.ptp-camp-page [class*="content-wrapper"] {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow-x: visible !important;
+}
+
+/* ========================================
+   MAIN WRAPPER
+   Scoped to only affect the product page content
+   Full-width breakout from any theme container
+======================================== */
+#ptp-camp-wrapper.ptp-v10 {
+  font-family: var(--ptp-font-body);
+  background: var(--ptp-black);
+  color: var(--ptp-white);
+  -webkit-font-smoothing: antialiased;
+  /* Force full viewport width */
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 100vw !important;
+  /* Break out of any centered container */
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  /* Alternative: position from left edge */
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  padding: 0;
+  box-sizing: border-box;
+  /* Allow content to determine height naturally */
+  height: auto;
+  min-height: auto;
+  overflow-x: hidden;
+}
+
+#ptp-camp-wrapper.ptp-v10 *,
+#ptp-camp-wrapper.ptp-v10 *::before,
+#ptp-camp-wrapper.ptp-v10 *::after {
+  box-sizing: border-box;
+}
+
+/* ========================================
+   EARLY BIRD POPUP
+======================================== */
+#ptp-camp-wrapper .early-bird-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+#ptp-camp-wrapper .early-bird-popup.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#ptp-camp-wrapper .eb-popup-content {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 1px solid var(--ptp-gold);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  max-width: 200px;
+  text-align: center;
+  position: relative;
+}
+
+#ptp-camp-wrapper .eb-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--ptp-gray-400);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+#ptp-camp-wrapper .eb-badge {
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-family: var(--ptp-font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+#ptp-camp-wrapper .eb-title {
+  font-family: var(--ptp-font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ptp-white);
+  margin-bottom: 10px;
+}
+
+#ptp-camp-wrapper .eb-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+#ptp-camp-wrapper .eb-time-box {
+  text-align: center;
+}
+
+#ptp-camp-wrapper .eb-num {
+  display: block;
+  font-family: var(--ptp-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .eb-label {
+  font-size: 8px;
+  color: var(--ptp-gray-400);
+  text-transform: uppercase;
+}
+
+#ptp-camp-wrapper .eb-expires {
+  font-size: 11px;
+  color: var(--ptp-gray-400);
+}
+
+/* ========================================
+   TYPOGRAPHY
+======================================== */
+#ptp-camp-wrapper .label {
+  font-family: var(--ptp-font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .headline {
+  font-family: var(--ptp-font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.0;
+  text-transform: uppercase;
+  margin-top: 6px;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .headline span {
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .headline-white {
+  color: var(--ptp-white) !important;
+}
+
+/* ========================================
+   HERO SECTION
+======================================== */
+#ptp-camp-wrapper .hero-two-col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .hero-video-col {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  overflow: hidden;
+  background: var(--ptp-gray-900); /* Fallback while video loads */
+}
+
+#ptp-camp-wrapper .hero-video {
+  width: 100%;
+  height: auto;
+  min-height: 50vh;
+  object-fit: cover;
+  display: block;
+}
+
+#ptp-camp-wrapper .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%);
+  pointer-events: none;
+}
+
+#ptp-camp-wrapper .hero-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+}
+
+#ptp-camp-wrapper .hero-badge-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  padding: 6px 12px;
+  border-radius: 100px;
+  color: var(--ptp-white);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+#ptp-camp-wrapper .hero-sound-toggle {
+  position: absolute;
+  bottom: 20px;
+  right: 16px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#ptp-camp-wrapper .hero-sound-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .hero-sound-toggle.unmuted {
+  background: var(--ptp-gold);
+  border-color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .hero-sound-toggle.unmuted svg {
+  fill: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .hero-sound-toggle .sound-on { display: none; }
+#ptp-camp-wrapper .hero-sound-toggle .sound-off { display: block; }
+#ptp-camp-wrapper .hero-sound-toggle.unmuted .sound-on { display: block; }
+#ptp-camp-wrapper .hero-sound-toggle.unmuted .sound-off { display: none; }
+
+/* Mobile Hero Content */
+#ptp-camp-wrapper .hero-content-mobile {
+  position: absolute;
+  bottom: 20px;
+  left: 16px;
+  right: 16px;
+  z-index: 10;
+}
+
+#ptp-camp-wrapper .hero-content-mobile .hero-badge {
+  display: inline-block;
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-family: var(--ptp-font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+#ptp-camp-wrapper .hero-content-mobile .hero-headline {
+  font-family: var(--ptp-font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--ptp-white);
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+#ptp-camp-wrapper .hero-content-mobile .hero-headline span {
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .hero-content-mobile .hero-sub {
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#ptp-camp-wrapper .hero-content-mobile .hero-sub strong {
+  color: var(--ptp-gold);
+}
+
+/* Reserve Column */
+#ptp-camp-wrapper .hero-reserve-col {
+  padding: 20px 16px 24px;
+  background: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .reserve-card {
+  background: var(--ptp-gray-900);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+#ptp-camp-wrapper .reserve-badge { display: none; }
+#ptp-camp-wrapper .reserve-headline { display: none; }
+#ptp-camp-wrapper .reserve-sub { display: none; }
+
+#ptp-camp-wrapper .reserve-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+#ptp-camp-wrapper .reserve-pills .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--ptp-white);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 100px;
+}
+
+#ptp-camp-wrapper .reserve-pills .pill svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  opacity: 0.7;
+}
+
+#ptp-camp-wrapper .reserve-urgency {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #991B1B, #B91C1C);
+  color: var(--ptp-white);
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#ptp-camp-wrapper .reserve-urgency strong {
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .urgency-timer {
+  margin-left: auto;
+  font-family: var(--ptp-font-display);
+}
+
+#ptp-camp-wrapper .reserve-price {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+#ptp-camp-wrapper .price-amount {
+  font-family: var(--ptp-font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .price-per {
+  font-size: 14px;
+  color: var(--ptp-gray-400);
+}
+
+#ptp-camp-wrapper .reserve-btn {
+  width: 100%;
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-family: var(--ptp-font-display);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 8px 24px rgba(252,185,0,0.3);
+}
+
+#ptp-camp-wrapper .reserve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(252,185,0,0.4);
+}
+
+#ptp-camp-wrapper .reserve-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--ptp-gray-400);
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+/* ========================================
+   SECTIONS
+======================================== */
+#ptp-camp-wrapper section {
+  padding: 40px 20px;
+  width: 100%;
+  height: auto;
+  min-height: auto;
+}
+
+#ptp-camp-wrapper .bg-white {
+  background: var(--ptp-white);
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .bg-gray {
+  background: var(--ptp-gray-50);
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .bg-dark {
+  background: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .bg-black {
+  background: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .section-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* ========================================
+   FOUNDER QUOTE / MISSION
+======================================== */
+#ptp-camp-wrapper .mission {
+  padding: 40px 20px;
+  text-align: center;
+  background: var(--ptp-black);
+  position: relative;
+  z-index: 1; /* Ensure it's below sticky nav but properly layered */
+}
+
+#ptp-camp-wrapper .founder-profile {
+  margin-bottom: 20px;
+}
+
+#ptp-camp-wrapper .founder-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ptp-gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Mobile: Add more top padding to ensure no overlap with sticky quick-nav */
+@media (max-width: 767px) {
+  #ptp-camp-wrapper .mission {
+    padding: 32px 16px;
+  }
+  
+  #ptp-camp-wrapper .founder-profile {
+    margin-bottom: 16px;
+  }
+  
+  #ptp-camp-wrapper .founder-photo {
+    width: 64px;
+    height: 64px;
+    border-width: 2px;
+  }
+  
+  #ptp-camp-wrapper .mission-quote {
+    font-size: 18px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  
+  #ptp-camp-wrapper .mission-author {
+    font-size: 12px;
+  }
+}
+
+#ptp-camp-wrapper .mission-quote {
+  font-family: var(--ptp-font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ptp-white);
+  margin-bottom: 14px;
+}
+
+#ptp-camp-wrapper .mission-quote span {
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .mission-author {
+  color: var(--ptp-gray-400);
+  font-size: 13px;
+}
+
+#ptp-camp-wrapper .mission-author strong {
+  color: var(--ptp-white);
+  display: block;
+}
+
+/* ========================================
+   VIDEO REELS
+======================================== */
+#ptp-camp-wrapper .reels {
+  padding: 36px 0;
+  background: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .reels-header {
+  padding: 0 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#ptp-camp-wrapper .reels-header .headline {
+  color: var(--ptp-white);
+  font-size: 24px;
+}
+
+#ptp-camp-wrapper .reels-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+#ptp-camp-wrapper .reels-scroll::-webkit-scrollbar { display: none; }
+
+#ptp-camp-wrapper .reel {
+  flex-shrink: 0;
+  width: 160px;
+  scroll-snap-align: center;
+}
+
+#ptp-camp-wrapper .reel-wrap {
+  position: relative;
+  aspect-ratio: 9/16;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ptp-gray-800);
+  cursor: pointer;
+}
+
+#ptp-camp-wrapper .reel-wrap video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#ptp-camp-wrapper .reel-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+}
+
+#ptp-camp-wrapper .reel.playing .reel-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#ptp-camp-wrapper .reel-play {
+  width: 52px;
+  height: 52px;
+  background: var(--ptp-gold);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+#ptp-camp-wrapper .reel-play svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--ptp-black);
+  margin-left: 3px;
+}
+
+#ptp-camp-wrapper .reel-sound {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#ptp-camp-wrapper .reel.playing .reel-sound { opacity: 1; }
+
+#ptp-camp-wrapper .reel-sound svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .reel-sound.unmuted {
+  background: var(--ptp-gold);
+  border-color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .reel-sound.unmuted svg { fill: var(--ptp-black); }
+#ptp-camp-wrapper .reel-sound .sound-on { display: none; }
+#ptp-camp-wrapper .reel-sound .sound-off { display: block; }
+#ptp-camp-wrapper .reel-sound.unmuted .sound-on { display: block; }
+#ptp-camp-wrapper .reel-sound.unmuted .sound-off { display: none; }
+
+#ptp-camp-wrapper .reel-caption {
+  color: var(--ptp-white);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ========================================
+   QUICK INFO & NAVIGATION TAB
+======================================== */
+#ptp-camp-wrapper .quick-nav {
+  background: var(--ptp-gray-900);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 16px;
+  position: sticky;
+  top: 56px; /* Account for PTP header height on mobile */
+  z-index: 100; /* Lower z-index to prevent overlay issues */
+}
+
+#ptp-camp-wrapper .quick-nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Mobile: Hide quick-info items and only show quick-links */
+@media (max-width: 767px) {
+  #ptp-camp-wrapper .quick-nav {
+    padding: 8px 12px;
+  }
+  
+  #ptp-camp-wrapper .quick-info {
+    display: none; /* Hide detailed info on mobile - it's already in hero */
+  }
+  
+  #ptp-camp-wrapper .quick-nav-inner {
+    gap: 0;
+  }
+  
+  #ptp-camp-wrapper .quick-links {
+    gap: 5px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+  
+  #ptp-camp-wrapper .quick-link {
+    padding: 6px 10px;
+    font-size: 11px;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  #ptp-camp-wrapper .quick-link-cta {
+    flex: 1.2; /* Make Book Now slightly wider */
+  }
+}
+
+#ptp-camp-wrapper .quick-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  justify-content: center;
+}
+
+#ptp-camp-wrapper .quick-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ptp-gray-400);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#ptp-camp-wrapper .quick-item svg {
+  color: var(--ptp-gold);
+  flex-shrink: 0;
+}
+
+#ptp-camp-wrapper .quick-item span {
+  white-space: nowrap;
+}
+
+#ptp-camp-wrapper .quick-links {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#ptp-camp-wrapper .quick-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  color: var(--ptp-white);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+#ptp-camp-wrapper .quick-link:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.2);
+}
+
+#ptp-camp-wrapper .quick-link-cta {
+  background: var(--ptp-gold);
+  border-color: var(--ptp-gold);
+  color: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .quick-link-cta:hover {
+  background: var(--ptp-gold-hover);
+  border-color: var(--ptp-gold-hover);
+}
+
+/* Quick nav responsive top position to match header heights */
+@media (min-width: 480px) {
+  #ptp-camp-wrapper .quick-nav { top: 60px; }
+}
+
+@media (min-width: 640px) {
+  #ptp-camp-wrapper .quick-nav { top: 64px; }
+}
+
+@media (min-width: 768px) {
+  #ptp-camp-wrapper .quick-nav { top: 68px; }
+}
+
+@media (min-width: 992px) {
+  #ptp-camp-wrapper .quick-nav { top: 70px; }
+}
+
+/* Admin bar adjustments for quick-nav */
+.admin-bar #ptp-camp-wrapper .quick-nav { top: 88px; }
+
+@media (min-width: 480px) {
+  .admin-bar #ptp-camp-wrapper .quick-nav { top: 92px; }
+}
+
+@media (min-width: 640px) {
+  .admin-bar #ptp-camp-wrapper .quick-nav { top: 96px; }
+}
+
+@media (min-width: 768px) {
+  .admin-bar #ptp-camp-wrapper .quick-nav { top: 100px; }
+}
+
+@media (min-width: 992px) {
+  .admin-bar #ptp-camp-wrapper .quick-nav { top: 102px; }
+}
+
+@media (max-width: 782px) {
+  .admin-bar #ptp-camp-wrapper .quick-nav { top: 102px; }
+}
+
+/* ========================================
+   STATS BAR
+======================================== */
+#ptp-camp-wrapper .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 32px 20px;
+  background: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .stat {
+  text-align: center;
+}
+
+#ptp-camp-wrapper .stat-value {
+  font-family: var(--ptp-font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ptp-black);
+  line-height: 1;
+}
+
+#ptp-camp-wrapper .stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ptp-black);
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ========================================
+   DIFFERENTIATORS
+======================================== */
+#ptp-camp-wrapper .diff-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#ptp-camp-wrapper .diff-card {
+  background: var(--ptp-gray-800);
+  border-left: 4px solid var(--ptp-gold);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 18px;
+}
+
+#ptp-camp-wrapper .diff-eyebrow {
+  font-family: var(--ptp-font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--ptp-gold);
+  margin-bottom: 6px;
+}
+
+#ptp-camp-wrapper .diff-title {
+  font-family: var(--ptp-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ptp-white);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+#ptp-camp-wrapper .diff-desc {
+  color: var(--ptp-gray-400);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#ptp-camp-wrapper .diff-desc strong {
+  color: var(--ptp-gold);
+}
+
+/* ========================================
+   GALLERY
+======================================== */
+#ptp-camp-wrapper .gallery {
+  padding: 36px 0;
+  background: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .gallery-header {
+  padding: 0 20px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#ptp-camp-wrapper .gallery-header .headline {
+  color: var(--ptp-white);
+  font-size: 28px;
+}
+
+#ptp-camp-wrapper .gallery-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+#ptp-camp-wrapper .gallery-scroll::-webkit-scrollbar { display: none; }
+
+#ptp-camp-wrapper .gallery-item {
+  flex-shrink: 0;
+  width: 300px;
+  height: 225px;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  background: var(--ptp-gray-800);
+}
+
+#ptp-camp-wrapper .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#ptp-camp-wrapper .gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: var(--ptp-white);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 20px 14px 12px;
+  text-align: center;
+}
+
+/* ========================================
+   SKILLS GRID
+======================================== */
+#ptp-camp-wrapper .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+#ptp-camp-wrapper .skill-card {
+  background: var(--ptp-white);
+  border: 2px solid var(--ptp-gray-200);
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: center;
+}
+
+#ptp-camp-wrapper .skill-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+#ptp-camp-wrapper .skill-name {
+  font-family: var(--ptp-font-display);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ptp-gray-900);
+  margin-bottom: 4px;
+}
+
+#ptp-camp-wrapper .skill-desc {
+  font-size: 11px;
+  color: var(--ptp-gray-500);
+  line-height: 1.3;
+}
+
+/* ========================================
+   WEEK CARDS
+======================================== */
+#ptp-camp-wrapper .week-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+#ptp-camp-wrapper .week-scroll::-webkit-scrollbar { display: none; }
+
+#ptp-camp-wrapper .week-card {
+  flex-shrink: 0;
+  width: 220px;
+  background: var(--ptp-white);
+  border: 2px solid var(--ptp-gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#ptp-camp-wrapper .week-card.highlight {
+  border-color: var(--ptp-gold);
+  box-shadow: 0 0 0 2px rgba(252,185,0,0.2);
+}
+
+#ptp-camp-wrapper .week-header {
+  background: var(--ptp-gray-900);
+  color: var(--ptp-white);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#ptp-camp-wrapper .week-card.highlight .week-header {
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .week-day {
+  font-family: var(--ptp-font-display);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#ptp-camp-wrapper .week-theme {
+  font-size: 9px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+#ptp-camp-wrapper .week-card.highlight .week-theme {
+  background: rgba(0,0,0,0.2);
+}
+
+#ptp-camp-wrapper .week-body {
+  padding: 14px;
+}
+
+#ptp-camp-wrapper .week-skill {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  color: #B45309;
+  background: #FEF3C7;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+#ptp-camp-wrapper .week-focus {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ptp-gray-900);
+  margin-bottom: 4px;
+}
+
+#ptp-camp-wrapper .week-desc {
+  font-size: 11px;
+  color: var(--ptp-gray-500);
+  line-height: 1.4;
+}
+
+/* ========================================
+   DAILY SCHEDULE
+======================================== */
+#ptp-camp-wrapper .schedule-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ptp-gray-800);
+  color: var(--ptp-white);
+  font-family: var(--ptp-font-display);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 100px;
+  margin: 0 auto 20px;
+  width: fit-content;
+}
+
+#ptp-camp-wrapper .schedule-list {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 0;
+}
+
+#ptp-camp-wrapper .schedule-list::-webkit-scrollbar { display: none; }
+
+#ptp-camp-wrapper .schedule-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: var(--ptp-white);
+  border-radius: 12px;
+  min-width: 200px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+#ptp-camp-wrapper .schedule-item:nth-child(odd) {
+  background: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .schedule-time {
+  flex-shrink: 0;
+  width: 55px;
+  font-family: var(--ptp-font-display);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ptp-gray-400);
+}
+
+#ptp-camp-wrapper .schedule-tag {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+  margin-bottom: 3px;
+}
+
+#ptp-camp-wrapper .tag-arrival { background: #DBEAFE; color: #1D4ED8; }
+#ptp-camp-wrapper .tag-skill { background: #D1FAE5; color: #047857; }
+#ptp-camp-wrapper .tag-gameplay { background: #FCE7F3; color: #BE185D; }
+#ptp-camp-wrapper .tag-break { background: #FEF3C7; color: #B45309; }
+#ptp-camp-wrapper .tag-lunch { background: #E0E7FF; color: #4338CA; }
+#ptp-camp-wrapper .tag-tournament { background: #FEE2E2; color: #B91C1C; }
+#ptp-camp-wrapper .tag-pickup { background: #F3E8FF; color: #7C3AED; }
+
+#ptp-camp-wrapper .schedule-activity {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--ptp-gray-900);
+  line-height: 1.3;
+}
+
+#ptp-camp-wrapper .schedule-desc {
+  font-size: 11px;
+  color: var(--ptp-gray-500);
+}
+
+/* ========================================
+   COACHES
+======================================== */
+#ptp-camp-wrapper .coaches-note {
+  text-align: center;
+  color: var(--ptp-gray-400);
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+#ptp-camp-wrapper .coaches-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+#ptp-camp-wrapper .coaches-scroll::-webkit-scrollbar { display: none; }
+
+#ptp-camp-wrapper .coach {
+  flex-shrink: 0;
+  width: 130px;
+  text-align: center;
+}
+
+#ptp-camp-wrapper .coach-photo {
+  width: 130px;
+  height: 170px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+  background: var(--ptp-gray-800);
+}
+
+#ptp-camp-wrapper .coach-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#ptp-camp-wrapper .coach-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-size: 8px;
+  font-weight: 700;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+#ptp-camp-wrapper .coach-name {
+  font-family: var(--ptp-font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .coach-school {
+  font-size: 11px;
+  color: var(--ptp-gray-400);
+}
+
+/* ========================================
+   TRUST BAR
+======================================== */
+#ptp-camp-wrapper .trust {
+  display: flex;
+  justify-content: space-around;
+  padding: 24px 16px;
+  background: var(--ptp-white);
+  border-top: 1px solid var(--ptp-gray-200);
+  border-bottom: 1px solid var(--ptp-gray-200);
+}
+
+#ptp-camp-wrapper .trust-item {
+  text-align: center;
+  flex: 1;
+}
+
+#ptp-camp-wrapper .trust-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--ptp-gold);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+}
+
+#ptp-camp-wrapper .trust-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .trust-value {
+  font-family: var(--ptp-font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .trust-label {
+  font-size: 9px;
+  color: var(--ptp-gray-500);
+}
+
+/* ========================================
+   WHAT'S INCLUDED
+======================================== */
+#ptp-camp-wrapper .included-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#ptp-camp-wrapper .included-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ptp-white);
+  border: 1px solid var(--ptp-gray-200);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+#ptp-camp-wrapper .included-check {
+  width: 24px;
+  height: 24px;
+  background: var(--ptp-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#ptp-camp-wrapper .included-check svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .included-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ptp-gray-900);
+}
+
+/* Add-on */
+#ptp-camp-wrapper .addon-section {
+  margin-top: 20px;
+}
+
+#ptp-camp-wrapper .addon-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ptp-white);
+  border: 2px dashed var(--ptp-gold);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+#ptp-camp-wrapper .addon-check {
+  flex-shrink: 0;
+}
+
+#ptp-camp-wrapper .addon-check input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--ptp-gold);
+  cursor: pointer;
+}
+
+#ptp-camp-wrapper .addon-info {
+  flex: 1;
+}
+
+#ptp-camp-wrapper .addon-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .addon-desc {
+  font-size: 12px;
+  color: var(--ptp-gray-500);
+}
+
+#ptp-camp-wrapper .addon-price {
+  font-family: var(--ptp-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ptp-gold);
+}
+
+/* ========================================
+   REVIEWS
+======================================== */
+#ptp-camp-wrapper .reviews-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+#ptp-camp-wrapper .reviews-scroll::-webkit-scrollbar { display: none; }
+
+#ptp-camp-wrapper .review {
+  flex-shrink: 0;
+  width: 300px;
+  background: var(--ptp-white);
+  border: 1px solid var(--ptp-gray-200);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+#ptp-camp-wrapper .review-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+#ptp-camp-wrapper .review-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#ptp-camp-wrapper .review-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .review-stars {
+  color: var(--ptp-gold);
+  font-size: 13px;
+}
+
+#ptp-camp-wrapper .review-text {
+  font-size: 14px;
+  color: var(--ptp-gray-600);
+  line-height: 1.5;
+}
+
+#ptp-camp-wrapper .review-text strong {
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .reviews-more {
+  text-align: center;
+  margin-top: 16px;
+}
+
+#ptp-camp-wrapper .reviews-link {
+  color: var(--ptp-gold);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* ========================================
+   LOCATION
+======================================== */
+#ptp-camp-wrapper .location-card {
+  background: var(--ptp-white);
+  border: 1px solid var(--ptp-gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+#ptp-camp-wrapper .location-map {
+  height: 180px;
+  background: var(--ptp-gray-100);
+}
+
+#ptp-camp-wrapper .location-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+#ptp-camp-wrapper .location-info {
+  padding: 20px;
+}
+
+#ptp-camp-wrapper .location-row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ptp-gray-100);
+  font-size: 14px;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .location-row:last-child {
+  border-bottom: none;
+}
+
+#ptp-camp-wrapper .location-row svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--ptp-gold);
+  flex-shrink: 0;
+}
+
+#ptp-camp-wrapper .location-row strong {
+  display: block;
+  font-size: 14px;
+}
+
+#ptp-camp-wrapper .location-row span {
+  color: var(--ptp-gray-500);
+  font-size: 12px;
+}
+
+#ptp-camp-wrapper .location-btn {
+  width: 100%;
+  background: var(--ptp-gray-900);
+  color: var(--ptp-white);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+/* ========================================
+   MULTI-WEEK SELECTOR
+======================================== */
+#ptp-camp-wrapper .pricing-banner {
+  background: linear-gradient(90deg, #B91C1C, #DC2626);
+  color: var(--ptp-white);
+  text-align: center;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+#ptp-camp-wrapper .pricing-banner strong {
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .week-selector {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#ptp-camp-wrapper .selector-hint {
+  text-align: center;
+  color: var(--ptp-gray-500);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+#ptp-camp-wrapper .weeks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#ptp-camp-wrapper .week-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ptp-white);
+  border: 2px solid var(--ptp-gray-200);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#ptp-camp-wrapper .week-option:hover {
+  border-color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .week-option input { display: none; }
+
+#ptp-camp-wrapper .week-option:has(input:checked) {
+  border-color: var(--ptp-gold);
+  background: rgba(252,185,0,0.05);
+}
+
+#ptp-camp-wrapper .week-option:has(input:checked) .week-option-check {
+  background: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .week-option:has(input:checked) .week-option-check svg {
+  opacity: 1;
+}
+
+#ptp-camp-wrapper .week-option-content {
+  flex: 1;
+}
+
+#ptp-camp-wrapper .week-option-name {
+  font-family: var(--ptp-font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ptp-gray-900);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+#ptp-camp-wrapper .week-option-date {
+  font-family: var(--ptp-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .week-option-location {
+  font-size: 13px;
+  color: var(--ptp-gray-500);
+}
+
+#ptp-camp-wrapper .week-option-time {
+  font-size: 11px;
+  color: var(--ptp-gray-400);
+  margin-top: 2px;
+}
+
+#ptp-camp-wrapper .week-option-price {
+  font-family: var(--ptp-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ptp-gray-900);
+  margin-right: 10px;
+}
+
+#ptp-camp-wrapper .week-option-check {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--ptp-gray-300);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+#ptp-camp-wrapper .week-option-check svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--ptp-black);
+  opacity: 0;
+}
+
+#ptp-camp-wrapper .multi-week-discount {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--ptp-gray-600);
+}
+
+#ptp-camp-wrapper .discount-row strong {
+  color: var(--ptp-green);
+}
+
+#ptp-camp-wrapper .selection-summary {
+  background: var(--ptp-gray-100);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+#ptp-camp-wrapper .summary-count {
+  font-size: 14px;
+  color: var(--ptp-gray-600);
+}
+
+#ptp-camp-wrapper .summary-total {
+  font-size: 16px;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .summary-total strong {
+  font-family: var(--ptp-font-display);
+  font-size: 22px;
+}
+
+#ptp-camp-wrapper .checkout-btn {
+  width: 100%;
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-family: var(--ptp-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(252,185,0,0.3);
+  transition: all 0.2s;
+}
+
+#ptp-camp-wrapper .checkout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(252,185,0,0.4);
+}
+
+/* ========================================
+   FAQ
+======================================== */
+#ptp-camp-wrapper .faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#ptp-camp-wrapper .faq-item {
+  background: var(--ptp-white);
+  border: 1px solid var(--ptp-gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#ptp-camp-wrapper .faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 16px 18px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ptp-gray-900);
+}
+
+#ptp-camp-wrapper .faq-q svg {
+  width: 18px;
+  height: 18px;
+  color: var(--ptp-gray-400);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+#ptp-camp-wrapper .faq-item.open .faq-q svg {
+  transform: rotate(180deg);
+}
+
+#ptp-camp-wrapper .faq-a {
+  padding: 0 18px 18px;
+  font-size: 13px;
+  color: var(--ptp-gray-600);
+  line-height: 1.6;
+}
+
+#ptp-camp-wrapper .faq-a strong {
+  color: var(--ptp-gray-900);
+}
+
+/* ========================================
+   FINAL CTA
+======================================== */
+#ptp-camp-wrapper .final-cta {
+  padding: 56px 20px;
+  text-align: center;
+  background: var(--ptp-black);
+}
+
+#ptp-camp-wrapper .final-headline {
+  font-family: var(--ptp-font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--ptp-white);
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 12px;
+}
+
+#ptp-camp-wrapper .final-headline span {
+  color: var(--ptp-gold);
+}
+
+#ptp-camp-wrapper .final-sub {
+  color: var(--ptp-gray-400);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#ptp-camp-wrapper .final-urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(252,185,0,0.15);
+  border: 1px solid var(--ptp-gold);
+  color: var(--ptp-gold);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+#ptp-camp-wrapper .final-btn {
+  width: 100%;
+  max-width: 360px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-family: var(--ptp-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 28px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 12px 35px rgba(252,185,0,0.35);
+}
+
+#ptp-camp-wrapper .final-btn .cta-price {
+  background: rgba(0,0,0,0.8);
+  color: var(--ptp-gold);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#ptp-camp-wrapper .final-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--ptp-gray-500);
+  font-size: 11px;
+  margin-top: 14px;
+}
+
+/* ========================================
+   STICKY CTA BAR (MOBILE ONLY)
+======================================== */
+#ptp-camp-wrapper .sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  background: var(--ptp-white);
+  border-top: 1px solid var(--ptp-gray-200);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+}
+
+#ptp-camp-wrapper .sticky.visible {
+  display: flex;
+}
+
+#ptp-camp-wrapper .sticky-left {
+  display: flex;
+  flex-direction: column;
+}
+
+#ptp-camp-wrapper .sticky-price {
+  font-family: var(--ptp-font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ptp-gray-900);
+  line-height: 1.1;
+}
+
+#ptp-camp-wrapper .sticky-date {
+  font-size: 11px;
+  color: var(--ptp-gray-500);
+}
+
+#ptp-camp-wrapper .sticky-btn {
+  flex: 1;
+  max-width: 180px;
+  background: var(--ptp-gold);
+  color: var(--ptp-black);
+  font-family: var(--ptp-font-display);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(252,185,0,0.3);
+}
+
+/* ========================================
+   MOBILE STYLES (Comprehensive Mobile-First)
+   v10.3.5 - Compact, responsive, touch-friendly
+======================================== */
+@media (max-width: 767px) {
+  /* ==========================================
+     HEADER & BODY ISOLATION
+     Override ALL external stylesheets
+  ========================================== */
+  
+  /* Ensure PTP global header is NOT affected by camp styles */
+  body.ptp-camp-page .ptp-hdr,
+  body.ptp-camp-page .ptp-header,
+  body.ptp-camp-page header.ptp-hdr {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 999999 !important;
+    background: #0A0A0A !important;
+    transform: none !important;
+  }
+  
+  /* Admin bar adjustment for header */
+  body.admin-bar.ptp-camp-page .ptp-hdr,
+  body.admin-bar.ptp-camp-page .ptp-header {
+    top: 46px !important;
+  }
+  
+  /* Body scroll */
+  body.ptp-camp-page {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    position: static !important;
+    padding-top: 56px !important;
+  }
+  
+  body.admin-bar.ptp-camp-page {
+    padding-top: 102px !important; /* 56px + 46px admin bar */
+  }
+  
+  /* ==========================================
+     TRAINING PLATFORM OVERRIDES
+     Reset aggressive button/element sizing
+  ========================================== */
+  #ptp-camp-wrapper button,
+  #ptp-camp-wrapper .btn,
+  #ptp-camp-wrapper .button,
+  #ptp-camp-wrapper a.button,
+  #ptp-camp-wrapper .quick-link,
+  #ptp-camp-wrapper .scroll-btn,
+  #ptp-camp-wrapper .reel-play,
+  #ptp-camp-wrapper .reel-sound,
+  #ptp-camp-wrapper .week-option,
+  #ptp-camp-wrapper .faq-q,
+  #ptp-camp-wrapper .checkout-btn,
+  #ptp-camp-wrapper .final-btn,
+  #ptp-camp-wrapper .sticky-btn {
+    min-height: auto !important;
+    min-width: auto !important;
+  }
+  
+  /* Ensure wrapper visible */
+  body.ptp-camp-page #ptp-camp-wrapper,
+  html body.ptp-camp-page #ptp-camp-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  #ptp-camp-wrapper > *,
+  #ptp-camp-wrapper section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* ==========================================
+     COMPACT TYPOGRAPHY
+  ========================================== */
+  #ptp-camp-wrapper .label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+  
+  #ptp-camp-wrapper .headline {
+    font-size: 22px;
+    margin-top: 4px;
+  }
+  
+  #ptp-camp-wrapper .section-header {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+  
+  #ptp-camp-wrapper .section-header.center {
+    text-align: center;
+  }
+  
+  /* ==========================================
+     HERO - COMPACT MOBILE
+  ========================================== */
+  #ptp-camp-wrapper .hero-two-col {
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  #ptp-camp-wrapper .hero-video-col {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    max-height: 55vh;
+    height: auto;
+  }
+  
+  #ptp-camp-wrapper .hero-video {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 45vh;
+    max-height: 55vh;
+    object-fit: cover;
+  }
+  
+  #ptp-camp-wrapper .hero-reserve-col {
+    padding: 20px 16px 24px;
+    height: auto;
+    min-height: auto;
+  }
+  
+  #ptp-camp-wrapper .reserve-content {
+    text-align: center;
+    padding: 0;
+  }
+  
+  #ptp-camp-wrapper .reserve-badge {
+    font-size: 9px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+  
+  #ptp-camp-wrapper .reserve-title {
+    font-size: 24px;
+    margin-bottom: 6px;
+    line-height: 1.0;
+  }
+  
+  #ptp-camp-wrapper .reserve-subtitle {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+  
+  #ptp-camp-wrapper .reserve-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  
+  #ptp-camp-wrapper .meta-item {
+    font-size: 11px;
+    padding: 6px 10px;
+    gap: 4px;
+  }
+  
+  #ptp-camp-wrapper .meta-item svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  #ptp-camp-wrapper .reserve-price-row {
+    margin-bottom: 14px;
+  }
+  
+  #ptp-camp-wrapper .reserve-price {
+    font-size: 32px;
+  }
+  
+  #ptp-camp-wrapper .reserve-per {
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .reserve-cta {
+    padding: 14px 24px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  #ptp-camp-wrapper .reserve-trust {
+    font-size: 10px;
+    margin-top: 10px;
+    gap: 10px;
+  }
+  
+  /* ==========================================
+     QUICK NAV - COMPACT MOBILE
+  ========================================== */
+  #ptp-camp-wrapper .quick-nav {
+    padding: 8px 12px;
+    top: 56px;
+    z-index: 100;
+  }
+  
+  body.admin-bar.ptp-camp-page #ptp-camp-wrapper .quick-nav {
+    top: 102px;
+  }
+  
+  #ptp-camp-wrapper .quick-nav-inner {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  #ptp-camp-wrapper .quick-info {
+    display: none; /* Hidden on mobile - info already in hero */
+  }
+  
+  #ptp-camp-wrapper .quick-links {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  #ptp-camp-wrapper .quick-link {
+    flex: 1;
+    padding: 8px 6px;
+    font-size: 10px;
+    border-radius: 6px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  #ptp-camp-wrapper .quick-link.cta {
+    padding: 8px 10px;
+    flex: none;
+  }
+  
+  /* ==========================================
+     MISSION - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .mission {
+    padding: 28px 16px;
+    z-index: 1;
+  }
+  
+  #ptp-camp-wrapper .founder-photo {
+    width: 56px;
+    height: 56px;
+    border-width: 2px;
+  }
+  
+  #ptp-camp-wrapper .mission-quote {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  
+  #ptp-camp-wrapper .mission-author {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+  
+  /* ==========================================
+     SECTIONS - COMPACT PADDING
+  ========================================== */
+  #ptp-camp-wrapper section,
+  #ptp-camp-wrapper .bg-white,
+  #ptp-camp-wrapper .bg-gray,
+  #ptp-camp-wrapper .bg-black {
+    padding: 32px 16px;
+    height: auto;
+    min-height: auto;
+  }
+  
+  /* ==========================================
+     VIDEO REELS - COMPACT CARDS
+  ========================================== */
+  #ptp-camp-wrapper .reels-scroll {
+    padding: 0 16px 16px;
+    gap: 10px;
+  }
+  
+  #ptp-camp-wrapper .reel {
+    width: 140px;
+    flex-shrink: 0;
+  }
+  
+  #ptp-camp-wrapper .reel-wrap {
+    height: 200px;
+    border-radius: 10px;
+  }
+  
+  #ptp-camp-wrapper .reel-play {
+    width: 36px;
+    height: 36px;
+  }
+  
+  #ptp-camp-wrapper .reel-play svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  #ptp-camp-wrapper .reel-sound {
+    width: 28px;
+    height: 28px;
+    bottom: 6px;
+    right: 6px;
+  }
+  
+  #ptp-camp-wrapper .reel-title {
+    font-size: 11px;
+    margin-top: 8px;
+    padding: 0 2px;
+  }
+  
+  /* Scroll buttons - compact */
+  #ptp-camp-wrapper .scroll-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  
+  /* ==========================================
+     GALLERY - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .gallery-scroll {
+    padding: 0 16px 16px;
+    gap: 8px;
+  }
+  
+  #ptp-camp-wrapper .gallery-item {
+    width: 180px;
+    height: 135px;
+    border-radius: 8px;
+  }
+  
+  /* ==========================================
+     SCHEDULE - COMPACT CARDS
+  ========================================== */
+  #ptp-camp-wrapper .schedule-list {
+    padding: 0 16px 12px;
+    gap: 8px;
+  }
+  
+  #ptp-camp-wrapper .schedule-item {
+    min-width: 160px;
+    padding: 12px;
+    border-radius: 10px;
+    gap: 6px;
+  }
+  
+  #ptp-camp-wrapper .schedule-time {
+    font-size: 9px;
+    width: 50px;
+  }
+  
+  #ptp-camp-wrapper .schedule-tag {
+    font-size: 7px;
+    padding: 2px 5px;
+    margin-bottom: 2px;
+  }
+  
+  #ptp-camp-wrapper .schedule-activity {
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .schedule-desc {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  
+  /* ==========================================
+     COACHES - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .coaches-scroll {
+    padding: 0 16px 16px;
+    gap: 10px;
+  }
+  
+  #ptp-camp-wrapper .coach {
+    width: 100px;
+  }
+  
+  #ptp-camp-wrapper .coach-photo {
+    width: 100px;
+    height: 130px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  
+  #ptp-camp-wrapper .coach-badge {
+    font-size: 7px;
+    padding: 3px;
+    bottom: 6px;
+    left: 6px;
+    right: 6px;
+  }
+  
+  #ptp-camp-wrapper .coach-name {
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .coach-school {
+    font-size: 10px;
+  }
+  
+  #ptp-camp-wrapper .coaches-note {
+    font-size: 12px;
+    margin-bottom: 14px;
+    padding: 0 16px;
+  }
+  
+  /* ==========================================
+     TRUST BAR - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .trust {
+    padding: 16px 12px;
+    gap: 8px;
+  }
+  
+  #ptp-camp-wrapper .trust-item {
+    flex: 1;
+  }
+  
+  #ptp-camp-wrapper .trust-num {
+    font-size: 18px;
+  }
+  
+  #ptp-camp-wrapper .trust-label {
+    font-size: 9px;
+  }
+  
+  /* ==========================================
+     WEEK SELECTOR - COMPACT TOGGLES
+  ========================================== */
+  #ptp-camp-wrapper .week-selector {
+    padding: 0 16px;
+  }
+  
+  #ptp-camp-wrapper .selector-hint {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  
+  #ptp-camp-wrapper .weeks-grid {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  
+  /* COMPACT WEEK TOGGLES */
+  #ptp-camp-wrapper .week-option {
+    padding: 10px 12px;
+    gap: 10px;
+    border-radius: 10px;
+    border-width: 1.5px;
+  }
+  
+  #ptp-camp-wrapper .week-option-name {
+    font-size: 12px;
+    margin-bottom: 1px;
+  }
+  
+  #ptp-camp-wrapper .week-option-date {
+    font-size: 13px;
+  }
+  
+  #ptp-camp-wrapper .week-option-location {
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .week-option-time {
+    font-size: 10px;
+    margin-top: 1px;
+  }
+  
+  #ptp-camp-wrapper .week-option-price {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+  
+  #ptp-camp-wrapper .week-option-check {
+    width: 22px;
+    height: 22px;
+    border-width: 1.5px;
+  }
+  
+  #ptp-camp-wrapper .week-option-check svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  #ptp-camp-wrapper .multi-week-discount {
+    gap: 16px;
+    margin-bottom: 14px;
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .discount-row {
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .selection-summary {
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+  
+  #ptp-camp-wrapper .checkout-btn {
+    padding: 12px 20px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+  
+  /* ==========================================
+     FAQ - COMPACT TOGGLES
+  ========================================== */
+  #ptp-camp-wrapper .faq-list {
+    gap: 8px;
+  }
+  
+  #ptp-camp-wrapper .faq-item {
+    border-radius: 10px;
+  }
+  
+  #ptp-camp-wrapper .faq-q {
+    padding: 12px 14px;
+    font-size: 13px;
+    gap: 10px;
+  }
+  
+  #ptp-camp-wrapper .faq-q span {
+    flex: 1;
+    line-height: 1.3;
+  }
+  
+  #ptp-camp-wrapper .faq-q svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  #ptp-camp-wrapper .faq-a {
+    padding: 0 14px 14px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  /* ==========================================
+     FINAL CTA - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .final-cta {
+    padding: 36px 16px;
+  }
+  
+  #ptp-camp-wrapper .final-headline {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  #ptp-camp-wrapper .final-sub {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  
+  #ptp-camp-wrapper .final-btn {
+    max-width: 280px;
+    padding: 14px 24px;
+    font-size: 14px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+  
+  #ptp-camp-wrapper .final-btn .cta-price {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+  
+  #ptp-camp-wrapper .final-guarantee {
+    font-size: 10px;
+    margin-top: 10px;
+  }
+  
+  /* ==========================================
+     STICKY FOOTER - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .sticky {
+    padding: 10px 14px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    gap: 10px;
+  }
+  
+  #ptp-camp-wrapper .sticky.visible {
+    display: flex !important;
+  }
+  
+  #ptp-camp-wrapper .sticky-price {
+    font-size: 20px;
+  }
+  
+  #ptp-camp-wrapper .sticky-date {
+    font-size: 10px;
+  }
+  
+  #ptp-camp-wrapper .sticky-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  
+  /* ==========================================
+     EARLY BIRD POPUP - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .early-bird-popup {
+    bottom: auto;
+    top: 62px;
+    right: 8px;
+  }
+  
+  body.admin-bar.ptp-camp-page #ptp-camp-wrapper .early-bird-popup {
+    top: 108px;
+  }
+  
+  #ptp-camp-wrapper .eb-popup-content {
+    max-width: 140px;
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+  
+  #ptp-camp-wrapper .eb-badge {
+    font-size: 8px;
+    padding: 3px 8px;
+    margin-bottom: 6px;
+  }
+  
+  #ptp-camp-wrapper .eb-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  #ptp-camp-wrapper .eb-countdown {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  
+  #ptp-camp-wrapper .eb-num {
+    font-size: 12px;
+  }
+  
+  #ptp-camp-wrapper .eb-label {
+    font-size: 7px;
+  }
+  
+  #ptp-camp-wrapper .eb-expires {
+    font-size: 9px;
+  }
+  
+  /* ==========================================
+     MAP SECTION - COMPACT
+  ========================================== */
+  #ptp-camp-wrapper .map-container {
+    height: 200px;
+    border-radius: 10px;
+  }
+  
+  #ptp-camp-wrapper .map-details {
+    padding: 14px;
+    gap: 10px;
+  }
+  
+  #ptp-camp-wrapper .map-venue {
+    font-size: 14px;
+  }
+  
+  #ptp-camp-wrapper .map-address {
+    font-size: 11px;
+  }
+  
+  #ptp-camp-wrapper .map-link {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+}
+
+/* ========================================
+   DESKTOP STYLES (768px+)
+======================================== */
+@media (min-width: 768px) {
+  #ptp-camp-wrapper .sticky { display: none !important; }
+  
+  /* Quick Nav Desktop */
+  #ptp-camp-wrapper .quick-nav {
+    padding: 14px 40px;
+    top: 68px; /* Match header height at 768px+ */
+  }
+  
+  #ptp-camp-wrapper .quick-nav-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  #ptp-camp-wrapper .quick-info {
+    display: flex; /* Re-show on desktop */
+    gap: 24px;
+    justify-content: flex-start;
+  }
+  
+  #ptp-camp-wrapper .quick-item {
+    font-size: 13px;
+  }
+  
+  #ptp-camp-wrapper .quick-links {
+    gap: 8px;
+  }
+  
+  #ptp-camp-wrapper .quick-link {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  
+  /* Force full viewport width on desktop */
+  #ptp-camp-wrapper.ptp-v10 {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+  
+  #ptp-camp-wrapper .hero-two-col {
+    flex-direction: row;
+    min-height: 85vh;
+    width: 100%;
+  }
+  
+  #ptp-camp-wrapper .hero-video-col {
+    width: 60%;
+    position: relative;
+    min-height: 85vh;
+  }
+  
+  #ptp-camp-wrapper .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: auto;
+    object-fit: cover;
+  }
+  
+  #ptp-camp-wrapper .hero-content-mobile { display: none; }
+  
+  #ptp-camp-wrapper .hero-reserve-col {
+    width: 40%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 30px;
+  }
+  
+  #ptp-camp-wrapper .reserve-card {
+    max-width: 400px;
+    padding: 32px;
+  }
+  
+  #ptp-camp-wrapper .reserve-badge {
+    display: inline-block;
+    background: var(--ptp-gold);
+    color: var(--ptp-black);
+    font-family: var(--ptp-font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  
+  #ptp-camp-wrapper .reserve-headline {
+    display: block;
+    font-family: var(--ptp-font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ptp-white);
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  
+  #ptp-camp-wrapper .reserve-headline span { color: var(--ptp-gold); }
+  
+  #ptp-camp-wrapper .reserve-sub {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+  
+  #ptp-camp-wrapper .reserve-sub strong { color: var(--ptp-gold); }
+  #ptp-camp-wrapper .price-amount { font-size: 48px; }
+  #ptp-camp-wrapper .reserve-btn { font-size: 17px; padding: 18px 28px; }
+  
+  #ptp-camp-wrapper .stats { gap: 60px; padding: 48px 80px; }
+  #ptp-camp-wrapper .stat-value { font-size: 64px; }
+  #ptp-camp-wrapper .stat-label { font-size: 14px; }
+  
+  #ptp-camp-wrapper section { padding: 80px 60px; }
+  #ptp-camp-wrapper .section-header { margin-bottom: 36px; }
+  #ptp-camp-wrapper .label { font-size: 12px; letter-spacing: 3px; }
+  #ptp-camp-wrapper .headline { font-size: 44px; }
+  
+  #ptp-camp-wrapper .mission { padding: 72px 60px; }
+  #ptp-camp-wrapper .mission-quote { font-size: 32px; max-width: 800px; margin: 0 auto 18px; }
+  
+  #ptp-camp-wrapper .reels { padding: 72px 0; }
+  #ptp-camp-wrapper .reels-header .headline { font-size: 36px; }
+  #ptp-camp-wrapper .reels-scroll { justify-content: center; gap: 24px; }
+  #ptp-camp-wrapper .reel { width: 220px; }
+  
+  #ptp-camp-wrapper .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  #ptp-camp-wrapper .gallery { padding: 72px 0; }
+  #ptp-camp-wrapper .gallery-header .headline { font-size: 40px; }
+  #ptp-camp-wrapper .gallery-scroll { justify-content: center; gap: 24px; }
+  #ptp-camp-wrapper .gallery-item { width: 380px; height: 285px; }
+  
+  #ptp-camp-wrapper .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  #ptp-camp-wrapper .week-scroll { justify-content: center; gap: 20px; }
+  
+  #ptp-camp-wrapper .schedule-list { 
+    max-width: 700px; 
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 3px;
+    overflow-x: visible;
+  }
+  
+  #ptp-camp-wrapper .schedule-item {
+    flex-direction: row;
+    min-width: auto;
+    gap: 12px;
+    padding: 12px 14px;
+    box-shadow: none;
+  }
+  
+  #ptp-camp-wrapper .schedule-item:nth-child(odd) {
+    background: var(--ptp-gray-50);
+  }
+  
+  #ptp-camp-wrapper .coaches-scroll { justify-content: center; flex-wrap: wrap; gap: 32px; }
+  #ptp-camp-wrapper .coach { width: 160px; }
+  #ptp-camp-wrapper .coach-photo { width: 160px; height: 210px; }
+  
+  #ptp-camp-wrapper .trust { justify-content: center; gap: 100px; padding: 48px 60px; }
+  #ptp-camp-wrapper .trust-item { flex: 0 0 auto; }
+  
+  #ptp-camp-wrapper .included-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  #ptp-camp-wrapper .addon-section { max-width: 500px; margin: 24px auto 0; }
+  
+  #ptp-camp-wrapper .reviews-scroll { justify-content: center; gap: 24px; }
+  #ptp-camp-wrapper .review { width: 360px; padding: 28px; }
+  
+  #ptp-camp-wrapper .location-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #ptp-camp-wrapper .location-map { height: auto; min-height: 280px; }
+  
+  #ptp-camp-wrapper .week-selector { max-width: 700px; }
+  #ptp-camp-wrapper .weeks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  
+  #ptp-camp-wrapper .faq-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  #ptp-camp-wrapper .final-cta { padding: 100px 60px; }
+  #ptp-camp-wrapper .final-headline { font-size: 56px; }
+  #ptp-camp-wrapper .final-sub { font-size: 18px; }
+  #ptp-camp-wrapper .final-btn { min-width: 420px; font-size: 20px; padding: 22px 40px; }
+}
+
+/* ========================================
+   LARGE DESKTOP (1200px+)
+======================================== */
+@media (min-width: 1200px) {
+  /* Maintain full viewport width on large screens */
+  #ptp-camp-wrapper.ptp-v10 {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+  }
+  
+  #ptp-camp-wrapper .hero-video-col { width: 65%; }
+  #ptp-camp-wrapper .hero-reserve-col { width: 35%; padding: 60px 40px; }
+  #ptp-camp-wrapper .reserve-headline { font-size: 42px; }
+  #ptp-camp-wrapper .price-amount { font-size: 56px; }
+  #ptp-camp-wrapper .stats { gap: 80px; padding: 56px 100px; }
+  #ptp-camp-wrapper .stat-value { font-size: 72px; }
+  #ptp-camp-wrapper .headline { font-size: 48px; }
+  #ptp-camp-wrapper .final-headline { font-size: 64px; }
+  #ptp-camp-wrapper .reel { width: 240px; }
+  #ptp-camp-wrapper .gallery-item { width: 420px; height: 315px; }
+}
+
+/* ========================================
+   SCROLL NAVIGATION BUTTONS (MOBILE)
+======================================== */
+#ptp-camp-wrapper .scroll-container {
+  position: relative;
+  width: 100%;
+}
+
+#ptp-camp-wrapper .scroll-btn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ptp-white);
+  border: 2px solid var(--ptp-gray-200);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: var(--ptp-gray-700);
+}
+
+#ptp-camp-wrapper .scroll-btn:hover {
+  background: var(--ptp-gold);
+  border-color: var(--ptp-gold);
+  color: var(--ptp-black);
+  box-shadow: 0 4px 12px rgba(252,185,0,0.3);
+}
+
+#ptp-camp-wrapper .scroll-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+#ptp-camp-wrapper .scroll-btn.scroll-prev {
+  left: 8px;
+}
+
+#ptp-camp-wrapper .scroll-btn.scroll-next {
+  right: 8px;
+}
+
+/* Light variant for dark backgrounds */
+#ptp-camp-wrapper .scroll-btn.scroll-btn-light {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+  color: var(--ptp-white);
+}
+
+#ptp-camp-wrapper .scroll-btn.scroll-btn-light:hover {
+  background: var(--ptp-gold);
+  border-color: var(--ptp-gold);
+  color: var(--ptp-black);
+}
+
+/* Show scroll buttons only on mobile */
+@media (max-width: 767px) {
+  #ptp-camp-wrapper .scroll-btn {
+    display: flex;
+  }
+  
+  /* Adjust position for reels (has padding) */
+  #ptp-camp-wrapper .reels .scroll-btn.scroll-prev { left: 4px; }
+  #ptp-camp-wrapper .reels .scroll-btn.scroll-next { right: 4px; }
+  
+  /* Adjust position for gallery (full-width) */
+  #ptp-camp-wrapper .gallery .scroll-btn.scroll-prev { left: 4px; }
+  #ptp-camp-wrapper .gallery .scroll-btn.scroll-next { right: 4px; }
+}
+
+/* Hide on tablet and desktop */
+@media (min-width: 768px) {
+  #ptp-camp-wrapper .scroll-btn {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+@media (prefers-reduced-motion: reduce) {
+  #ptp-camp-wrapper * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,1527 @@
+/**
+ * PTP Nike-Inspired Light Theme - v74
+ * 
+ * Design Philosophy:
+ * - Clean, bright, minimal white backgrounds
+ * - Bold typography with high contrast
+ * - Athletic, premium feel
+ * - Generous whitespace
+ * - Sharp, modern UI elements
+ * 
+ * Brand Colors:
+ * - Primary: #FCB900 (PTP Gold)
+ * - Secondary: #0A0A0A (Black)
+ * - Accent: #FF6B00 (Energy Orange)
+ * - Background: #FFFFFF, #FAFAFA, #F5F5F5
+ * 
+ * Typography:
+ * - Display: Oswald (bold, uppercase, athletic)
+ * - Body: Inter (clean, readable)
+ */
+
+/* ===========================================
+   CSS VARIABLES - NIKE LIGHT THEME
+   =========================================== */
+
+:root {
+    /* Brand Colors */
+    --ptp-gold: #FCB900;
+    --ptp-gold-hover: #E5A800;
+    --ptp-gold-light: #FFF8E1;
+    --ptp-black: #0A0A0A;
+    --ptp-white: #FFFFFF;
+    
+    /* Nike-inspired Neutrals */
+    --ptp-gray-50: #FAFAFA;
+    --ptp-gray-100: #F5F5F5;
+    --ptp-gray-200: #EEEEEE;
+    --ptp-gray-300: #E0E0E0;
+    --ptp-gray-400: #BDBDBD;
+    --ptp-gray-500: #9E9E9E;
+    --ptp-gray-600: #757575;
+    --ptp-gray-700: #616161;
+    --ptp-gray-800: #424242;
+    --ptp-gray-900: #212121;
+    
+    /* Accent Colors */
+    --ptp-orange: #FF6B00;
+    --ptp-green: #00C853;
+    --ptp-green-light: #E8F5E9;
+    --ptp-red: #FF1744;
+    --ptp-blue: #2979FF;
+    
+    /* Typography */
+    --font-display: 'Oswald', 'Helvetica Neue', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+    
+    /* Shadows - Subtle */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --shadow-xl: 0 16px 48px rgba(0,0,0,0.16);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.4s ease;
+}
+
+
+/* ===========================================
+   GLOBAL RESETS & BASE STYLES
+   =========================================== */
+
+.ptp-nike,
+.tp2,
+.ptp-find,
+.ptp-cart-page,
+.ptp-checkout-page,
+.ptp-dashboard {
+    font-family: var(--font-body);
+    background: var(--ptp-white) !important;
+    color: var(--ptp-black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light page backgrounds */
+body,
+html {
+    background: var(--ptp-white) !important;
+}
+
+
+/* ===========================================
+   TYPOGRAPHY - NIKE BOLD STYLE
+   =========================================== */
+
+.ptp-nike h1,
+.ptp-nike h2,
+.ptp-nike h3,
+.tp2 h1,
+.tp2 h2,
+.tp2 h3,
+.ptp-find h1,
+.ptp-find h2,
+.ptp-find h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: var(--ptp-black);
+}
+
+.ptp-nike h1, .tp2 h1 { font-size: clamp(32px, 5vw, 56px); }
+.ptp-nike h2, .tp2 h2 { font-size: clamp(24px, 4vw, 40px); }
+.ptp-nike h3, .tp2 h3 { font-size: clamp(18px, 3vw, 28px); }
+
+.ptp-nike p,
+.tp2 p,
+.ptp-find p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ptp-gray-700);
+}
+
+
+/* ===========================================
+   TRAINER PROFILE - LIGHT HERO
+   =========================================== */
+
+/* Override dark hero with light design */
+.tp2-hero {
+    background: linear-gradient(180deg, var(--ptp-gray-50) 0%, var(--ptp-white) 100%) !important;
+    padding: 32px 16px 40px !important;
+    border-bottom: 1px solid var(--ptp-gray-200) !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-hero {
+        padding: 48px 24px 56px !important;
+    }
+}
+
+/* Hero card layout */
+.tp2-hero-card {
+    display: flex !important;
+    gap: 24px !important;
+    align-items: flex-start !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+/* Photo styling - clean white border */
+.tp2-hero-photo {
+    width: 120px !important;
+    height: 150px !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 4px solid var(--ptp-white) !important;
+    box-shadow: var(--shadow-lg) !important;
+    background: var(--ptp-gray-100) !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+}
+
+.tp2-hero-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-hero-photo {
+        width: 180px !important;
+        height: 220px !important;
+        border-radius: 12px !important;
+    }
+}
+
+/* Hero info - dark text on light */
+.tp2-hero-info {
+    flex: 1 !important;
+    color: var(--ptp-black) !important;
+    min-width: 0 !important;
+}
+
+.tp2-hero-name {
+    font-family: var(--font-display) !important;
+    font-size: clamp(28px, 5vw, 48px) !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+}
+
+.tp2-hero-headline {
+    font-size: 16px !important;
+    color: var(--ptp-gray-600) !important;
+    margin-bottom: 12px !important;
+}
+
+.tp2-hero-meta {
+    color: var(--ptp-gray-500) !important;
+}
+
+.tp2-hero-meta svg {
+    color: var(--ptp-gold) !important;
+}
+
+/* Badges - Nike minimal style */
+.tp2-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    font-family: var(--font-display) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border-radius: 4px !important;
+}
+
+.tp2-badge-level {
+    background: var(--ptp-black) !important;
+    color: var(--ptp-gold) !important;
+    border: none !important;
+}
+
+.tp2-badge-new {
+    background: var(--ptp-green) !important;
+    color: var(--ptp-white) !important;
+}
+
+.tp2-badge-score {
+    background: var(--ptp-green) !important;
+    color: var(--ptp-white) !important;
+}
+
+/* Price display */
+.tp2-price {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+    margin-top: 16px !important;
+}
+
+.tp2-price-amount {
+    font-family: var(--font-display) !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+}
+
+.tp2-price-unit {
+    font-size: 16px !important;
+    color: var(--ptp-gray-500) !important;
+}
+
+/* Hero CTA button - Nike style */
+.tp2-hero-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 16px 32px !important;
+    background: var(--ptp-black) !important;
+    color: var(--ptp-white) !important;
+    font-family: var(--font-display) !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border-radius: 0 !important;
+    text-decoration: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: var(--transition-fast) !important;
+}
+
+.tp2-hero-cta:hover {
+    background: var(--ptp-gray-800) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Hero actions row */
+.tp2-hero-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-top: 24px !important;
+    padding-top: 24px !important;
+    border-top: 1px solid var(--ptp-gray-200) !important;
+}
+
+
+/* ===========================================
+   TRUST BADGES - LIGHT STYLE
+   =========================================== */
+
+.tp2-trust,
+.trust-badges,
+[class*="trust-badge"] {
+    background: var(--ptp-white) !important;
+    border-bottom: 1px solid var(--ptp-gray-200) !important;
+    padding: 16px !important;
+}
+
+.tp2-trust-item,
+.trust-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--ptp-gray-700) !important;
+}
+
+.tp2-trust-item svg,
+.trust-badge svg {
+    color: var(--ptp-green) !important;
+}
+
+
+/* ===========================================
+   CONTENT SECTIONS - CLEAN WHITE CARDS
+   =========================================== */
+
+.tp2-main,
+.tp2-content {
+    background: var(--ptp-gray-50) !important;
+    padding: 24px 16px !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-main,
+    .tp2-content {
+        padding: 40px 24px !important;
+    }
+}
+
+/* Section cards */
+.tp2-section,
+.tp2-card,
+[class*="tp2-section"],
+[class*="tp2-card"] {
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin-bottom: 16px !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* Section headers */
+.tp2-section-title,
+.tp2-card-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 12px !important;
+    border-bottom: 2px solid var(--ptp-gray-100) !important;
+}
+
+.tp2-section-title svg,
+.tp2-card-title svg {
+    color: var(--ptp-gold) !important;
+}
+
+
+/* ===========================================
+   BOOKING WIDGET - PREMIUM WHITE DESIGN
+   =========================================== */
+
+.tp2-booking,
+.tp2-booking-card,
+[class*="tp2-booking"] {
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    box-shadow: var(--shadow-lg) !important;
+    position: sticky !important;
+    top: 24px !important;
+}
+
+/* Booking header */
+.tp2-booking-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 20px !important;
+}
+
+.tp2-booking-price {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+}
+
+.tp2-booking-price span {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: var(--ptp-gray-500) !important;
+}
+
+.tp2-available-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 6px 12px !important;
+    background: var(--ptp-green-light) !important;
+    color: var(--ptp-green) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    border-radius: 20px !important;
+}
+
+.tp2-available-badge::before {
+    content: '' !important;
+    width: 8px !important;
+    height: 8px !important;
+    background: var(--ptp-green) !important;
+    border-radius: 50% !important;
+}
+
+/* Package options - Nike minimal cards */
+.tp2-package-option {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px !important;
+    background: var(--ptp-white) !important;
+    border: 2px solid var(--ptp-gray-200) !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+    cursor: pointer !important;
+    transition: var(--transition-fast) !important;
+}
+
+.tp2-package-option:hover {
+    border-color: var(--ptp-gray-400) !important;
+}
+
+.tp2-package-option.selected,
+.tp2-package-option.active {
+    border-color: var(--ptp-black) !important;
+    background: var(--ptp-gray-50) !important;
+}
+
+.tp2-package-name {
+    font-family: var(--font-display) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    color: var(--ptp-black) !important;
+}
+
+.tp2-package-details {
+    font-size: 13px !important;
+    color: var(--ptp-gray-500) !important;
+    margin-top: 2px !important;
+}
+
+.tp2-package-price {
+    font-family: var(--font-display) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+    text-align: right !important;
+}
+
+.tp2-package-savings {
+    font-size: 12px !important;
+    color: var(--ptp-green) !important;
+    font-weight: 600 !important;
+}
+
+/* Popular badge */
+.tp2-package-popular {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 2px 8px !important;
+    background: var(--ptp-gold) !important;
+    color: var(--ptp-black) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-radius: 2px !important;
+    margin-left: 8px !important;
+}
+
+/* Calendar */
+.tp2-calendar {
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid var(--ptp-gray-200) !important;
+}
+
+.tp2-calendar-header {
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 16px !important;
+}
+
+/* Book button - Nike swoosh style */
+.tp2-book-btn,
+.tp2-booking button[type="submit"],
+button.tp2-book-btn {
+    width: 100% !important;
+    padding: 18px 32px !important;
+    background: var(--ptp-gold) !important;
+    color: var(--ptp-black) !important;
+    font-family: var(--font-display) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    transition: var(--transition-fast) !important;
+    margin-top: 20px !important;
+}
+
+.tp2-book-btn:hover {
+    background: var(--ptp-gold-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+
+/* ===========================================
+   TRAINERS GRID PAGE - CLEAN LIGHT DESIGN
+   =========================================== */
+
+.ptp-find {
+    background: var(--ptp-white) !important;
+    min-height: 100vh !important;
+}
+
+/* Top navigation bar */
+.ptp-topbar {
+    background: var(--ptp-white) !important;
+    border-bottom: 1px solid var(--ptp-gray-200) !important;
+    padding: 12px 20px !important;
+}
+
+/* Filter bar - minimal */
+.ptp-filterbar {
+    background: var(--ptp-white) !important;
+    border-bottom: 1px solid var(--ptp-gray-200) !important;
+    padding: 12px 20px !important;
+}
+
+.ptp-dropdown {
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-300) !important;
+    border-radius: 4px !important;
+    padding: 10px 16px !important;
+    font-weight: 600 !important;
+    color: var(--ptp-black) !important;
+    transition: var(--transition-fast) !important;
+}
+
+.ptp-dropdown:hover {
+    border-color: var(--ptp-black) !important;
+}
+
+.ptp-dropdown.active {
+    border-color: var(--ptp-black) !important;
+    background: var(--ptp-gray-50) !important;
+}
+
+/* Cards container */
+.ptp-list {
+    background: var(--ptp-gray-50) !important;
+    padding: 20px !important;
+}
+
+.ptp-cards {
+    gap: 16px !important;
+}
+
+/* Trainer cards - Nike product card style */
+.ptp-trainer-card {
+    background: var(--ptp-white) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    transition: var(--transition-normal) !important;
+}
+
+.ptp-trainer-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: var(--shadow-xl) !important;
+}
+
+/* Card image */
+.ptp-card-image {
+    position: relative !important;
+    aspect-ratio: 1/1 !important;
+    overflow: hidden !important;
+    background: var(--ptp-gray-100) !important;
+}
+
+.ptp-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transition: transform 0.5s ease !important;
+}
+
+.ptp-trainer-card:hover .ptp-card-image img {
+    transform: scale(1.05) !important;
+}
+
+/* Remove gradient overlay for cleaner look */
+.ptp-card-image::after {
+    display: none !important;
+}
+
+/* Card name overlay - clean bottom */
+.ptp-card-name {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 16px !important;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7)) !important;
+    z-index: 2 !important;
+}
+
+.ptp-card-name h3 {
+    font-family: var(--font-display) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-white) !important;
+    text-transform: uppercase !important;
+    margin: 0 0 4px !important;
+}
+
+.ptp-card-price {
+    font-size: 14px !important;
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* Card details */
+.ptp-card-details {
+    padding: 16px !important;
+    background: var(--ptp-white) !important;
+}
+
+.ptp-card-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 8px !important;
+}
+
+.ptp-card-sport {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--ptp-green) !important;
+}
+
+.ptp-card-rating {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--ptp-gray-600) !important;
+}
+
+.ptp-card-distance {
+    font-size: 13px !important;
+    color: var(--ptp-gray-500) !important;
+    margin-bottom: 6px !important;
+}
+
+.ptp-card-availability {
+    font-size: 13px !important;
+    color: var(--ptp-gray-600) !important;
+}
+
+.ptp-card-availability .highlight {
+    color: var(--ptp-orange) !important;
+    font-weight: 600 !important;
+}
+
+/* Score badge */
+.ptp-card-score {
+    position: absolute !important;
+    bottom: 70px !important;
+    right: 12px !important;
+    background: var(--ptp-green) !important;
+    color: var(--ptp-white) !important;
+    padding: 8px 10px !important;
+    font-family: var(--font-display) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    z-index: 3 !important;
+    line-height: 1 !important;
+}
+
+.ptp-card-score span {
+    display: block !important;
+    font-size: 9px !important;
+    margin-top: 2px !important;
+}
+
+/* Arrow badge removed for cleaner look */
+.ptp-card-arrow {
+    display: none !important;
+}
+
+
+/* ===========================================
+   VERIFIED NOTICE - CLEAN BANNER
+   =========================================== */
+
+.ptp-verified-notice {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 20px !important;
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    margin: 0 20px 20px !important;
+}
+
+.ptp-verified-icon {
+    width: 48px !important;
+    height: 48px !important;
+    background: var(--ptp-gray-100) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.ptp-verified-icon svg {
+    color: var(--ptp-blue) !important;
+}
+
+.ptp-verified-text strong {
+    display: block !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 4px !important;
+}
+
+.ptp-verified-text span {
+    font-size: 14px !important;
+    color: var(--ptp-gray-600) !important;
+}
+
+.ptp-verified-text a {
+    color: var(--ptp-blue) !important;
+    font-weight: 600 !important;
+}
+
+
+/* ===========================================
+   SPECIALTIES & TAGS - MINIMAL PILLS
+   =========================================== */
+
+.tp2-specialty,
+.specialty-tag,
+[class*="specialty-tag"] {
+    display: inline-flex !important;
+    padding: 8px 16px !important;
+    background: var(--ptp-gray-100) !important;
+    color: var(--ptp-gray-700) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    border-radius: 20px !important;
+    margin: 0 8px 8px 0 !important;
+    border: none !important;
+}
+
+
+/* ===========================================
+   LOCATIONS - CLEAN LIST
+   =========================================== */
+
+.tp2-location {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 16px !important;
+    background: var(--ptp-gray-50) !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+}
+
+.tp2-location-icon {
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--ptp-gold-light) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.tp2-location-icon svg {
+    color: var(--ptp-gold) !important;
+}
+
+.tp2-location-name {
+    font-weight: 600 !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 2px !important;
+}
+
+.tp2-location-address {
+    font-size: 13px !important;
+    color: var(--ptp-gray-500) !important;
+}
+
+
+/* ===========================================
+   ACTION SHOTS / GALLERY - GRID
+   =========================================== */
+
+.tp2-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+}
+
+.tp2-gallery-item {
+    aspect-ratio: 4/3 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background: var(--ptp-gray-100) !important;
+}
+
+.tp2-gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.3s ease !important;
+}
+
+.tp2-gallery-item:hover img {
+    transform: scale(1.05) !important;
+}
+
+
+/* ===========================================
+   FAQ ACCORDION - MINIMAL
+   =========================================== */
+
+.tp2-faq-item {
+    border-bottom: 1px solid var(--ptp-gray-200) !important;
+}
+
+.tp2-faq-question {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px 0 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: var(--ptp-black) !important;
+    cursor: pointer !important;
+    background: none !important;
+    border: none !important;
+    width: 100% !important;
+    text-align: left !important;
+}
+
+.tp2-faq-question:hover {
+    color: var(--ptp-gray-600) !important;
+}
+
+.tp2-faq-answer {
+    padding: 0 0 16px !important;
+    font-size: 14px !important;
+    color: var(--ptp-gray-600) !important;
+    line-height: 1.6 !important;
+}
+
+
+/* ===========================================
+   REVIEWS - CLEAN CARDS
+   =========================================== */
+
+.tp2-reviews-empty {
+    text-align: center !important;
+    padding: 48px 24px !important;
+    background: var(--ptp-gray-50) !important;
+    border-radius: 12px !important;
+}
+
+.tp2-reviews-empty svg {
+    color: var(--ptp-gray-300) !important;
+    margin-bottom: 16px !important;
+}
+
+.tp2-reviews-empty h4 {
+    font-family: var(--font-display) !important;
+    font-size: 18px !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 8px !important;
+}
+
+.tp2-reviews-empty p {
+    color: var(--ptp-gray-500) !important;
+}
+
+
+/* ===========================================
+   CAMPS CROSSSELL - PRODUCT GRID
+   =========================================== */
+
+.tp2-camps {
+    background: var(--ptp-black) !important;
+    padding: 48px 16px !important;
+    margin-top: 40px !important;
+}
+
+.tp2-camps-title {
+    font-family: var(--font-display) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-white) !important;
+    text-transform: uppercase !important;
+    margin-bottom: 24px !important;
+}
+
+.tp2-camps-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 16px !important;
+}
+
+.tp2-camp-card {
+    background: var(--ptp-white) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+    transition: var(--transition-normal) !important;
+}
+
+.tp2-camp-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: var(--shadow-xl) !important;
+}
+
+.tp2-camp-image {
+    aspect-ratio: 3/4 !important;
+    overflow: hidden !important;
+}
+
+.tp2-camp-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.tp2-camp-info {
+    padding: 12px !important;
+}
+
+.tp2-camp-name {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 4px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+.tp2-camp-price {
+    font-family: var(--font-display) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+}
+
+
+/* ===========================================
+   STICKY BOTTOM BAR - MOBILE
+   =========================================== */
+
+@media (max-width: 767px) {
+    .tp2-sticky-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: var(--ptp-white) !important;
+        border-top: 1px solid var(--ptp-gray-200) !important;
+        padding: 12px 16px !important;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        z-index: 1000 !important;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .tp2-sticky-price {
+        font-family: var(--font-display) !important;
+        font-size: 24px !important;
+        font-weight: 700 !important;
+        color: var(--ptp-black) !important;
+    }
+    
+    .tp2-sticky-price span {
+        display: block !important;
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        color: var(--ptp-gray-500) !important;
+    }
+    
+    .tp2-sticky-btn {
+        padding: 14px 28px !important;
+        background: var(--ptp-gold) !important;
+        color: var(--ptp-black) !important;
+        font-family: var(--font-display) !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+}
+
+
+/* ===========================================
+   MAP BUTTON - FLOATING
+   =========================================== */
+
+.ptp-map-toggle {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: var(--ptp-black) !important;
+    color: var(--ptp-white) !important;
+    padding: 14px 28px !important;
+    border-radius: 30px !important;
+    font-family: var(--font-display) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    box-shadow: var(--shadow-lg) !important;
+    z-index: 100 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+
+/* ===========================================
+   BUTTONS - NIKE STYLE SYSTEM
+   =========================================== */
+
+/* Primary button - Gold */
+.ptp-btn-primary,
+.btn-primary,
+button.ptp-btn-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 16px 32px !important;
+    background: var(--ptp-gold) !important;
+    color: var(--ptp-black) !important;
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: var(--transition-fast) !important;
+}
+
+.ptp-btn-primary:hover {
+    background: var(--ptp-gold-hover) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Secondary button - Black */
+.ptp-btn-secondary,
+.btn-secondary,
+button.ptp-btn-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 16px 32px !important;
+    background: var(--ptp-black) !important;
+    color: var(--ptp-white) !important;
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: var(--transition-fast) !important;
+}
+
+.ptp-btn-secondary:hover {
+    background: var(--ptp-gray-800) !important;
+}
+
+/* Outline button */
+.ptp-btn-outline,
+.btn-outline {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 14px 30px !important;
+    background: transparent !important;
+    color: var(--ptp-black) !important;
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: 2px solid var(--ptp-black) !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: var(--transition-fast) !important;
+}
+
+.ptp-btn-outline:hover {
+    background: var(--ptp-black) !important;
+    color: var(--ptp-white) !important;
+}
+
+
+/* ===========================================
+   FORMS - CLEAN MINIMAL INPUTS
+   =========================================== */
+
+.ptp-input,
+.ptp-select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100% !important;
+    padding: 14px 16px !important;
+    font-family: var(--font-body) !important;
+    font-size: 16px !important;
+    color: var(--ptp-black) !important;
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-300) !important;
+    border-radius: 0 !important;
+    transition: var(--transition-fast) !important;
+    -webkit-appearance: none !important;
+}
+
+.ptp-input:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none !important;
+    border-color: var(--ptp-black) !important;
+}
+
+.ptp-label,
+label {
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--ptp-gray-600) !important;
+    margin-bottom: 8px !important;
+}
+
+
+/* ===========================================
+   CART & CHECKOUT - CLEAN WHITE
+   =========================================== */
+
+.ptp-cart-page,
+.ptp-checkout-page {
+    background: var(--ptp-white) !important;
+    padding: 24px 16px !important;
+    min-height: 100vh !important;
+}
+
+.ptp-cart-header h1,
+.ptp-checkout-header h1 {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 24px !important;
+}
+
+/* Cart items */
+.ptp-cart-item {
+    display: flex !important;
+    gap: 16px !important;
+    padding: 20px !important;
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    margin-bottom: 12px !important;
+}
+
+.ptp-cart-item-image {
+    width: 100px !important;
+    height: 100px !important;
+    background: var(--ptp-gray-100) !important;
+    flex-shrink: 0 !important;
+}
+
+.ptp-cart-item-name {
+    font-family: var(--font-display) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    color: var(--ptp-black) !important;
+}
+
+.ptp-cart-item-price {
+    font-family: var(--font-display) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+}
+
+/* Cart summary */
+.ptp-cart-summary {
+    background: var(--ptp-gray-50) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    padding: 24px !important;
+}
+
+.ptp-cart-summary h3 {
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 20px !important;
+}
+
+.ptp-summary-line {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 8px 0 !important;
+    font-size: 14px !important;
+    color: var(--ptp-gray-600) !important;
+}
+
+.ptp-summary-total {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding-top: 16px !important;
+    margin-top: 16px !important;
+    border-top: 2px solid var(--ptp-black) !important;
+    font-family: var(--font-display) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+}
+
+
+/* ===========================================
+   DASHBOARD - CLEAN PANELS
+   =========================================== */
+
+.ptp-dashboard {
+    background: var(--ptp-gray-50) !important;
+    min-height: 100vh !important;
+}
+
+.ptp-dashboard-header {
+    background: var(--ptp-white) !important;
+    border-bottom: 1px solid var(--ptp-gray-200) !important;
+    padding: 24px !important;
+}
+
+.ptp-dashboard-title {
+    font-family: var(--font-display) !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: var(--ptp-black) !important;
+}
+
+.ptp-dashboard-card {
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    border-radius: 8px !important;
+    padding: 24px !important;
+    margin-bottom: 16px !important;
+}
+
+.ptp-dashboard-card-title {
+    font-family: var(--font-display) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--ptp-gray-600) !important;
+    margin-bottom: 16px !important;
+}
+
+/* Stats grid */
+.ptp-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    gap: 16px !important;
+}
+
+.ptp-stat-card {
+    background: var(--ptp-white) !important;
+    border: 1px solid var(--ptp-gray-200) !important;
+    padding: 20px !important;
+    text-align: center !important;
+}
+
+.ptp-stat-value {
+    font-family: var(--font-display) !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: var(--ptp-black) !important;
+    line-height: 1 !important;
+}
+
+.ptp-stat-label {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--ptp-gray-500) !important;
+    margin-top: 8px !important;
+}
+
+.ptp-stat-card.highlight {
+    background: var(--ptp-gold) !important;
+    border-color: var(--ptp-gold) !important;
+}
+
+.ptp-stat-card.highlight .ptp-stat-value,
+.ptp-stat-card.highlight .ptp-stat-label {
+    color: var(--ptp-black) !important;
+}
+
+
+/* ===========================================
+   MOBILE HEADER - CLEAN WHITE
+   =========================================== */
+
+@media (max-width: 767px) {
+    .tp2-mobile-header {
+        background: var(--ptp-white) !important;
+        border-bottom: 1px solid var(--ptp-gray-200) !important;
+        padding: 12px 16px !important;
+    }
+    
+    .tp2-mobile-header a {
+        color: var(--ptp-black) !important;
+    }
+    
+    .tp2-mobile-header-logo img {
+        /* Keep logo visible */
+    }
+    
+    .tp2-mobile-header .login-btn {
+        background: var(--ptp-black) !important;
+        color: var(--ptp-white) !important;
+        padding: 10px 16px !important;
+    }
+}
+
+
+/* ===========================================
+   LOADING & EMPTY STATES
+   =========================================== */
+
+.ptp-loading {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 48px !important;
+}
+
+.ptp-spinner {
+    width: 40px !important;
+    height: 40px !important;
+    border: 3px solid var(--ptp-gray-200) !important;
+    border-top-color: var(--ptp-black) !important;
+    border-radius: 50% !important;
+    animation: ptp-spin 0.8s linear infinite !important;
+}
+
+@keyframes ptp-spin {
+    to { transform: rotate(360deg); }
+}
+
+.ptp-empty-state {
+    text-align: center !important;
+    padding: 64px 24px !important;
+}
+
+.ptp-empty-icon {
+    font-size: 64px !important;
+    color: var(--ptp-gray-300) !important;
+    margin-bottom: 16px !important;
+}
+
+.ptp-empty-title {
+    font-family: var(--font-display) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: var(--ptp-black) !important;
+    margin-bottom: 8px !important;
+}
+
+.ptp-empty-text {
+    font-size: 15px !important;
+    color: var(--ptp-gray-500) !important;
+    margin-bottom: 24px !important;
+}
+
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ptp-fade-in {
+    animation: fadeIn 0.3s ease-out !important;
+}
+
+.ptp-slide-up {
+    animation: slideUp 0.4s ease-out !important;
+}
+
+
+/* ===========================================
+   PRINT STYLES
+   =========================================== */
+
+@media print {
+    .tp2-mobile-header,
+    .tp2-sticky-bar,
+    .ptp-map-toggle,
+    .tp2-camps {
+        display: none !important;
+    }
+    
+    .tp2-hero {
+        background: white !important;
+        print-color-adjust: exact !important;
+    }
+}

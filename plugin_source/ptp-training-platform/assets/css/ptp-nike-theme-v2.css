@@ -1,0 +1,1325 @@
+/**
+ * PTP Nike Light Theme v2.0
+ * 
+ * Complete redesign - bright, clean, athletic
+ * Inspired by Nike.com's premium aesthetic
+ * 
+ * Brand: #FCB900 gold, #111111 black
+ * Style: Minimal, bold, whitespace-focused
+ */
+
+/* ===========================================
+   CSS RESET & VARIABLES
+   =========================================== */
+
+:root {
+    --white: #FFFFFF;
+    --off-white: #FAFAFA;
+    --light-gray: #F5F5F5;
+    --border-gray: #E5E5E5;
+    --mid-gray: #757575;
+    --dark-gray: #111111;
+    --black: #111111;
+    --gold: #FCB900;
+    --gold-hover: #E5A700;
+    --green: #00A862;
+    --orange: #FA5400;
+    
+    --font-head: 'Oswald', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.15);
+    --shadow-hover: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+/* ===========================================
+   TRAINER PROFILE PAGE - COMPLETE REDESIGN
+   =========================================== */
+
+/* Base */
+.tp2 {
+    font-family: var(--font-body) !important;
+    background: var(--white) !important;
+    color: var(--black) !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* Hide default site header on profile pages */
+body.single-trainer #ast-desktop-header,
+body.single-trainer .ast-desktop-header-wrap,
+body.single-trainer .site-header:not(.tp2-mobile-header) {
+    display: none !important;
+}
+
+/* ===== MOBILE HEADER - Clean White ===== */
+.tp2-mobile-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px 20px !important;
+    background: var(--white) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+}
+
+.tp2-mobile-header a {
+    color: var(--black) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.tp2-mobile-header-logo img {
+    height: 24px !important;
+    width: auto !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-mobile-header { display: none !important; }
+}
+
+/* ===== HERO SECTION - Light & Bold ===== */
+.tp2-hero {
+    background: var(--white) !important;
+    padding: 32px 20px 40px !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+}
+
+.tp2-hero-inner {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.tp2-hero-card {
+    display: flex !important;
+    gap: 24px !important;
+    align-items: flex-start !important;
+}
+
+/* Photo - Clean with shadow */
+.tp2-hero-photo {
+    width: 140px !important;
+    height: 175px !important;
+    flex-shrink: 0 !important;
+    background: var(--light-gray) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.tp2-hero-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-hero-photo {
+        width: 200px !important;
+        height: 250px !important;
+    }
+}
+
+/* Hero Info */
+.tp2-hero-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+/* Badges - Minimal */
+.tp2-hero-badges {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 12px !important;
+}
+
+.tp2-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 6px 10px !important;
+    font-family: var(--font-head) !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+.tp2-badge-level {
+    background: var(--black) !important;
+    color: var(--gold) !important;
+}
+
+.tp2-badge-new {
+    background: var(--green) !important;
+    color: var(--white) !important;
+}
+
+.tp2-badge-score {
+    background: var(--green) !important;
+    color: var(--white) !important;
+}
+
+/* Name - Big & Bold */
+.tp2-hero-name {
+    font-family: var(--font-head) !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: var(--black) !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-hero-name {
+        font-size: 52px !important;
+    }
+}
+
+.tp2-hero-headline {
+    font-size: 16px !important;
+    color: var(--mid-gray) !important;
+    margin-bottom: 12px !important;
+    line-height: 1.4 !important;
+}
+
+.tp2-hero-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    font-size: 14px !important;
+    color: var(--mid-gray) !important;
+}
+
+.tp2-hero-meta svg {
+    color: var(--gold) !important;
+}
+
+/* Price & CTA */
+.tp2-hero-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    margin-top: 24px !important;
+    padding-top: 24px !important;
+    border-top: 1px solid var(--border-gray) !important;
+}
+
+.tp2-price-amount {
+    font-family: var(--font-head) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: var(--black) !important;
+}
+
+.tp2-price-unit {
+    font-size: 14px !important;
+    color: var(--mid-gray) !important;
+    margin-left: 4px !important;
+}
+
+/* CTA Button - Nike Style */
+.tp2-hero-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 16px 32px !important;
+    background: var(--black) !important;
+    color: var(--white) !important;
+    font-family: var(--font-head) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    text-decoration: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.tp2-hero-cta:hover {
+    background: var(--gold) !important;
+    color: var(--black) !important;
+}
+
+/* Social Icons */
+.tp2-social {
+    display: flex !important;
+    gap: 8px !important;
+    margin-top: 16px !important;
+}
+
+.tp2-social a {
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--light-gray) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--black) !important;
+    text-decoration: none !important;
+    transition: all 0.2s !important;
+}
+
+.tp2-social a:hover {
+    background: var(--black) !important;
+    color: var(--white) !important;
+}
+
+/* Share Button */
+.tp2-share-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 10px 16px !important;
+    background: var(--white) !important;
+    border: 1px solid var(--border-gray) !important;
+    color: var(--black) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.tp2-share-btn:hover {
+    border-color: var(--black) !important;
+}
+
+/* ===== TRUST BAR ===== */
+.tp2-trust {
+    background: var(--off-white) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    padding: 16px 20px !important;
+    overflow-x: auto !important;
+}
+
+.tp2-trust-inner {
+    display: flex !important;
+    gap: 24px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.tp2-trust-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--green) !important;
+    white-space: nowrap !important;
+}
+
+/* ===== MAIN CONTENT ===== */
+.tp2-main {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 40px 20px 120px !important;
+    background: var(--white) !important;
+}
+
+.tp2-grid {
+    display: grid !important;
+    gap: 40px !important;
+}
+
+@media (min-width: 1024px) {
+    .tp2-grid {
+        grid-template-columns: 1fr 380px !important;
+        gap: 60px !important;
+    }
+}
+
+/* ===== CONTENT CARDS ===== */
+.tp2-card {
+    background: var(--white) !important;
+    border: 1px solid var(--border-gray) !important;
+    margin-bottom: 24px !important;
+}
+
+.tp2-card-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 20px 24px !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    cursor: pointer !important;
+}
+
+.tp2-card-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-family: var(--font-head) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--black) !important;
+}
+
+.tp2-card-title svg {
+    color: var(--gold) !important;
+}
+
+.tp2-card-body {
+    padding: 24px !important;
+}
+
+/* About text */
+.tp2-about-text {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    color: var(--mid-gray) !important;
+}
+
+/* Specialties */
+.tp2-specialties {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
+.tp2-specialty {
+    display: inline-block !important;
+    padding: 10px 16px !important;
+    background: var(--light-gray) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--black) !important;
+}
+
+/* Locations */
+.tp2-location {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 16px !important;
+    background: var(--off-white) !important;
+    margin-bottom: 12px !important;
+}
+
+.tp2-location:last-child {
+    margin-bottom: 0 !important;
+}
+
+.tp2-location-icon {
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--gold) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.tp2-location-icon svg {
+    color: var(--black) !important;
+}
+
+.tp2-location-name {
+    font-weight: 600 !important;
+    color: var(--black) !important;
+    margin-bottom: 2px !important;
+}
+
+.tp2-location-address {
+    font-size: 13px !important;
+    color: var(--mid-gray) !important;
+}
+
+/* Gallery */
+.tp2-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+}
+
+.tp2-gallery-item {
+    aspect-ratio: 4/3 !important;
+    overflow: hidden !important;
+    background: var(--light-gray) !important;
+}
+
+.tp2-gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.4s ease !important;
+}
+
+.tp2-gallery-item:hover img {
+    transform: scale(1.05) !important;
+}
+
+/* FAQ */
+.tp2-faq-item {
+    border-bottom: 1px solid var(--border-gray) !important;
+}
+
+.tp2-faq-item:last-child {
+    border-bottom: none !important;
+}
+
+.tp2-faq-question {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 20px 0 !important;
+    background: none !important;
+    border: none !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: var(--black) !important;
+    text-align: left !important;
+    cursor: pointer !important;
+}
+
+.tp2-faq-answer {
+    padding-bottom: 20px !important;
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    color: var(--mid-gray) !important;
+}
+
+/* Reviews empty state */
+.tp2-reviews-empty {
+    text-align: center !important;
+    padding: 48px 24px !important;
+}
+
+.tp2-reviews-empty svg {
+    color: var(--border-gray) !important;
+    margin-bottom: 16px !important;
+}
+
+.tp2-reviews-empty h4 {
+    font-family: var(--font-head) !important;
+    font-size: 16px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 8px !important;
+}
+
+.tp2-reviews-empty p {
+    color: var(--mid-gray) !important;
+    font-size: 14px !important;
+}
+
+/* ===== BOOKING WIDGET ===== */
+.tp2-booking {
+    background: var(--white) !important;
+    border: 1px solid var(--border-gray) !important;
+    padding: 28px !important;
+    position: sticky !important;
+    top: 24px !important;
+}
+
+.tp2-booking-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 24px !important;
+    padding-bottom: 20px !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+}
+
+.tp2-booking-price {
+    font-family: var(--font-head) !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: var(--black) !important;
+}
+
+.tp2-booking-price span {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: var(--mid-gray) !important;
+}
+
+.tp2-available-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+    background: #E8F5E9 !important;
+    color: var(--green) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+.tp2-available-badge::before {
+    content: '' !important;
+    width: 8px !important;
+    height: 8px !important;
+    background: var(--green) !important;
+    border-radius: 50% !important;
+    animation: pulse 2s infinite !important;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Package Options */
+.tp2-packages {
+    margin-bottom: 24px !important;
+}
+
+.tp2-package-option {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px !important;
+    background: var(--white) !important;
+    border: 2px solid var(--border-gray) !important;
+    margin-bottom: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+}
+
+.tp2-package-option:hover {
+    border-color: var(--black) !important;
+}
+
+.tp2-package-option.selected {
+    border-color: var(--black) !important;
+    background: var(--off-white) !important;
+}
+
+.tp2-package-option:last-child {
+    margin-bottom: 0 !important;
+}
+
+.tp2-package-info {
+    flex: 1 !important;
+}
+
+.tp2-package-name {
+    font-family: var(--font-head) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    color: var(--black) !important;
+    margin-bottom: 2px !important;
+}
+
+.tp2-package-details {
+    font-size: 13px !important;
+    color: var(--mid-gray) !important;
+}
+
+.tp2-package-right {
+    text-align: right !important;
+}
+
+.tp2-package-price {
+    font-family: var(--font-head) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: var(--black) !important;
+}
+
+.tp2-package-savings {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--green) !important;
+}
+
+.tp2-package-popular {
+    display: inline-block !important;
+    padding: 3px 8px !important;
+    background: var(--gold) !important;
+    color: var(--black) !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-left: 8px !important;
+}
+
+/* Calendar */
+.tp2-calendar {
+    margin-bottom: 24px !important;
+}
+
+.tp2-calendar-title {
+    font-family: var(--font-head) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--mid-gray) !important;
+    margin-bottom: 16px !important;
+}
+
+/* Book Button */
+.tp2-book-btn {
+    width: 100% !important;
+    padding: 18px 32px !important;
+    background: var(--gold) !important;
+    color: var(--black) !important;
+    font-family: var(--font-head) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.tp2-book-btn:hover {
+    background: var(--gold-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Booking footer */
+.tp2-booking-footer {
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid var(--border-gray) !important;
+    text-align: center !important;
+}
+
+.tp2-booking-footer p {
+    font-size: 13px !important;
+    color: var(--mid-gray) !important;
+    margin-bottom: 8px !important;
+}
+
+.tp2-social-proof {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    color: var(--orange) !important;
+    font-weight: 500 !important;
+}
+
+/* ===== CAMPS SECTION ===== */
+.tp2-camps {
+    background: var(--black) !important;
+    padding: 60px 20px !important;
+    margin-top: 60px !important;
+}
+
+.tp2-camps-inner {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.tp2-camps-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 32px !important;
+}
+
+.tp2-camps-title {
+    font-family: var(--font-head) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: var(--white) !important;
+    text-transform: uppercase !important;
+}
+
+.tp2-camps-link {
+    color: var(--gold) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+.tp2-camps-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+}
+
+@media (min-width: 768px) {
+    .tp2-camps-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+.tp2-camp-card {
+    background: var(--white) !important;
+    text-decoration: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+.tp2-camp-card:hover {
+    transform: translateY(-8px) !important;
+}
+
+.tp2-camp-image {
+    aspect-ratio: 3/4 !important;
+    overflow: hidden !important;
+}
+
+.tp2-camp-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.tp2-camp-info {
+    padding: 12px !important;
+}
+
+.tp2-camp-name {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: var(--black) !important;
+    margin-bottom: 4px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+.tp2-camp-price {
+    font-family: var(--font-head) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: var(--black) !important;
+}
+
+/* ===== STICKY BOTTOM BAR (Mobile) ===== */
+@media (max-width: 1023px) {
+    .tp2-sticky-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: var(--white) !important;
+        border-top: 1px solid var(--border-gray) !important;
+        padding: 16px 20px !important;
+        padding-bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        z-index: 1000 !important;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .tp2-sticky-price {
+        font-family: var(--font-head) !important;
+        font-size: 24px !important;
+        font-weight: 700 !important;
+        color: var(--black) !important;
+    }
+    
+    .tp2-sticky-price span {
+        display: block !important;
+        font-family: var(--font-body) !important;
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        color: var(--mid-gray) !important;
+    }
+    
+    .tp2-sticky-btn {
+        padding: 14px 28px !important;
+        background: var(--gold) !important;
+        color: var(--black) !important;
+        font-family: var(--font-head) !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+}
+
+
+/* ===========================================
+   FIND TRAINERS PAGE - COMPLETE REDESIGN
+   =========================================== */
+
+.ptp-find {
+    font-family: var(--font-body) !important;
+    background: var(--white) !important;
+    color: var(--black) !important;
+    min-height: 100vh !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* Hide default headers */
+body.page-template-trainers #ast-desktop-header,
+body.page-template-trainers .ast-desktop-header-wrap,
+body.page-template-trainers .site-header:not(.ptp-topbar) {
+    display: none !important;
+}
+
+/* ===== TOP BAR ===== */
+.ptp-topbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px 24px !important;
+    background: var(--white) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 200 !important;
+}
+
+.ptp-topbar-logo img {
+    height: 28px !important;
+    width: auto !important;
+}
+
+.ptp-topbar-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+.ptp-topbar-link {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--black) !important;
+    text-decoration: none !important;
+}
+
+.ptp-topbar-btn {
+    padding: 12px 20px !important;
+    background: var(--black) !important;
+    color: var(--white) !important;
+    font-family: var(--font-head) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    text-decoration: none !important;
+}
+
+/* ===== FILTER BAR ===== */
+.ptp-filterbar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 16px 24px !important;
+    background: var(--white) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.ptp-filterbar::-webkit-scrollbar {
+    display: none !important;
+}
+
+.ptp-filter-label {
+    font-family: var(--font-head) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--black) !important;
+    flex-shrink: 0 !important;
+}
+
+.ptp-dropdown {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 12px 16px !important;
+    background: var(--white) !important;
+    border: 1px solid var(--border-gray) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--black) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    transition: all 0.15s !important;
+}
+
+.ptp-dropdown:hover {
+    border-color: var(--black) !important;
+}
+
+.ptp-dropdown.active {
+    border-color: var(--black) !important;
+    background: var(--off-white) !important;
+}
+
+.ptp-dropdown svg {
+    width: 16px !important;
+    height: 16px !important;
+    color: var(--mid-gray) !important;
+}
+
+.ptp-clear-filters {
+    padding: 10px 16px !important;
+    background: var(--light-gray) !important;
+    border: none !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--mid-gray) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+}
+
+/* ===== LAYOUT ===== */
+.ptp-layout {
+    display: flex !important;
+    min-height: calc(100vh - 130px) !important;
+}
+
+.ptp-list {
+    flex: 1 !important;
+    background: var(--off-white) !important;
+    overflow-y: auto !important;
+    padding: 24px !important;
+}
+
+.ptp-map-panel {
+    display: none !important;
+    width: 50% !important;
+    position: sticky !important;
+    top: 130px !important;
+    height: calc(100vh - 130px) !important;
+    background: var(--light-gray) !important;
+}
+
+@media (min-width: 1024px) {
+    .ptp-list {
+        width: 55% !important;
+        max-width: 900px !important;
+    }
+    .ptp-map-panel {
+        display: block !important;
+        flex: 1 !important;
+    }
+}
+
+/* ===== INFO BANNER ===== */
+.ptp-info-banner {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 20px !important;
+    background: var(--white) !important;
+    border: 1px solid var(--border-gray) !important;
+    margin-bottom: 24px !important;
+}
+
+.ptp-info-icon {
+    width: 48px !important;
+    height: 48px !important;
+    background: #E3F2FD !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.ptp-info-icon svg {
+    color: #1976D2 !important;
+}
+
+.ptp-info-text {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: var(--mid-gray) !important;
+}
+
+.ptp-info-text strong {
+    color: var(--black) !important;
+}
+
+.ptp-info-text a {
+    color: #1976D2 !important;
+    font-weight: 600 !important;
+}
+
+/* ===== TRAINER CARDS - Nike Product Style ===== */
+.ptp-cards {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+}
+
+@media (min-width: 600px) {
+    .ptp-cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .ptp-cards {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+.ptp-trainer-card {
+    display: flex !important;
+    flex-direction: column !important;
+    background: var(--white) !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+}
+
+.ptp-trainer-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: var(--shadow-hover) !important;
+}
+
+/* Card Image - Square */
+.ptp-card-image {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1/1 !important;
+    overflow: hidden !important;
+    background: var(--light-gray) !important;
+}
+
+.ptp-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transition: transform 0.5s ease !important;
+}
+
+.ptp-trainer-card:hover .ptp-card-image img {
+    transform: scale(1.08) !important;
+}
+
+/* Remove dark gradient */
+.ptp-card-image::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 50% !important;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%) !important;
+    pointer-events: none !important;
+}
+
+/* Name overlay */
+.ptp-card-name {
+    position: absolute !important;
+    bottom: 16px !important;
+    left: 16px !important;
+    right: 60px !important;
+    z-index: 2 !important;
+}
+
+.ptp-card-name h3 {
+    font-family: var(--font-head) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: var(--white) !important;
+    text-transform: uppercase !important;
+    margin: 0 0 4px !important;
+    line-height: 1.1 !important;
+}
+
+.ptp-card-price {
+    font-size: 14px !important;
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* Score badge */
+.ptp-card-score {
+    position: absolute !important;
+    bottom: 16px !important;
+    right: 16px !important;
+    background: var(--green) !important;
+    color: var(--white) !important;
+    padding: 8px 10px !important;
+    font-family: var(--font-head) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    z-index: 2 !important;
+    line-height: 1 !important;
+}
+
+.ptp-card-score span {
+    display: block !important;
+    font-size: 9px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-top: 2px !important;
+}
+
+/* Hide arrow */
+.ptp-card-arrow {
+    display: none !important;
+}
+
+/* Hot badge */
+.ptp-card-hot {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    background: var(--orange) !important;
+    color: var(--white) !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    z-index: 3 !important;
+}
+
+/* Card Details */
+.ptp-card-details {
+    padding: 16px !important;
+    background: var(--white) !important;
+}
+
+.ptp-card-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 8px !important;
+}
+
+.ptp-card-sport {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--green) !important;
+}
+
+.ptp-card-sport svg {
+    color: var(--green) !important;
+}
+
+.ptp-card-rating {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+.ptp-card-rating svg {
+    fill: var(--gold) !important;
+}
+
+.ptp-card-rating .count {
+    color: var(--mid-gray) !important;
+}
+
+.ptp-card-location {
+    font-size: 13px !important;
+    color: var(--mid-gray) !important;
+    margin-bottom: 6px !important;
+}
+
+.ptp-card-location .label {
+    color: var(--orange) !important;
+    font-weight: 600 !important;
+}
+
+.ptp-card-availability {
+    font-size: 13px !important;
+    color: var(--mid-gray) !important;
+}
+
+.ptp-card-availability .highlight {
+    color: var(--orange) !important;
+    font-weight: 600 !important;
+}
+
+/* ===== MAP TOGGLE ===== */
+.ptp-mobile-toggle {
+    display: none !important;
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 300 !important;
+    background: var(--black) !important;
+    color: var(--white) !important;
+    padding: 14px 28px !important;
+    font-family: var(--font-head) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+@media (max-width: 1023px) {
+    .ptp-mobile-toggle {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+}
+
+
+/* ===========================================
+   GLOBAL UTILITIES
+   =========================================== */
+
+/* Hide secondary navigation */
+.secondary-navigation,
+.secondary-nav,
+nav.menu-about-us-blog-container,
+#menu-about-us-blog,
+.ast-above-header-bar {
+    display: none !important;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: auto !important; /* FIXED: smooth breaks when tab hidden */
+}
+
+/* Hide scrollbars but allow scroll */
+.ptp-filterbar::-webkit-scrollbar,
+.tp2-trust::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Image rendering */
+img {
+    image-rendering: -webkit-optimize-contrast !important;
+}
+
+/* Focus states */
+button:focus,
+a:focus,
+input:focus {
+    outline: 2px solid var(--gold) !important;
+    outline-offset: 2px !important;
+}
+
+/* Selection color */
+::selection {
+    background: var(--gold) !important;
+    color: var(--black) !important;
+}

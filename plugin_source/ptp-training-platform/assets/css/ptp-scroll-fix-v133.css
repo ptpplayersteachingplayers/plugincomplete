@@ -1,0 +1,437 @@
+/**
+ * PTP Scroll Fix v135.2
+ * 
+ * Fixes scroll blocking on the homepage and other pages.
+ * 
+ * ROOT CAUSE IDENTIFIED: scroll-behavior: smooth + hidden tab state
+ * When document.visibilityState === "hidden", browsers skip smooth scroll
+ * animations and the scroll simply doesn't happen.
+ * 
+ * FIX: Use scroll-behavior: auto (instant) instead of smooth
+ * 
+ * v135.2: Added more aggressive desktop scroll enforcement
+ */
+
+/* ============================================
+   CRITICAL: DESKTOP SCROLL FIX - MUST COME FIRST
+   This ensures desktop can always scroll
+   ============================================ */
+
+@media screen and (min-width: 1025px) {
+    html,
+    html.no-scroll,
+    html.modal-open,
+    html.menu-open,
+    html.overflow-hidden,
+    html[style*="overflow: hidden"],
+    html[style*="overflow:hidden"] {
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        position: static !important;
+        overscroll-behavior: auto !important;
+    }
+    
+    body,
+    body.no-scroll,
+    body.modal-open,
+    body.menu-open,
+    body.overflow-hidden,
+    body[style*="overflow: hidden"],
+    body[style*="overflow:hidden"],
+    body[style*="position: fixed"],
+    body[style*="position:fixed"] {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        position: static !important;
+        top: auto !important;
+        width: 100% !important;
+        overscroll-behavior: auto !important;
+        overscroll-behavior-y: auto !important;
+    }
+}
+
+/* ============================================
+   CRITICAL: FIX SCROLL-BEHAVIOR
+   scroll-behavior: smooth breaks when tab is hidden
+   This MUST come first and override everything
+   ============================================ */
+
+html,
+html.smooth-scroll,
+html[style*="scroll-behavior"] {
+    scroll-behavior: auto !important;
+}
+
+/* Nuclear option - remove smooth scroll from everything */
+*, *::before, *::after {
+    scroll-behavior: auto !important;
+}
+
+/* ============================================
+   FLAVOR THEME SPECIFIC FIXES
+   ============================================ */
+
+.flavor-wrapper,
+#flavor-wrapper,
+.flavor-content,
+.flavor-main,
+.flavor-page,
+body.flavor,
+body.flavor-theme {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: static !important;
+    top: auto !important;
+}
+
+/* Flavor wrapper shouldn't restrict scroll */
+.flavor-wrapper,
+#flavor-wrapper {
+    max-height: none !important;
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+}
+
+/* CRITICAL: Flavor wrapper inside body */
+body > .flavor-wrapper,
+body > #flavor-wrapper,
+html body .flavor-wrapper,
+html body #flavor-wrapper {
+    overflow: visible !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    display: block !important;
+}
+
+/* Flavor wrapper children shouldn't block scroll either */
+.flavor-wrapper > *,
+#flavor-wrapper > * {
+    position: relative !important;
+}
+
+/* The Flavor wrapper might have a fixed height */
+.flavor-wrapper[style],
+#flavor-wrapper[style] {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* ============================================
+   ASTRA THEME SPECIFIC FIXES
+   ============================================ */
+
+/* Astra's main wrapper */
+#page,
+#content,
+.ast-container,
+.site-content,
+.ast-separate-container,
+.ast-plain-container,
+.ast-page-builder-template,
+.ast-single-post,
+.ast-archive-page,
+.ast-blog-layout-1,
+.ast-blog-layout-2,
+.ast-blog-layout-3,
+body.ast-header-break-point,
+body.ast-mobile-header-layout-1,
+body.ast-mobile-header-layout-2,
+body.ast-mobile-header-layout-3 {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: static !important;
+}
+
+/* Astra mobile menu open state - this is the main culprit */
+body.ast-main-header-nav-open,
+body.ast-mobile-popup-open,
+body.ast-header-break-point.ast-main-header-nav-open,
+html.ast-main-header-nav-open,
+html.ast-mobile-popup-open {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    position: static !important;
+    height: auto !important;
+}
+
+/* Astra off-canvas/mobile menu shouldn't lock body */
+.ast-mobile-popup-drawer,
+.ast-mobile-popup-inner,
+.ast-mobile-header-wrap {
+    /* Don't let these affect body scroll */
+}
+
+/* Astra header */
+.ast-primary-header,
+.ast-main-header-wrap,
+.ast-above-header,
+.ast-below-header,
+.site-header,
+#masthead {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 999 !important;
+}
+
+/* When Elementor is used with Astra */
+body.elementor-page.ast-page-builder-template,
+body.elementor-default.ast-page-builder-template {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    position: static !important;
+}
+
+/* Astra + WooCommerce */
+body.woocommerce-page,
+body.woocommerce-cart,
+body.woocommerce-checkout {
+    overflow-y: scroll !important;
+    position: static !important;
+}
+
+/* ============================================
+   NUCLEAR SCROLL FIX
+   Forces scroll to work everywhere
+   ============================================ */
+
+/* Force html to allow scrolling */
+html,
+html.no-scroll,
+html.modal-open,
+html.overflow-hidden,
+html.menu-open,
+html.ptp-modal-open,
+html.ast-main-header-nav-open,
+html.ast-mobile-popup-open,
+html.flavor-menu-open,
+html[style*="overflow"],
+html[style*="position"] {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100% !important;
+    max-height: none !important;
+    position: static !important;
+    scroll-behavior: auto !important;
+}
+
+/* Force body to allow scrolling */
+body,
+body.no-scroll,
+body.modal-open,
+body.overflow-hidden,
+body.menu-open,
+body.ptp-modal-open,
+body.logged-in,
+body.admin-bar,
+body.home,
+body.page,
+body.single,
+body.archive,
+body.ast-theme-transparent-header,
+body.ast-header-break-point,
+body.ast-main-header-nav-open,
+body.ast-mobile-popup-open,
+body.elementor-default,
+body.flavor,
+body.flavor-theme,
+body[style*="overflow"],
+body[style*="position: fixed"],
+body[style*="position:fixed"],
+body[style*="top:"],
+body[style*="top:0"] {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100% !important;
+    max-height: none !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+}
+
+/* WordPress admin bar adjustment */
+body.admin-bar {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Main content wrapper - Astra + Flavor + common theme patterns */
+#page,
+#wrapper,
+#main,
+#content,
+#site-content,
+.site,
+.site-content,
+.page-wrapper,
+.main-content,
+.ast-container,
+.ast-separate-container,
+.flavor-wrapper,
+.flavor-content,
+.elementor,
+.elementor-page,
+.elementor-location-single,
+.elementor-location-archive,
+[data-elementor-type="wp-page"],
+.fl-builder,
+.et_builder_inner_content,
+.wp-block-post-content {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: static !important;
+}
+
+/* Fix for Elementor specifically */
+.elementor-element,
+.elementor-widget-wrap,
+.elementor-section-wrap,
+.elementor-container {
+    overflow: visible !important;
+}
+
+/* Ensure PTP header stays sticky and doesn't conflict */
+.ptp-hdr {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
+
+/* When admin bar is present */
+body.admin-bar .ptp-hdr {
+    top: 32px !important;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .ptp-hdr {
+        top: 46px !important;
+    }
+}
+
+/* Hide Astra header if using PTP header */
+body.ptp-custom-header .ast-primary-header,
+body.ptp-custom-header .ast-main-header-wrap,
+body.ptp-custom-header #masthead {
+    display: none !important;
+}
+
+/* ============================================
+   PTP TRAINER GRID SPECIFIC
+   ============================================ */
+
+/* v134: Fix trainers grid scroll blocking on desktop */
+.ft,
+.find-trainers,
+.ptp-trainers-grid {
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* Let the list inside scroll if needed */
+.ft-list {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto !important;
+}
+
+/* ============================================
+   SCROLLBAR VISIBILITY
+   Show on desktop, hide on mobile only
+   ============================================ */
+
+/* DESKTOP: Show scrollbar - users need visual feedback */
+@media screen and (min-width: 1025px) {
+    html::-webkit-scrollbar {
+        display: block !important;
+        width: 8px !important;
+        background: #f1f1f1 !important;
+    }
+    
+    html::-webkit-scrollbar-thumb {
+        background: #888 !important;
+        border-radius: 4px !important;
+    }
+    
+    html::-webkit-scrollbar-thumb:hover {
+        background: #555 !important;
+    }
+    
+    html,
+    body {
+        scrollbar-width: thin !important;
+        scrollbar-color: #888 #f1f1f1 !important;
+        -ms-overflow-style: scrollbar !important;
+    }
+}
+
+/* MOBILE/TABLET: Hide scrollbar for cleaner look */
+@media screen and (max-width: 1024px) {
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+    }
+    
+    html,
+    body {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+}
+
+/* ============================================
+   MOBILE SPECIFIC
+   ============================================ */
+
+@media screen and (max-width: 1024px) {
+    html,
+    body {
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Prevent zoom on input focus */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+    
+    /* Astra mobile header breakpoint fixes */
+    body.ast-header-break-point {
+        overflow-y: auto !important;
+        position: static !important;
+    }
+    
+    /* Flavor mobile fixes */
+    .flavor-wrapper {
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* ============================================
+   PRINT - Restore normal scroll
+   ============================================ */
+
+@media print {
+    html,
+    body {
+        overflow: visible !important;
+    }
+}

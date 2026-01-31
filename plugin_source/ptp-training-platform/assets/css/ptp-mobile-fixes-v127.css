@@ -1,0 +1,1377 @@
+/**
+ * PTP Mobile Fixes v127
+ * 
+ * Comprehensive mobile optimization for ALL pages:
+ * - Find Trainers
+ * - Trainer Dashboard
+ * - Parent Dashboard
+ * - Trainer Profile
+ * - Booking Wizard
+ * - Checkout
+ * - Login/Register/Apply
+ * - Account/Messaging
+ * - Training Landing
+ * 
+ * Mobile-first approach with:
+ * - 48px minimum touch targets
+ * - iOS zoom prevention (16px inputs)
+ * - Safe area support for notched phones
+ * - Consistent spacing scale
+ * - Landscape optimizations
+ * - Small screen (<375px) adjustments
+ * 
+ * v133.2: Added scrollbar hiding
+ */
+
+/* ============================================
+   v133.2: SCROLLBAR HIDING - Global
+   ============================================ */
+html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* ============================================
+   CSS CUSTOM PROPERTIES - Mobile Tokens
+   ============================================ */
+:root {
+    /* Safe Areas */
+    --ptp-safe-top: env(safe-area-inset-top, 0px);
+    --ptp-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --ptp-safe-left: env(safe-area-inset-left, 0px);
+    --ptp-safe-right: env(safe-area-inset-right, 0px);
+    
+    /* Touch Targets */
+    --ptp-touch-min: 48px;
+    --ptp-touch-comfortable: 52px;
+    --ptp-touch-large: 56px;
+    
+    /* Spacing Scale */
+    --ptp-space-xs: 4px;
+    --ptp-space-sm: 8px;
+    --ptp-space-md: 12px;
+    --ptp-space-lg: 16px;
+    --ptp-space-xl: 20px;
+    --ptp-space-2xl: 24px;
+    --ptp-space-3xl: 32px;
+    
+    /* Typography */
+    --ptp-text-xs: 11px;
+    --ptp-text-sm: 13px;
+    --ptp-text-base: 15px;
+    --ptp-text-lg: 17px;
+    --ptp-text-xl: 20px;
+    --ptp-text-2xl: 24px;
+    --ptp-text-3xl: 28px;
+    
+    /* Border Radius */
+    --ptp-radius-sm: 8px;
+    --ptp-radius-md: 12px;
+    --ptp-radius-lg: 16px;
+    --ptp-radius-xl: 20px;
+    --ptp-radius-full: 9999px;
+    
+    /* Animations */
+    --ptp-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ptp-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ptp-duration-fast: 150ms;
+    --ptp-duration-normal: 200ms;
+    --ptp-duration-slow: 300ms;
+}
+
+/* ============================================
+   GLOBAL: BULLETPROOF HEADER GAP FIX
+   ============================================ */
+
+/* Nuclear option - remove ALL possible gaps */
+body .ft,
+body .ft-hero,
+body .ptp-landing,
+body .ptp-hero,
+body .pd-wrap,
+body .trainer-dashboard,
+body .ptp-booking-wizard,
+#content .ft,
+#content .ptp-landing,
+#primary .ft,
+#primary .ptp-landing,
+.site-content .ft,
+.site-content .ptp-landing,
+.content-area .ft,
+.content-area .ptp-landing,
+main .ft,
+main .ptp-landing,
+article .ft,
+article .ptp-landing,
+.entry-content .ft,
+.entry-content .ptp-landing,
+.post-content .ft,
+.post-content .ptp-landing,
+.elementor .ft,
+.elementor .ptp-landing,
+.elementor-widget-container .ft,
+.elementor-widget-container .ptp-landing,
+.ast-container .ft,
+.ast-container .ptp-landing,
+.wp-block-post-content .ft,
+.wp-block-post-content .ptp-landing,
+.is-layout-constrained .ft,
+.is-layout-constrained .ptp-landing {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Target pages by body class */
+body[class*="find-trainers"] #content,
+body[class*="find-trainers"] .site-content,
+body[class*="find-trainers"] article,
+body[class*="find-trainers"] .entry-content,
+body[class*="trainers"] #content,
+body[class*="trainers"] .site-content,
+body[class*="trainers"] article,
+body[class*="trainers"] .entry-content,
+body[class*="training"] #content,
+body[class*="training"] .site-content,
+body[class*="training"] article,
+body[class*="training"] .entry-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Target by page template class */
+body.page-template-trainers-grid #content,
+body.page-template-trainers-grid #primary,
+body.page-template-trainers-grid .site-content,
+body.page-template-trainers-grid .content-area,
+body.page-template-trainers-grid main,
+body.page-template-trainers-grid article,
+body.page-template-trainers-grid .entry-content,
+body.page-template-trainers-grid .ast-container,
+body.page-template-trainers-grid .container,
+body.page-template-trainers-grid .site-main,
+body.page-template-trainers-grid #main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-block-start: 0 !important;
+}
+
+/* Astra theme specific */
+.ast-separate-container #primary,
+.ast-separate-container .ast-article-single,
+.ast-plain-container #primary {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Elementor header + content gap */
+.elementor-location-header + *,
+.elementor-location-header + * > *,
+.elementor-location-header ~ #content,
+.elementor-location-header ~ .site-content,
+.elementor-location-header ~ main,
+header + #content,
+header + .site-content,
+header + main,
+#masthead + #content,
+#masthead + .site-content,
+#masthead + main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* WordPress block editor gaps */
+.is-layout-constrained > * + *,
+.is-layout-flow > * + * {
+    margin-block-start: 0 !important;
+}
+
+/* ============================================
+   MOBILE BREAKPOINTS (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    
+    /* ============================================
+       GLOBAL MOBILE IMPROVEMENTS
+       ============================================ */
+    
+    /* Prevent horizontal scroll - use clip on html to avoid scroll issues */
+    html {
+        overflow-x: clip;
+        max-width: 100vw;
+    }
+    body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    
+    /* Touch-friendly tap targets - MINIMUM 48px */
+    button:not(.ptp-no-min-size),
+    a.btn:not(.ptp-no-min-size),
+    a.button:not(.ptp-no-min-size),
+    input[type="submit"]:not(.ptp-no-min-size),
+    input[type="button"]:not(.ptp-no-min-size),
+    .btn:not(.ptp-no-min-size),
+    .button:not(.ptp-no-min-size) {
+        min-height: var(--ptp-touch-min) !important;
+        min-width: var(--ptp-touch-min) !important;
+    }
+    
+    /* iOS zoom prevention - inputs must be 16px */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="url"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+    
+    /* Consistent input styling */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="url"],
+    input[type="date"],
+    select,
+    textarea {
+        padding: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+        border: 2px solid #E5E7EB !important;
+        min-height: var(--ptp-touch-min) !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+    }
+    
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #FCB900 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(252, 185, 0, 0.15) !important;
+    }
+    
+    /* Safe area padding for fixed elements */
+    .fixed-bottom,
+    .bottom-nav,
+    .ptp-bottom-nav,
+    .pd-nav,
+    .bw-actions,
+    .wizard-actions {
+        padding-bottom: calc(var(--ptp-space-lg) + var(--ptp-safe-bottom)) !important;
+    }
+    
+    /* ============================================
+       FIND TRAINERS PAGE
+       ============================================ */
+    .ft {
+        margin-top: 0 !important;
+    }
+    
+    .ft-hero {
+        padding: calc(var(--ptp-safe-top) + var(--ptp-space-3xl)) var(--ptp-space-lg) var(--ptp-space-2xl) !important;
+    }
+    
+    .ft-hero h1 {
+        font-size: var(--ptp-text-3xl) !important;
+        line-height: 1.15 !important;
+        margin-bottom: var(--ptp-space-sm) !important;
+    }
+    
+    .ft-hero p {
+        font-size: var(--ptp-text-sm) !important;
+        margin-bottom: var(--ptp-space-xl) !important;
+    }
+    
+    .ft-hero-stats {
+        gap: var(--ptp-space-xl) !important;
+        margin-bottom: var(--ptp-space-xl) !important;
+    }
+    
+    .ft-hero-stat-num {
+        font-size: var(--ptp-text-2xl) !important;
+    }
+    
+    .ft-hero-stat-label {
+        font-size: 10px !important;
+    }
+    
+    /* Search bar - stack vertically */
+    .ft-search {
+        flex-direction: column !important;
+        border-radius: var(--ptp-radius-md) !important;
+        overflow: hidden !important;
+    }
+    
+    .ft-search input {
+        border-bottom: 1px solid #e5e7eb !important;
+        padding: var(--ptp-space-lg) !important;
+        border-radius: 0 !important;
+    }
+    
+    .ft-search button {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: var(--ptp-space-lg) !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    .ft-locate {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        min-height: var(--ptp-touch-min) !important;
+        justify-content: center !important;
+    }
+    
+    /* Filter pills */
+    .ft-filters {
+        gap: var(--ptp-space-sm) !important;
+        padding: 0 var(--ptp-space-sm) !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .ft-pill {
+        padding: var(--ptp-space-sm) var(--ptp-space-lg) !important;
+        font-size: var(--ptp-text-xs) !important;
+        min-height: 44px !important;
+    }
+    
+    /* Trainer grid - single column horizontal cards */
+    .ft-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--ptp-space-md) !important;
+        padding: 0 var(--ptp-space-lg) !important;
+    }
+    
+    .ft-list {
+        padding: var(--ptp-space-lg) 0 !important;
+    }
+    
+    .ft-bar {
+        padding: 0 var(--ptp-space-lg) !important;
+        margin-bottom: var(--ptp-space-lg) !important;
+    }
+    
+    /* Horizontal card layout */
+    .ft-card {
+        display: flex !important;
+        flex-direction: row !important;
+        height: auto !important;
+        min-height: 130px !important;
+    }
+    
+    .ft-card-img {
+        width: 130px !important;
+        flex-shrink: 0 !important;
+        aspect-ratio: auto !important;
+        height: 100% !important;
+        min-height: 130px !important;
+    }
+    
+    .ft-card-body {
+        flex: 1 !important;
+        padding: var(--ptp-space-md) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+    }
+    
+    .ft-card-name {
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    .ft-card-loc {
+        font-size: var(--ptp-text-xs) !important;
+    }
+    
+    .ft-card-rate {
+        font-size: var(--ptp-text-lg) !important;
+    }
+    
+    /* Hide map on mobile - use toggle button */
+    .ft-map-wrap {
+        display: none !important;
+    }
+    
+    /* Map toggle button */
+    .ft-map-toggle {
+        position: fixed !important;
+        bottom: calc(var(--ptp-space-xl) + var(--ptp-safe-bottom)) !important;
+        min-height: var(--ptp-touch-comfortable) !important;
+    }
+    
+    /* ============================================
+       TRAINER DASHBOARD - All Tabs
+       ============================================ */
+    .trainer-dashboard,
+    .td-wrap,
+    .ptp-trainer-dashboard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Tab Navigation - horizontal scroll */
+    .td-tabs,
+    .ptp-td-tabs,
+    .trainer-tabs {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        background: #0A0A0A !important;
+        border-radius: 0 !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 100 !important;
+    }
+    
+    .td-tabs::-webkit-scrollbar,
+    .ptp-td-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .td-tab,
+    .ptp-td-tab,
+    .trainer-tab {
+        flex: 0 0 auto !important;
+        padding: var(--ptp-space-lg) var(--ptp-space-xl) !important;
+        font-size: var(--ptp-text-xs) !important;
+        white-space: nowrap !important;
+        border-radius: 0 !important;
+        border-bottom: 3px solid transparent !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    .td-tab.active,
+    .ptp-td-tab.active,
+    .trainer-tab.active {
+        background: rgba(252, 185, 0, 0.1) !important;
+        border-bottom-color: #FCB900 !important;
+        color: #FCB900 !important;
+    }
+    
+    /* Tab Content */
+    .td-content,
+    .ptp-td-content,
+    .trainer-content {
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    /* Booking Cards */
+    .td-booking-card,
+    .booking-card {
+        padding: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+        margin-bottom: var(--ptp-space-md) !important;
+    }
+    
+    .td-booking-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--ptp-space-sm) !important;
+    }
+    
+    .td-booking-actions {
+        width: 100% !important;
+        display: flex !important;
+        gap: var(--ptp-space-sm) !important;
+        margin-top: var(--ptp-space-md) !important;
+    }
+    
+    .td-booking-actions button,
+    .td-booking-actions a {
+        flex: 1 !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    /* Earnings Card */
+    .td-earnings-card {
+        padding: var(--ptp-space-xl) !important;
+    }
+    
+    .td-earnings-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: var(--ptp-space-lg) !important;
+    }
+    
+    /* ============================================
+       PARENT DASHBOARD - All Tabs
+       ============================================ */
+    .pd,
+    .pd-wrap {
+        padding: 0 !important;
+        padding-bottom: calc(80px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    .pd-hero {
+        padding: calc(var(--ptp-safe-top) + var(--ptp-space-3xl)) var(--ptp-space-lg) var(--ptp-space-3xl) !important;
+    }
+    
+    .pd-hero h1 {
+        font-size: clamp(26px, 7vw, 36px) !important;
+    }
+    
+    .pd-stats {
+        gap: var(--ptp-space-2xl) !important;
+    }
+    
+    .pd-stat-value {
+        font-size: 32px !important;
+    }
+    
+    /* Main Content */
+    .pd-main {
+        padding: 0 var(--ptp-space-lg) !important;
+        margin-top: -var(--ptp-space-2xl) !important;
+    }
+    
+    /* Quick Actions - 4 columns */
+    .pd-actions {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: var(--ptp-space-sm) !important;
+    }
+    
+    .pd-action {
+        padding: var(--ptp-space-md) var(--ptp-space-sm) !important;
+        min-height: 70px !important;
+    }
+    
+    .pd-action-icon {
+        width: 32px !important;
+        height: 32px !important;
+        margin-bottom: var(--ptp-space-xs) !important;
+    }
+    
+    .pd-action-label {
+        font-size: 9px !important;
+    }
+    
+    /* Trainer Favorites - 2 columns */
+    .pd-favorites {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--ptp-space-md) !important;
+    }
+    
+    .pd-favorite-card {
+        padding: var(--ptp-space-md) !important;
+    }
+    
+    .pd-favorite-photo {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .pd-favorite-name {
+        font-size: var(--ptp-text-sm) !important;
+    }
+    
+    /* Session Cards */
+    .pd-session-card {
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    .pd-session-trainer-photo {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    /* Bottom Navigation */
+    .pd-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: var(--ptp-space-sm) var(--ptp-space-md) !important;
+        padding-bottom: calc(var(--ptp-space-sm) + var(--ptp-safe-bottom)) !important;
+        background: #fff !important;
+        border-top: 1px solid #E5E7EB !important;
+        z-index: 1000 !important;
+    }
+    
+    .pd-nav-item {
+        min-width: 56px !important;
+        padding: var(--ptp-space-sm) var(--ptp-space-md) !important;
+    }
+    
+    .pd-nav-item svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
+    /* ============================================
+       TRAINER PROFILE
+       ============================================ */
+    .tp-hero,
+    .profile-hero {
+        padding: calc(var(--ptp-safe-top) + 120px) var(--ptp-space-lg) var(--ptp-space-xl) !important;
+    }
+    
+    .tp-photo,
+    .profile-photo {
+        width: 110px !important;
+        height: 110px !important;
+        border: 4px solid #fff !important;
+    }
+    
+    .tp-name,
+    .profile-name {
+        font-size: 26px !important;
+    }
+    
+    .tp-level,
+    .profile-level {
+        font-size: var(--ptp-text-xs) !important;
+        padding: var(--ptp-space-xs) var(--ptp-space-md) !important;
+    }
+    
+    .tp-stats,
+    .profile-stats {
+        gap: var(--ptp-space-xl) !important;
+    }
+    
+    .tp-stat-value,
+    .profile-stat-value {
+        font-size: var(--ptp-text-xl) !important;
+    }
+    
+    /* Booking Widget - Bottom Sheet on Mobile */
+    .book-widget,
+    .booking-widget {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        max-height: 90vh !important;
+        max-height: 90dvh !important;
+        border-radius: var(--ptp-radius-xl) var(--ptp-radius-xl) 0 0 !important;
+        z-index: 1000 !important;
+    }
+    
+    .book-body,
+    .booking-body {
+        max-height: calc(90vh - 160px) !important;
+        max-height: calc(90dvh - 160px) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Calendar */
+    .book-calendar-day,
+    .calendar-day {
+        min-height: 38px !important;
+        font-size: var(--ptp-text-sm) !important;
+    }
+    
+    .book-calendar-nav button {
+        min-width: var(--ptp-touch-min) !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    /* Time Slots - 3 columns */
+    .book-times,
+    .time-slots {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: var(--ptp-space-sm) !important;
+    }
+    
+    .book-time,
+    .time-slot {
+        padding: var(--ptp-space-md) var(--ptp-space-sm) !important;
+        font-size: var(--ptp-text-sm) !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    /* Fixed Book Now Bar - Only for standalone booking bars, NOT trainer profile */
+    .ptp-booking-wizard .book-bar,
+    .ptp-booking-wizard .booking-bar,
+    .bw-actions,
+    .wizard-actions {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(var(--ptp-space-lg) + var(--ptp-safe-bottom)) !important;
+        background: #fff !important;
+        border-top: 1px solid #E5E7EB !important;
+        z-index: 999 !important;
+    }
+    
+    /* Trainer profile book-bar should NOT be fixed - it's inside the bottom sheet */
+    .book .book-bar,
+    #book .book-bar {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        border-top: none !important;
+        z-index: auto !important;
+    }
+    
+    .ptp-booking-wizard .book-bar .ptp-btn,
+    .ptp-booking-wizard .booking-bar .ptp-btn,
+    .bw-actions .ptp-btn,
+    .wizard-actions .ptp-btn {
+        width: 100% !important;
+        min-height: var(--ptp-touch-large) !important;
+    }
+    
+    /* ============================================
+       BOOKING WIZARD
+       ============================================ */
+    .ptp-booking-wizard,
+    .booking-wizard {
+        padding: 0 !important;
+        margin: 0 !important;
+        padding-bottom: calc(100px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    /* Progress Steps - horizontal scroll */
+    .bw-progress,
+    .wizard-progress {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: var(--ptp-space-md) var(--ptp-space-lg) !important;
+        gap: var(--ptp-space-sm) !important;
+        background: #F5F5F5 !important;
+    }
+    
+    .bw-progress::-webkit-scrollbar,
+    .wizard-progress::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .bw-step,
+    .wizard-step {
+        flex: 0 0 auto !important;
+        padding: var(--ptp-space-sm) var(--ptp-space-lg) !important;
+        font-size: var(--ptp-text-xs) !important;
+        border-radius: var(--ptp-radius-full) !important;
+        white-space: nowrap !important;
+        min-height: 36px !important;
+    }
+    
+    /* Trainer Selection */
+    .bw-trainer-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--ptp-space-md) !important;
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    .bw-trainer-card {
+        display: flex !important;
+        align-items: center !important;
+        gap: var(--ptp-space-md) !important;
+        padding: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+    }
+    
+    .bw-trainer-photo {
+        width: 56px !important;
+        height: 56px !important;
+        border-radius: 50% !important;
+    }
+    
+    .bw-trainer-name {
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    /* Calendar */
+    .bw-calendar {
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    .bw-calendar-day {
+        min-height: 42px !important;
+        font-size: var(--ptp-text-sm) !important;
+    }
+    
+    /* Time Slots - 3 columns */
+    .bw-time-slots {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: var(--ptp-space-sm) !important;
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    .bw-time-slot {
+        padding: var(--ptp-space-md) var(--ptp-space-sm) !important;
+        font-size: var(--ptp-text-sm) !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    /* Packages */
+    .bw-packages {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--ptp-space-md) !important;
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    .bw-package-card {
+        padding: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+    }
+    
+    /* Form Fields */
+    .bw-form {
+        padding: var(--ptp-space-lg) !important;
+    }
+    
+    .bw-form-group {
+        margin-bottom: var(--ptp-space-lg) !important;
+    }
+    
+    .bw-form-group label {
+        font-size: var(--ptp-text-sm) !important;
+        margin-bottom: var(--ptp-space-sm) !important;
+    }
+    
+    /* Summary */
+    .bw-summary {
+        padding: var(--ptp-space-lg) !important;
+        margin: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+    }
+    
+    .bw-summary-total {
+        font-size: var(--ptp-text-xl) !important;
+    }
+    
+    /* Fixed Action Bar */
+    .bw-actions,
+    .wizard-actions {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(var(--ptp-space-lg) + var(--ptp-safe-bottom)) !important;
+        background: #fff !important;
+        border-top: 1px solid #E5E7EB !important;
+        display: flex !important;
+        gap: var(--ptp-space-md) !important;
+        z-index: 1000 !important;
+    }
+    
+    .bw-btn-back {
+        min-height: var(--ptp-touch-min) !important;
+        padding: 0 var(--ptp-space-xl) !important;
+    }
+    
+    .bw-btn-next,
+    .bw-btn-submit {
+        flex: 1 !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    /* ============================================
+       CHECKOUT PAGE
+       ============================================ */
+    .ptp-checkout,
+    .checkout-page,
+    .page.checkout {
+        padding: 0 !important;
+        padding-bottom: calc(140px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    .checkout-form,
+    .form.checkout {
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(160px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    .checkout-header,
+    .header.checkout {
+        padding: var(--ptp-space-lg) !important;
+        margin-bottom: var(--ptp-space-lg) !important;
+    }
+    
+    .checkout-logo {
+        height: 32px !important;
+    }
+    
+    /* Section styling */
+    .checkout-section,
+    .sec {
+        margin-bottom: var(--ptp-space-xl) !important;
+        padding: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+    }
+    
+    .checkout-section-title,
+    .sec-t {
+        font-size: var(--ptp-text-sm) !important;
+        margin-bottom: var(--ptp-space-md) !important;
+    }
+    
+    /* Form rows */
+    .checkout-row,
+    .form-row {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: var(--ptp-space-md) !important;
+    }
+    
+    .checkout-row.half,
+    .form-row.half {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    
+    /* Cart items */
+    .checkout-item,
+    .cart-item {
+        padding: var(--ptp-space-lg) !important;
+        margin-bottom: var(--ptp-space-md) !important;
+    }
+    
+    .checkout-item-img,
+    .cart-item-img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .checkout-item-name,
+    .cart-item-name {
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    /* Express checkout */
+    .express-checkout,
+    .express {
+        padding: var(--ptp-space-lg) !important;
+        margin-bottom: var(--ptp-space-xl) !important;
+    }
+    
+    .express-btn,
+    #apple-pay-button,
+    #google-pay-button {
+        min-height: var(--ptp-touch-large) !important;
+    }
+    
+    /* Fixed Summary Bar */
+    .checkout-summary-bar,
+    .summary-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(var(--ptp-space-lg) + var(--ptp-safe-bottom)) !important;
+        background: #0A0A0A !important;
+        color: #fff !important;
+        z-index: 1000 !important;
+    }
+    
+    .checkout-total,
+    .summary-total {
+        font-size: var(--ptp-text-xl) !important;
+    }
+    
+    .checkout-submit,
+    .submit-btn {
+        min-height: var(--ptp-touch-large) !important;
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    /* ============================================
+       AUTH PAGES (Login, Register, Apply)
+       ============================================ */
+    .ptp-auth-page {
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+    }
+    
+    .ptp-auth-form-wrap {
+        padding: var(--ptp-space-2xl) var(--ptp-space-lg) !important;
+    }
+    
+    .ptp-auth-card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .ptp-auth-card h1 {
+        font-size: var(--ptp-text-2xl) !important;
+    }
+    
+    .ptp-input,
+    .auth-input {
+        padding: var(--ptp-space-lg) !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    .ptp-auth-submit,
+    .auth-submit {
+        min-height: var(--ptp-touch-large) !important;
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    .ptp-social-btn,
+    .social-btn {
+        min-height: var(--ptp-touch-comfortable) !important;
+    }
+    
+    .ptp-auth-options {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--ptp-space-md) !important;
+    }
+    
+    /* Apply Form */
+    .apply-form {
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(100px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    .apply-section {
+        margin-bottom: var(--ptp-space-2xl) !important;
+    }
+    
+    .apply-submit {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(var(--ptp-space-lg) + var(--ptp-safe-bottom)) !important;
+        background: #fff !important;
+        border-top: 1px solid #E5E7EB !important;
+        z-index: 1000 !important;
+    }
+    
+    .apply-submit .ptp-btn {
+        width: 100% !important;
+        min-height: var(--ptp-touch-large) !important;
+    }
+    
+    /* ============================================
+       TRAINING LANDING PAGE
+       ============================================ */
+    .ptp-landing {
+        margin-top: 0 !important;
+    }
+    
+    .ptp-landing-hero,
+    .training-hero {
+        min-height: 85vh !important;
+        min-height: 85dvh !important;
+        padding: calc(var(--ptp-safe-top) + var(--ptp-space-3xl)) var(--ptp-space-lg) var(--ptp-space-3xl) !important;
+    }
+    
+    .ptp-landing-title,
+    .training-title {
+        font-size: clamp(32px, 10vw, 44px) !important;
+        line-height: 1.1 !important;
+    }
+    
+    .ptp-landing-subtitle,
+    .training-subtitle {
+        font-size: var(--ptp-text-base) !important;
+        margin-bottom: var(--ptp-space-2xl) !important;
+    }
+    
+    .ptp-landing-cta,
+    .training-cta {
+        min-height: var(--ptp-touch-comfortable) !important;
+        padding: var(--ptp-space-lg) var(--ptp-space-2xl) !important;
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    /* ============================================
+       ACCOUNT PAGE
+       ============================================ */
+    .account-page {
+        padding: var(--ptp-space-lg) !important;
+        padding-bottom: calc(80px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    .account-section {
+        padding: var(--ptp-space-lg) !important;
+        margin-bottom: var(--ptp-space-lg) !important;
+        border-radius: var(--ptp-radius-md) !important;
+    }
+    
+    .account-section-title {
+        font-size: var(--ptp-text-sm) !important;
+        margin-bottom: var(--ptp-space-lg) !important;
+    }
+    
+    .account-row {
+        padding: var(--ptp-space-md) 0 !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    .account-btn {
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    /* ============================================
+       MESSAGING
+       ============================================ */
+    .messaging-page {
+        padding-bottom: calc(80px + var(--ptp-safe-bottom)) !important;
+    }
+    
+    .conversation-list {
+        padding: 0 !important;
+    }
+    
+    .conversation-item {
+        padding: var(--ptp-space-lg) !important;
+        min-height: 72px !important;
+    }
+    
+    .conversation-avatar {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .conversation-name {
+        font-size: var(--ptp-text-base) !important;
+    }
+    
+    .message-input-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: var(--ptp-space-md) var(--ptp-space-lg) !important;
+        padding-bottom: calc(var(--ptp-space-md) + var(--ptp-safe-bottom)) !important;
+        background: #fff !important;
+        border-top: 1px solid #E5E7EB !important;
+        z-index: 1000 !important;
+    }
+    
+    .message-input {
+        min-height: var(--ptp-touch-min) !important;
+    }
+    
+    .message-send-btn {
+        min-width: var(--ptp-touch-min) !important;
+        min-height: var(--ptp-touch-min) !important;
+    }
+}
+
+/* ============================================
+   SMALL MOBILE (< 375px)
+   ============================================ */
+@media (max-width: 374px) {
+    
+    /* Find Trainers */
+    .ft-hero h1 {
+        font-size: 24px !important;
+    }
+    
+    .ft-hero-stats {
+        flex-direction: column !important;
+        gap: var(--ptp-space-md) !important;
+    }
+    
+    .ft-pill {
+        padding: var(--ptp-space-sm) var(--ptp-space-md) !important;
+        font-size: 10px !important;
+    }
+    
+    /* Parent Dashboard - 2x2 grid for quick actions */
+    .pd-actions {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .pd-action {
+        min-height: 80px !important;
+    }
+    
+    .pd-action-icon {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    /* Single column favorites */
+    .pd-favorites {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Booking Wizard - 2 column time slots */
+    .bw-time-slots {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Trainer Profile - 2 column time slots */
+    .book-times,
+    .time-slots {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Auth pages */
+    .ptp-auth-card h1 {
+        font-size: var(--ptp-text-xl) !important;
+    }
+    
+    .ptp-auth-subtitle {
+        font-size: var(--ptp-text-sm) !important;
+    }
+    
+    /* Training landing */
+    .ptp-landing-title,
+    .training-title {
+        font-size: 28px !important;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MODE
+   ============================================ */
+@media (max-width: 896px) and (orientation: landscape) {
+    
+    /* Reduce hero heights */
+    .ft-hero {
+        padding-top: var(--ptp-space-xl) !important;
+        padding-bottom: var(--ptp-space-xl) !important;
+    }
+    
+    .pd-hero {
+        padding-top: calc(var(--ptp-safe-top) + var(--ptp-space-xl)) !important;
+        padding-bottom: var(--ptp-space-xl) !important;
+    }
+    
+    .ptp-landing-hero,
+    .training-hero {
+        min-height: 60vh !important;
+    }
+    
+    /* Booking sheets - smaller max height */
+    .book-widget,
+    .booking-widget {
+        max-height: 70vh !important;
+    }
+    
+    .book-body,
+    .booking-body {
+        max-height: calc(70vh - 140px) !important;
+    }
+    
+    /* Modals */
+    .ptp-modal-content,
+    .modal-content {
+        max-height: 80vh !important;
+    }
+    
+    /* Two-column layouts where space allows */
+    .ft-search {
+        flex-direction: row !important;
+    }
+    
+    .ft-locate {
+        width: auto !important;
+        border-right: 1px solid #e5e7eb !important;
+        border-bottom: none !important;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    .pd-nav,
+    .ptp-bottom-nav,
+    .fixed-bottom,
+    .ft-map-toggle,
+    .book-bar,
+    .booking-bar,
+    .bw-actions,
+    .wizard-actions,
+    .checkout-summary-bar,
+    .summary-bar,
+    .message-input-bar {
+        display: none !important;
+    }
+    
+    body {
+        padding-bottom: 0 !important;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast focus states */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #FCB900 !important;
+    outline-offset: 2px !important;
+}
+
+/* v130: Minimum readable font sizes on mobile */
+@media (max-width: 768px) {
+    /* Ensure text is readable - minimum 11px for secondary text, 12px for primary */
+    .ft-card-tag,
+    .ft-badge,
+    .pd-stat-label,
+    .ft-hero-stat-label,
+    .pkg-v,
+    .hint,
+    .sec-opt,
+    .sec-b,
+    .express-t,
+    .pd-credit-chip,
+    [class*="-label"],
+    [class*="-meta"] {
+        font-size: max(11px, 0.6875rem) !important;
+    }
+    
+    /* Primary readable content - minimum 12px */
+    .ft-card-loc,
+    .ft-card-rate small,
+    .ft-card-stars span,
+    .pd-msg-time,
+    .pd-player-meta,
+    .waiver-scroll {
+        font-size: max(12px, 0.75rem) !important;
+    }
+}
+
+/* Ensure adequate color contrast for small text */
+@media (max-width: 768px) {
+    [class*="-label"],
+    [class*="-meta"],
+    .hint,
+    .sec-opt {
+        color: #4B5563 !important; /* gray-600 for better contrast */
+    }
+}
