@@ -55,31 +55,41 @@ class PTP_Camp_Checkout_V99 {
     }
     
     public function __construct() {
-        // Payment restrictions
-        add_filter('woocommerce_available_payment_gateways', [$this, 'card_only_gateways'], 9999);
-        add_filter('wc_stripe_show_payment_request_on_checkout', '__return_false', 9999);
-        add_filter('wc_stripe_show_express_checkout_buttons', '__return_false', 9999);
-        add_filter('wc_stripe_upe_available_payment_methods', fn() => ['card'], 9999);
-        
-        // Checkout hooks
-        add_action('woocommerce_before_order_notes', [$this, 'render_discounts_section'], 20);
-        add_action('woocommerce_review_order_before_order_total', [$this, 'render_sidebar_upsells'], 15);
-        add_action('woocommerce_cart_calculate_fees', [$this, 'calculate_fees'], 30);
-        
-        // AJAX
+        // v149: WooCommerce hooks only if WC active
+        if (class_exists('WooCommerce')) {
+            // Payment restrictions
+            add_filter('woocommerce_available_payment_gateways', [$this, 'card_only_gateways'], 9999);
+            add_filter('wc_stripe_show_payment_request_on_checkout', '__return_false', 9999);
+            add_filter('wc_stripe_show_express_checkout_buttons', '__return_false', 9999);
+            add_filter('wc_stripe_upe_available_payment_methods', fn() => ['card'], 9999);
+
+            // Checkout hooks
+            add_action('woocommerce_before_order_notes', [$this, 'render_discounts_section'], 20);
+            add_action('woocommerce_review_order_before_order_total', [$this, 'render_sidebar_upsells'], 15);
+            add_action('woocommerce_cart_calculate_fees', [$this, 'calculate_fees'], 30);
+
+            // Order processing
+            add_action('woocommerce_checkout_create_order', [$this, 'save_order_meta'], 25, 2);
+            add_action('woocommerce_thankyou', [$this, 'handle_referral'], 10);
+            add_action('woocommerce_checkout_order_created', [$this, 'on_order_created'], 10);
+            add_action('woocommerce_payment_complete', [$this, 'on_order_created'], 10);
+        } else {
+            // Native PTP hooks
+            add_action('ptp_before_order_notes', [$this, 'render_discounts_section'], 20);
+            add_action('ptp_review_order_before_total', [$this, 'render_sidebar_upsells'], 15);
+            add_action('ptp_checkout_create_order', [$this, 'save_order_meta'], 25, 2);
+            add_action('ptp_thankyou', [$this, 'handle_referral'], 10);
+            add_action('ptp_order_created', [$this, 'on_order_created'], 10);
+        }
+
+        // AJAX (works with both)
         add_action('wp_ajax_ptp99_update', [$this, 'ajax_update']);
         add_action('wp_ajax_nopriv_ptp99_update', [$this, 'ajax_update']);
-        
-        // Order processing
-        add_action('woocommerce_checkout_create_order', [$this, 'save_order_meta'], 25, 2);
-        add_action('woocommerce_thankyou', [$this, 'handle_referral'], 10);
-        add_action('woocommerce_checkout_order_created', [$this, 'on_order_created'], 10);
-        add_action('woocommerce_payment_complete', [$this, 'on_order_created'], 10);
-        
+
         // Assets
         add_action('wp_head', [$this, 'output_styles'], 99);
         add_action('wp_footer', [$this, 'output_scripts'], 99);
-        
+
         // DB
         add_action('init', [$this, 'init_tables']);
     }
@@ -87,23 +97,45 @@ class PTP_Camp_Checkout_V99 {
     // =========================================
     // HELPERS
     // =========================================
-    
+
     private function is_camp_checkout() {
-        if (!WC()->cart) return false;
-        foreach (WC()->cart->get_cart() as $item) {
-            $pid = $item['product_id'];
-            
+        // v149: Support both WC and native cart
+        $cart_items = array();
+
+        if (class_exists('WooCommerce') && function_exists('WC') && WC()->cart) {
+            $cart_items = WC()->cart->get_cart();
+        } elseif (function_exists('ptp_cart')) {
+            $cart_items = ptp_cart()->get_cart();
+        }
+
+        if (empty($cart_items)) return false;
+
+        foreach ($cart_items as $item) {
+            $pid = $item['product_id'] ?? ($item['item_id'] ?? 0);
+
+            // Check for camp item type in native cart
+            if (isset($item['item_type']) && $item['item_type'] === 'camp') {
+                return true;
+            }
+
             // Check 1: WooCommerce product categories
             if (has_term(['camps', 'clinics', 'camp', 'clinic', 'summer-camps', 'soccer-camps'], 'product_cat', $pid)) {
                 return true;
             }
-            
+
             // Check 2: Product name contains camp/clinic
-            $p = wc_get_product($pid);
-            if ($p && (stripos($p->get_name(), 'camp') !== false || stripos($p->get_name(), 'clinic') !== false)) {
+            $product_name = '';
+            if (class_exists('WooCommerce') && function_exists('wc_get_product')) {
+                $p = wc_get_product($pid);
+                if ($p) $product_name = $p->get_name();
+            } else {
+                $product_name = get_the_title($pid);
+            }
+
+            if ($product_name && (stripos($product_name, 'camp') !== false || stripos($product_name, 'clinic') !== false)) {
                 return true;
             }
-            
+
             // Check 3: Custom meta flag
             if (get_post_meta($pid, '_ptp_is_camp', true) === 'yes') {
                 return true;
@@ -111,13 +143,24 @@ class PTP_Camp_Checkout_V99 {
         }
         return false;
     }
-    
+
     private function sess($key, $default = null) {
-        return WC()->session ? WC()->session->get("ptp99_{$key}", $default) : $default;
+        // v149: Support both WC and native session
+        if (class_exists('WooCommerce') && function_exists('WC') && WC()->session) {
+            return WC()->session->get("ptp99_{$key}", $default);
+        } elseif (function_exists('ptp_session')) {
+            return ptp_session()->get("ptp99_{$key}", $default);
+        }
+        return $default;
     }
-    
+
     private function set_sess($key, $val) {
-        if (WC()->session) WC()->session->set("ptp99_{$key}", $val);
+        // v149: Support both WC and native session
+        if (class_exists('WooCommerce') && function_exists('WC') && WC()->session) {
+            WC()->session->set("ptp99_{$key}", $val);
+        } elseif (function_exists('ptp_session')) {
+            ptp_session()->set("ptp99_{$key}", $val);
+        }
     }
     
     // =========================================
