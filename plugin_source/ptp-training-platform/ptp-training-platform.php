@@ -2,8 +2,8 @@
 /**
  * Plugin Name: PTP Training Platform
  * Plugin URI: https://ptpsummercamps.com
- * Description: Complete soccer training platform - camps, 1-on-1 training marketplace, and membership packages. Connects families with elite NCAA and professional trainers. Features booking funnel, sibling/team discounts, referral system, and Stripe Connect payouts. WOOCOMMERCE INDEPENDENT v149.
- * Version: 149.0.0
+ * Description: Complete soccer training platform - camps, 1-on-1 training marketplace, and membership packages. Connects families with elite NCAA and professional trainers. Features booking funnel, sibling/team discounts, referral system, and Stripe Connect payouts. WOOCOMMERCE INDEPENDENT v150 - CAMPS COMPLETE.
+ * Version: 150.0.0
  * Author: PTP Soccer Camps
  * Author URI: https://ptpsummercamps.com
  * Text Domain: ptp-training
@@ -14,7 +14,7 @@
 defined('ABSPATH') || exit;
 
 // Plugin constants
-define("PTP_VERSION", "149.0.0");
+define("PTP_VERSION", "150.0.0");
 define('PTP_V71_VERSION', '71.0.0');
 define('PTP_V72_VERSION', '72.0.0');
 define('PTP_V73_VERSION', '73.0.0');
