@@ -398,9 +398,7 @@ class PTP_Page_Creator {
     public static function get_pages() {
         return self::$pages;
     }
-        add_action('admin_init', array($this, 'maybe_auto_create_pages'));
-    }
-    
+
     /**
      * Auto-create missing pages if this is first run
      */
