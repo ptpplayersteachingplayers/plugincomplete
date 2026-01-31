@@ -1,0 +1,843 @@
+/**
+ * PTP Mobile Fixes v117
+ * 
+ * Comprehensive mobile optimization for:
+ * - Header gap removal on all pages (BULLETPROOF)
+ * - Trainer Dashboard (all tabs)
+ * - Parent Dashboard (all tabs)
+ * - Booking Wizard
+ * - Find Trainers page
+ * - Training landing page
+ */
+
+/* ============================================
+   GLOBAL: BULLETPROOF HEADER GAP FIX
+   ============================================ */
+
+/* Nuclear option - remove ALL possible gaps */
+body .ft,
+body .ft-hero,
+body .ptp-landing,
+body .ptp-hero,
+body .pd-wrap,
+body .trainer-dashboard,
+body .ptp-booking-wizard,
+#content .ft,
+#content .ptp-landing,
+#primary .ft,
+#primary .ptp-landing,
+.site-content .ft,
+.site-content .ptp-landing,
+.content-area .ft,
+.content-area .ptp-landing,
+main .ft,
+main .ptp-landing,
+article .ft,
+article .ptp-landing,
+.entry-content .ft,
+.entry-content .ptp-landing,
+.post-content .ft,
+.post-content .ptp-landing,
+.elementor .ft,
+.elementor .ptp-landing,
+.elementor-widget-container .ft,
+.elementor-widget-container .ptp-landing,
+.ast-container .ft,
+.ast-container .ptp-landing,
+.wp-block-post-content .ft,
+.wp-block-post-content .ptp-landing,
+.is-layout-constrained .ft,
+.is-layout-constrained .ptp-landing {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Target pages by body class */
+body[class*="find-trainers"] #content,
+body[class*="find-trainers"] .site-content,
+body[class*="find-trainers"] article,
+body[class*="find-trainers"] .entry-content,
+body[class*="trainers"] #content,
+body[class*="trainers"] .site-content,
+body[class*="trainers"] article,
+body[class*="trainers"] .entry-content,
+body[class*="training"] #content,
+body[class*="training"] .site-content,
+body[class*="training"] article,
+body[class*="training"] .entry-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Target by page template class */
+body.page-template-trainers-grid #content,
+body.page-template-trainers-grid #primary,
+body.page-template-trainers-grid .site-content,
+body.page-template-trainers-grid .content-area,
+body.page-template-trainers-grid main,
+body.page-template-trainers-grid article,
+body.page-template-trainers-grid .entry-content,
+body.page-template-trainers-grid .ast-container,
+body.page-template-trainers-grid .container,
+body.page-template-trainers-grid .site-main,
+body.page-template-trainers-grid #main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-block-start: 0 !important;
+}
+
+/* Astra theme specific */
+.ast-separate-container #primary,
+.ast-separate-container .ast-article-single,
+.ast-plain-container #primary {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Elementor header + content gap */
+.elementor-location-header + *,
+.elementor-location-header + * > *,
+.elementor-location-header ~ #content,
+.elementor-location-header ~ .site-content,
+.elementor-location-header ~ main,
+header + #content,
+header + .site-content,
+header + main,
+#masthead + #content,
+#masthead + .site-content,
+#masthead + main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* WordPress block editor gaps */
+.is-layout-constrained > * + *,
+.is-layout-flow > * + * {
+    margin-block-start: 0 !important;
+}
+
+/* ============================================
+   MOBILE BREAKPOINTS
+   ============================================ */
+@media (max-width: 768px) {
+    
+    /* ============================================
+       FIND TRAINERS PAGE
+       ============================================ */
+    .ft {
+        margin-top: 0 !important;
+    }
+    
+    .ft-hero {
+        padding: 60px 16px 40px !important;
+    }
+    
+    .ft-hero h1 {
+        font-size: 28px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .ft-hero p {
+        font-size: 14px !important;
+    }
+    
+    .ft-hero-stats {
+        gap: 20px !important;
+    }
+    
+    .ft-hero-stat-num {
+        font-size: 24px !important;
+    }
+    
+    .ft-search {
+        flex-direction: column !important;
+        border-radius: 12px !important;
+    }
+    
+    .ft-search input {
+        border-bottom: 1px solid #e5e7eb !important;
+        padding: 16px !important;
+        font-size: 16px !important; /* Prevents iOS zoom */
+    }
+    
+    .ft-search button {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 16px !important;
+    }
+    
+    .ft-locate {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e5e7eb !important;
+    }
+    
+    .ft-filters {
+        gap: 6px !important;
+        padding: 0 8px !important;
+    }
+    
+    .ft-pill {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+    }
+    
+    .ft-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 16px !important;
+    }
+    
+    .ft-card {
+        display: flex !important;
+        flex-direction: row !important;
+        height: auto !important;
+        min-height: 140px !important;
+    }
+    
+    .ft-card-img {
+        width: 140px !important;
+        flex-shrink: 0 !important;
+        aspect-ratio: auto !important;
+        height: 100% !important;
+    }
+    
+    .ft-card-body {
+        flex: 1 !important;
+        padding: 12px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+    }
+    
+    .ft-card-name {
+        font-size: 15px !important;
+    }
+    
+    .ft-list {
+        padding: 16px 0 !important;
+    }
+    
+    .ft-bar {
+        padding: 0 16px !important;
+    }
+    
+    .ft-map-wrap {
+        display: none !important;
+    }
+    
+    /* ============================================
+       TRAINER DASHBOARD - All Tabs
+       ============================================ */
+    .trainer-dashboard,
+    .td-wrap,
+    .ptp-trainer-dashboard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Tab Navigation */
+    .td-tabs,
+    .ptp-td-tabs,
+    .trainer-tabs {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        background: #0A0A0A !important;
+        border-radius: 0 !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 100 !important;
+    }
+    
+    .td-tabs::-webkit-scrollbar,
+    .ptp-td-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .td-tab,
+    .ptp-td-tab,
+    .trainer-tab {
+        flex: 0 0 auto !important;
+        padding: 14px 20px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        border-radius: 0 !important;
+        border-bottom: 3px solid transparent !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .td-tab.active,
+    .ptp-td-tab.active,
+    .trainer-tab.active {
+        background: rgba(252, 185, 0, 0.1) !important;
+        border-bottom-color: #FCB900 !important;
+        color: #FCB900 !important;
+    }
+    
+    /* Tab Content */
+    .td-content,
+    .ptp-td-content,
+    .trainer-content {
+        padding: 16px !important;
+    }
+    
+    /* Schedule Tab */
+    .td-schedule-grid,
+    .schedule-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .td-time-slot,
+    .time-slot {
+        padding: 16px !important;
+        border-radius: 12px !important;
+    }
+    
+    /* Bookings Tab */
+    .td-booking-card,
+    .booking-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .td-booking-header {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .td-booking-actions {
+        display: flex !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+    
+    .td-booking-actions button,
+    .td-booking-actions a {
+        flex: 1 !important;
+        padding: 12px !important;
+        font-size: 13px !important;
+        text-align: center !important;
+    }
+    
+    /* Earnings Tab */
+    .td-stats-grid,
+    .earnings-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    .td-stat-card,
+    .earnings-card {
+        padding: 16px !important;
+        text-align: center !important;
+    }
+    
+    .td-stat-value,
+    .earnings-value {
+        font-size: 24px !important;
+    }
+    
+    /* Profile Tab */
+    .td-profile-photo {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto 16px !important;
+    }
+    
+    .td-form-group {
+        margin-bottom: 16px !important;
+    }
+    
+    .td-form-group input,
+    .td-form-group textarea,
+    .td-form-group select {
+        font-size: 16px !important; /* Prevents iOS zoom */
+        padding: 14px !important;
+        border-radius: 10px !important;
+    }
+    
+    /* ============================================
+       PARENT DASHBOARD - All Tabs
+       ============================================ */
+    .pd-wrap,
+    .parent-dashboard,
+    .ptp-parent-dashboard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Hero Section */
+    .pd-hero {
+        padding: 20px 16px !important;
+        border-radius: 0 !important;
+    }
+    
+    .pd-hero-greeting {
+        font-size: 20px !important;
+    }
+    
+    .pd-hero-subtitle {
+        font-size: 13px !important;
+    }
+    
+    /* Quick Actions */
+    .pd-actions {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        padding: 16px !important;
+    }
+    
+    .pd-action {
+        flex-direction: column !important;
+        padding: 12px 8px !important;
+        font-size: 10px !important;
+        text-align: center !important;
+        gap: 6px !important;
+    }
+    
+    .pd-action svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    /* Tab Navigation */
+    .pd-tabs,
+    .ptp-pd-tabs {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        background: #fff !important;
+        border-bottom: 2px solid #E5E7EB !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 100 !important;
+        padding: 0 !important;
+    }
+    
+    .pd-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .pd-tab,
+    .ptp-pd-tab {
+        flex: 0 0 auto !important;
+        padding: 14px 16px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        border-bottom: 3px solid transparent !important;
+        margin-bottom: -2px !important;
+        color: #6B7280 !important;
+        font-weight: 600 !important;
+    }
+    
+    .pd-tab.active,
+    .ptp-pd-tab.active {
+        color: #0A0A0A !important;
+        border-bottom-color: #FCB900 !important;
+    }
+    
+    /* Sessions Tab */
+    .pd-session-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .pd-session-trainer {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .pd-session-trainer img {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 50% !important;
+    }
+    
+    .pd-session-details {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+    
+    .pd-session-actions {
+        display: flex !important;
+        gap: 8px !important;
+        margin-top: 12px !important;
+    }
+    
+    .pd-session-actions button,
+    .pd-session-actions a {
+        flex: 1 !important;
+        padding: 12px !important;
+        font-size: 13px !important;
+        text-align: center !important;
+    }
+    
+    /* Camps Tab */
+    .pd-camp-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    /* Players Tab */
+    .pd-player-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .pd-player-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .pd-player-avatar {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    /* Account Tab */
+    .pd-account-form {
+        padding: 16px !important;
+    }
+    
+    .pd-form-group {
+        margin-bottom: 16px !important;
+    }
+    
+    .pd-form-group input,
+    .pd-form-group select {
+        font-size: 16px !important; /* Prevents iOS zoom */
+        padding: 14px !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+    }
+    
+    /* ============================================
+       BOOKING WIZARD
+       ============================================ */
+    .ptp-booking-wizard,
+    .booking-wizard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Progress Steps */
+    .bw-progress,
+    .wizard-progress {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 12px 16px !important;
+        gap: 8px !important;
+        background: #F5F5F5 !important;
+    }
+    
+    .bw-step,
+    .wizard-step {
+        flex: 0 0 auto !important;
+        padding: 8px 14px !important;
+        font-size: 11px !important;
+        border-radius: 20px !important;
+        white-space: nowrap !important;
+    }
+    
+    .bw-step.active,
+    .wizard-step.active {
+        background: #0A0A0A !important;
+        color: #FCB900 !important;
+    }
+    
+    .bw-step.completed,
+    .wizard-step.completed {
+        background: #22C55E !important;
+        color: #fff !important;
+    }
+    
+    /* Trainer Selection */
+    .bw-trainer-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 16px !important;
+    }
+    
+    .bw-trainer-card {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding: 16px !important;
+        border-radius: 12px !important;
+        border: 2px solid #E5E7EB !important;
+    }
+    
+    .bw-trainer-card.selected {
+        border-color: #FCB900 !important;
+        background: rgba(252, 185, 0, 0.05) !important;
+    }
+    
+    .bw-trainer-photo {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 50% !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .bw-trainer-info {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+    
+    .bw-trainer-name {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    .bw-trainer-price {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        color: #FCB900 !important;
+    }
+    
+    /* Date/Time Selection */
+    .bw-calendar {
+        padding: 16px !important;
+    }
+    
+    .bw-calendar-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .bw-calendar-grid {
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        gap: 4px !important;
+    }
+    
+    .bw-calendar-day {
+        aspect-ratio: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+        min-height: 40px !important;
+    }
+    
+    .bw-time-slots {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        padding: 16px !important;
+    }
+    
+    .bw-time-slot {
+        padding: 12px 8px !important;
+        text-align: center !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+        border: 2px solid #E5E7EB !important;
+    }
+    
+    .bw-time-slot.selected {
+        border-color: #FCB900 !important;
+        background: rgba(252, 185, 0, 0.1) !important;
+    }
+    
+    /* Package Selection */
+    .bw-packages {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 16px !important;
+    }
+    
+    .bw-package-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        border: 2px solid #E5E7EB !important;
+    }
+    
+    .bw-package-card.selected {
+        border-color: #FCB900 !important;
+    }
+    
+    .bw-package-card.popular {
+        border-color: #FCB900 !important;
+        background: rgba(252, 185, 0, 0.05) !important;
+    }
+    
+    /* Player Info Form */
+    .bw-form {
+        padding: 16px !important;
+    }
+    
+    .bw-form-group {
+        margin-bottom: 16px !important;
+    }
+    
+    .bw-form-group label {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        margin-bottom: 6px !important;
+        display: block !important;
+    }
+    
+    .bw-form-group input,
+    .bw-form-group select,
+    .bw-form-group textarea {
+        width: 100% !important;
+        padding: 14px !important;
+        font-size: 16px !important; /* Prevents iOS zoom */
+        border: 2px solid #E5E7EB !important;
+        border-radius: 10px !important;
+    }
+    
+    .bw-form-group input:focus,
+    .bw-form-group select:focus,
+    .bw-form-group textarea:focus {
+        border-color: #FCB900 !important;
+        outline: none !important;
+    }
+    
+    /* Checkout Summary */
+    .bw-summary {
+        padding: 16px !important;
+        background: #F5F5F5 !important;
+        border-radius: 12px !important;
+        margin: 16px !important;
+    }
+    
+    .bw-summary-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 8px 0 !important;
+    }
+    
+    .bw-summary-total {
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        border-top: 2px solid #E5E7EB !important;
+        padding-top: 12px !important;
+        margin-top: 8px !important;
+    }
+    
+    /* Action Buttons */
+    .bw-actions,
+    .wizard-actions {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: 16px !important;
+        padding-bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+        background: #fff !important;
+        border-top: 1px solid #E5E7EB !important;
+        display: flex !important;
+        gap: 12px !important;
+        z-index: 1000 !important;
+    }
+    
+    .bw-btn-back {
+        flex: 0 0 auto !important;
+        padding: 14px 20px !important;
+        background: #F5F5F5 !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+    }
+    
+    .bw-btn-next,
+    .bw-btn-submit {
+        flex: 1 !important;
+        padding: 14px 20px !important;
+        background: #FCB900 !important;
+        color: #0A0A0A !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        font-family: 'Oswald', sans-serif !important;
+        text-transform: uppercase !important;
+    }
+    
+    /* Add bottom padding to content when actions are fixed */
+    .bw-content {
+        padding-bottom: 100px !important;
+    }
+    
+    /* ============================================
+       GLOBAL MOBILE FIXES
+       ============================================ */
+    
+    /* Touch-friendly tap targets */
+    button, a, input[type="submit"], .btn {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    /* Prevent horizontal scroll */
+    body, html {
+        overflow-x: hidden !important;
+    }
+    
+    /* Safe area padding for notched phones */
+    .fixed-bottom,
+    .bottom-nav,
+    .ptp-bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom) !important;
+    }
+    
+    /* Input zoom prevention */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* ============================================
+   SMALL MOBILE (< 375px)
+   ============================================ */
+@media (max-width: 374px) {
+    .ft-hero h1 {
+        font-size: 24px !important;
+    }
+    
+    .ft-hero-stats {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .pd-actions {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .bw-time-slots {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}

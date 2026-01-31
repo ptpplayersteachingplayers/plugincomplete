@@ -1,0 +1,536 @@
+/**
+ * PTP Checkout UX Improvements
+ * Mobile-first, conversion-optimized styles
+ * @version 58.0.0
+ */
+
+/* ===========================================
+   IMPROVED PACKAGE SELECTOR (Trainer Profile)
+   =========================================== */
+
+/* Override default package styles to be more prominent */
+.tp2-packages {
+    background: #F9FAFB;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.tp2-package {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    background: #fff;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tp2-package:last-child {
+    margin-bottom: 0;
+}
+
+.tp2-package:hover {
+    border-color: #FCB900;
+    background: #FFFBEB;
+}
+
+.tp2-package.selected {
+    border-color: #FCB900;
+    background: #FEF3C7;
+}
+
+.tp2-package-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0A0A0A;
+}
+
+.tp2-package-desc {
+    font-size: 13px;
+    color: #6B7280;
+    margin-top: 2px;
+}
+
+.tp2-package-price {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0A0A0A;
+}
+
+.tp2-package-badge {
+    display: inline-block;
+    background: #10B981;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* ===========================================
+   REFERRAL CODE DISPLAY
+   =========================================== */
+
+.ptp-referral-banner {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1F2937 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 24px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.ptp-referral-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FCB900;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+}
+
+.ptp-referral-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 16px;
+}
+
+.ptp-referral-code {
+    display: inline-block;
+    background: rgba(252, 185, 0, 0.15);
+    border: 2px dashed #FCB900;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FCB900;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ptp-referral-code:hover {
+    background: rgba(252, 185, 0, 0.25);
+}
+
+.ptp-referral-code.copied {
+    background: #10B981;
+    border-color: #10B981;
+    color: #fff;
+}
+
+.ptp-referral-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FCB900;
+    color: #0A0A0A;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ptp-referral-btn:hover {
+    background: #e5a800;
+    transform: translateY(-1px);
+}
+
+/* ===========================================
+   CHECKOUT CROSS-SELL BANNER
+   =========================================== */
+
+.ptp-checkout-crosssell {
+    background: #FFFBEB;
+    border: 2px solid #FCB900;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.ptp-checkout-crosssell-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.ptp-checkout-crosssell-icon {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.ptp-checkout-crosssell-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0A0A0A;
+    margin: 0;
+}
+
+.ptp-checkout-crosssell-text {
+    font-size: 14px;
+    color: #4B5563;
+    margin: 0 0 16px;
+}
+
+.ptp-checkout-crosssell-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0A0A0A;
+    color: #FCB900;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.ptp-checkout-crosssell-cta:hover {
+    background: #FCB900;
+    color: #0A0A0A;
+}
+
+/* ===========================================
+   BUNDLE DISCOUNT BANNER
+   =========================================== */
+
+.ptp-bundle-active {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1F2937 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.ptp-bundle-active-icon {
+    font-size: 40px;
+}
+
+.ptp-bundle-active-content {
+    flex: 1;
+    min-width: 200px;
+}
+
+.ptp-bundle-active-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FCB900;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+}
+
+.ptp-bundle-active-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.ptp-bundle-active-badge {
+    background: #FCB900;
+    color: #0A0A0A;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* ===========================================
+   THANK YOU PAGE CTA
+   =========================================== */
+
+.ptp-thankyou-cta {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+    border-radius: 20px;
+    padding: 40px 32px;
+    margin: 32px 0;
+    text-align: center;
+    border: 2px solid #FCB900;
+    position: relative;
+    overflow: hidden;
+}
+
+.ptp-thankyou-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.05;
+    background: repeating-linear-gradient(
+        45deg,
+        #FCB900,
+        #FCB900 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    pointer-events: none;
+}
+
+.ptp-thankyou-icon {
+    width: 80px;
+    height: 80px;
+    background: #FCB900;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    position: relative;
+}
+
+.ptp-thankyou-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    color: #fff;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.ptp-thankyou-subtitle {
+    color: #FCB900;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    position: relative;
+}
+
+.ptp-thankyou-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    margin: 0 0 28px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.ptp-thankyou-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FCB900;
+    color: #0A0A0A;
+    padding: 18px 40px;
+    border-radius: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(252, 185, 0, 0.4);
+    position: relative;
+}
+
+.ptp-thankyou-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(252, 185, 0, 0.5);
+}
+
+.ptp-thankyou-skip {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    margin: 20px 0 0;
+    position: relative;
+}
+
+.ptp-thankyou-skip a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
+}
+
+.ptp-thankyou-skip a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===========================================
+   STICKY BUNDLE BAR
+   =========================================== */
+
+.ptp-bundle-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0A0A0A;
+    color: #fff;
+    z-index: 9990;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ptp-bundle-bar.show {
+    transform: translateY(0);
+}
+
+.ptp-bundle-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.ptp-bundle-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ptp-bundle-bar-icon {
+    font-size: 24px;
+}
+
+.ptp-bundle-bar-text {
+    font-size: 15px;
+}
+
+.ptp-bundle-bar-text strong {
+    color: #FCB900;
+}
+
+.ptp-bundle-bar-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FCB900;
+    color: #0A0A0A;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.ptp-bundle-bar-cta:hover {
+    background: #fff;
+}
+
+.ptp-bundle-bar-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.ptp-bundle-bar-close:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===========================================
+   MOBILE OPTIMIZATIONS
+   =========================================== */
+
+@media (max-width: 768px) {
+    .ptp-checkout-crosssell {
+        padding: 20px;
+    }
+    
+    .ptp-checkout-crosssell-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ptp-bundle-active {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .ptp-thankyou-cta {
+        padding: 32px 24px;
+    }
+    
+    .ptp-thankyou-title {
+        font-size: 24px;
+    }
+    
+    .ptp-thankyou-btn {
+        padding: 16px 32px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .ptp-bundle-bar-inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px 16px;
+    }
+    
+    .ptp-bundle-bar-text {
+        font-size: 14px;
+    }
+    
+    .ptp-referral-code {
+        font-size: 20px;
+        padding: 10px 20px;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tp2-package {
+        padding: 12px 14px;
+    }
+    
+    .tp2-package-name {
+        font-size: 14px;
+    }
+    
+    .tp2-package-desc {
+        font-size: 12px;
+    }
+    
+    .tp2-package-price {
+        font-size: 16px;
+    }
+    
+    .tp2-package-badge {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+}

@@ -1,0 +1,1228 @@
+/**
+ * PTP Admin Dashboard v5.0
+ * Bold Nike-inspired design - Big headers, clean tabs, sharp edges
+ */
+
+/* ===========================================
+   CSS VARIABLES
+   =========================================== */
+
+:root {
+    /* Colors */
+    --admin-white: #FFFFFF;
+    --admin-off-white: #F7F7F7;
+    --admin-light-gray: #EFEFEF;
+    --admin-mid-gray: #E5E5E5;
+    --admin-text-gray: #757575;
+    --admin-text-dark: #525252;
+    --admin-black: #111111;
+    
+    /* Brand */
+    --admin-gold: #F5A623;
+    --admin-gold-hover: #E09000;
+    --admin-gold-light: #FFF8E1;
+    --admin-green: #128A09;
+    --admin-green-light: #E8F5E9;
+    --admin-red: #DC2626;
+    --admin-red-light: #FEE2E2;
+    --admin-blue: #2563EB;
+    --admin-blue-light: #DBEAFE;
+    --admin-orange: #FA5400;
+    
+    /* Typography */
+    --admin-font-display: 'Oswald', 'Arial Narrow', Impact, sans-serif;
+    --admin-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Spacing */
+    --admin-space-xs: 4px;
+    --admin-space-sm: 8px;
+    --admin-space-md: 16px;
+    --admin-space-lg: 24px;
+    --admin-space-xl: 32px;
+    --admin-space-2xl: 48px;
+    
+    /* Shadows */
+    --admin-shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --admin-shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --admin-shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+
+/* ===========================================
+   BASE RESET
+   =========================================== */
+
+.ptp-admin-wrap {
+    margin: 20px 20px 40px 0 !important;
+    font-family: var(--admin-font-body) !important;
+    background: var(--admin-off-white) !important;
+    min-height: calc(100vh - 100px) !important;
+    padding: var(--admin-space-lg) !important;
+}
+
+.ptp-admin-wrap * {
+    box-sizing: border-box !important;
+}
+
+
+/* ===========================================
+   HEADER - BOLD NIKE STYLE
+   =========================================== */
+
+.ptp-admin-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: var(--admin-space-xl) !important;
+    padding: var(--admin-space-xl) var(--admin-space-2xl) !important;
+    background: var(--admin-black) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    position: relative !important;
+}
+
+.ptp-admin-header::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: var(--admin-gold) !important;
+}
+
+.ptp-admin-header-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--admin-space-lg) !important;
+}
+
+.ptp-admin-logo {
+    width: 56px !important;
+    height: 56px !important;
+    background: var(--admin-gold) !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ptp-admin-logo .dashicons {
+    font-size: 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+    color: var(--admin-black) !important;
+}
+
+.ptp-admin-title {
+    margin: 0 !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: var(--admin-white) !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.02em !important;
+}
+
+.ptp-admin-title span {
+    color: var(--admin-gold) !important;
+}
+
+.ptp-admin-subtitle {
+    margin: 4px 0 0 !important;
+    color: var(--admin-text-gray) !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+.ptp-admin-header-actions {
+    display: flex !important;
+    gap: var(--admin-space-sm) !important;
+}
+
+.ptp-admin-header-btn {
+    padding: 14px 28px !important;
+    background: var(--admin-gold) !important;
+    color: var(--admin-black) !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    text-decoration: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+}
+
+.ptp-admin-header-btn:hover {
+    background: var(--admin-gold-hover) !important;
+    color: var(--admin-black) !important;
+}
+
+.ptp-admin-header-btn.secondary {
+    background: transparent !important;
+    color: var(--admin-white) !important;
+    border: 2px solid var(--admin-white) !important;
+}
+
+.ptp-admin-header-btn.secondary:hover {
+    background: var(--admin-white) !important;
+    color: var(--admin-black) !important;
+}
+
+
+/* ===========================================
+   NAVIGATION TABS - CLEAN NIKE STYLE
+   =========================================== */
+
+.ptp-admin-nav {
+    display: flex !important;
+    gap: 0 !important;
+    margin-bottom: var(--admin-space-xl) !important;
+    padding: 0 !important;
+    background: var(--admin-white) !important;
+    border-radius: 0 !important;
+    box-shadow: var(--admin-shadow-sm) !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    border-bottom: 2px solid var(--admin-black) !important;
+}
+
+.ptp-admin-nav::-webkit-scrollbar {
+    display: none !important;
+}
+
+.ptp-admin-nav-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--admin-space-sm) !important;
+    padding: 18px 24px !important;
+    color: var(--admin-text-gray) !important;
+    text-decoration: none !important;
+    border-radius: 0 !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    transition: all 0.2s !important;
+    white-space: nowrap !important;
+    border-bottom: 3px solid transparent !important;
+    margin-bottom: -2px !important;
+    position: relative !important;
+}
+
+.ptp-admin-nav-item .dashicons {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.ptp-admin-nav-item:hover {
+    background: var(--admin-off-white) !important;
+    color: var(--admin-black) !important;
+}
+
+.ptp-admin-nav-item.active {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+    border-bottom-color: var(--admin-gold) !important;
+}
+
+.ptp-admin-nav-item .count {
+    padding: 3px 10px !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    background: var(--admin-light-gray) !important;
+    color: var(--admin-text-dark) !important;
+    border-radius: 0 !important;
+    margin-left: var(--admin-space-xs) !important;
+}
+
+.ptp-admin-nav-item .count.alert {
+    background: var(--admin-red) !important;
+    color: var(--admin-white) !important;
+}
+
+.ptp-admin-nav-item.active .count {
+    background: var(--admin-gold) !important;
+    color: var(--admin-black) !important;
+}
+
+
+/* ===========================================
+   PAGE TITLE
+   =========================================== */
+
+.ptp-page-title {
+    font-family: var(--admin-font-display) !important;
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.02em !important;
+    color: var(--admin-black) !important;
+    margin: 0 0 var(--admin-space-lg) !important;
+    line-height: 1 !important;
+}
+
+.ptp-page-subtitle {
+    font-size: 15px !important;
+    color: var(--admin-text-gray) !important;
+    margin: 0 0 var(--admin-space-xl) !important;
+}
+
+
+/* ===========================================
+   STATS GRID
+   =========================================== */
+
+.ptp-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: var(--admin-space-lg) !important;
+    margin-bottom: var(--admin-space-xl) !important;
+}
+
+@media (max-width: 1200px) {
+    .ptp-stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .ptp-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.ptp-stat-card {
+    background: var(--admin-white) !important;
+    border-radius: 0 !important;
+    padding: var(--admin-space-lg) !important;
+    box-shadow: var(--admin-shadow-sm) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border: none !important;
+    border-left: 4px solid var(--admin-mid-gray) !important;
+}
+
+.ptp-stat-card.yellow { border-left-color: var(--admin-gold) !important; }
+.ptp-stat-card.green { border-left-color: var(--admin-green) !important; }
+.ptp-stat-card.blue { border-left-color: var(--admin-blue) !important; }
+.ptp-stat-card.red { border-left-color: var(--admin-red) !important; }
+.ptp-stat-card.orange { border-left-color: var(--admin-orange) !important; }
+
+.ptp-stat-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: var(--admin-space-md) !important;
+    background: var(--admin-light-gray) !important;
+}
+
+.ptp-stat-icon.yellow { background: var(--admin-gold-light) !important; color: var(--admin-gold) !important; }
+.ptp-stat-icon.green { background: var(--admin-green-light) !important; color: var(--admin-green) !important; }
+.ptp-stat-icon.blue { background: var(--admin-blue-light) !important; color: var(--admin-blue) !important; }
+.ptp-stat-icon.red { background: var(--admin-red-light) !important; color: var(--admin-red) !important; }
+.ptp-stat-icon.orange { background: #FFEDD5 !important; color: var(--admin-orange) !important; }
+
+.ptp-stat-icon .dashicons {
+    font-size: 24px !important;
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.ptp-stat-label {
+    font-family: var(--admin-font-display) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--admin-text-gray) !important;
+    margin-bottom: var(--admin-space-xs) !important;
+}
+
+.ptp-stat-value {
+    font-family: var(--admin-font-display) !important;
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    color: var(--admin-black) !important;
+    line-height: 1 !important;
+}
+
+.ptp-stat-footer {
+    margin-top: var(--admin-space-md) !important;
+    padding-top: var(--admin-space-md) !important;
+    border-top: 1px solid var(--admin-mid-gray) !important;
+}
+
+.ptp-stat-footer a {
+    font-family: var(--admin-font-display) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--admin-black) !important;
+    text-decoration: none !important;
+}
+
+.ptp-stat-footer a:hover {
+    color: var(--admin-gold) !important;
+}
+
+
+/* ===========================================
+   DASHBOARD GRID
+   =========================================== */
+
+.ptp-dashboard-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+    gap: var(--admin-space-lg) !important;
+}
+
+@media (max-width: 1200px) {
+    .ptp-dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* ===========================================
+   CARDS
+   =========================================== */
+
+.ptp-card {
+    background: var(--admin-white) !important;
+    border-radius: 0 !important;
+    box-shadow: var(--admin-shadow-sm) !important;
+    border: none !important;
+    overflow: hidden !important;
+    margin-bottom: var(--admin-space-lg) !important;
+}
+
+.ptp-card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: var(--admin-space-lg) !important;
+    border-bottom: 2px solid var(--admin-black) !important;
+    background: var(--admin-white) !important;
+}
+
+.ptp-card-header.dark {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+    border-bottom: none !important;
+}
+
+.ptp-card-title {
+    margin: 0 !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--admin-space-sm) !important;
+}
+
+.ptp-card-title .dashicons {
+    color: var(--admin-gold) !important;
+}
+
+.ptp-card-header.dark .ptp-card-title .dashicons {
+    color: var(--admin-gold) !important;
+}
+
+.ptp-card-actions {
+    display: flex !important;
+    gap: var(--admin-space-sm) !important;
+}
+
+.ptp-card-body {
+    padding: var(--admin-space-lg) !important;
+}
+
+.ptp-card-body.no-padding {
+    padding: 0 !important;
+}
+
+
+/* ===========================================
+   TABLES
+   =========================================== */
+
+.ptp-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.ptp-table th {
+    padding: var(--admin-space-md) var(--admin-space-lg) !important;
+    text-align: left !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--admin-text-gray) !important;
+    background: var(--admin-off-white) !important;
+    border-bottom: 2px solid var(--admin-mid-gray) !important;
+}
+
+.ptp-table td {
+    padding: var(--admin-space-md) var(--admin-space-lg) !important;
+    border-bottom: 1px solid var(--admin-light-gray) !important;
+    font-size: 14px !important;
+    color: var(--admin-text-dark) !important;
+}
+
+.ptp-table tr:hover td {
+    background: var(--admin-off-white) !important;
+}
+
+.ptp-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+
+/* ===========================================
+   BUTTONS
+   =========================================== */
+
+.ptp-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--admin-space-sm) !important;
+    padding: 14px 28px !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.ptp-btn-primary {
+    background: var(--admin-gold) !important;
+    color: var(--admin-black) !important;
+}
+
+.ptp-btn-primary:hover {
+    background: var(--admin-gold-hover) !important;
+}
+
+.ptp-btn-secondary {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+}
+
+.ptp-btn-secondary:hover {
+    background: var(--admin-text-dark) !important;
+}
+
+.ptp-btn-outline {
+    background: transparent !important;
+    color: var(--admin-black) !important;
+    border: 2px solid var(--admin-black) !important;
+}
+
+.ptp-btn-outline:hover {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+}
+
+.ptp-btn-sm {
+    padding: 10px 20px !important;
+    font-size: 12px !important;
+}
+
+.ptp-btn-xs {
+    padding: 6px 14px !important;
+    font-size: 11px !important;
+}
+
+
+/* ===========================================
+   BADGES / STATUS
+   =========================================== */
+
+.ptp-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 6px 14px !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border-radius: 0 !important;
+}
+
+.ptp-badge-success {
+    background: var(--admin-green-light) !important;
+    color: var(--admin-green) !important;
+}
+
+.ptp-badge-warning {
+    background: var(--admin-gold-light) !important;
+    color: var(--admin-gold-hover) !important;
+}
+
+.ptp-badge-danger {
+    background: var(--admin-red-light) !important;
+    color: var(--admin-red) !important;
+}
+
+.ptp-badge-info {
+    background: var(--admin-blue-light) !important;
+    color: var(--admin-blue) !important;
+}
+
+.ptp-badge-dark {
+    background: var(--admin-black) !important;
+    color: var(--admin-gold) !important;
+}
+
+
+/* ===========================================
+   FORMS
+   =========================================== */
+
+.ptp-form-group {
+    margin-bottom: var(--admin-space-lg) !important;
+}
+
+.ptp-form-label {
+    display: block !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--admin-black) !important;
+    margin-bottom: var(--admin-space-sm) !important;
+}
+
+.ptp-form-input,
+.ptp-form-select,
+.ptp-form-textarea {
+    width: 100% !important;
+    padding: 14px 18px !important;
+    font-family: var(--admin-font-body) !important;
+    font-size: 15px !important;
+    color: var(--admin-black) !important;
+    background: var(--admin-white) !important;
+    border: 2px solid var(--admin-mid-gray) !important;
+    border-radius: 0 !important;
+    transition: border-color 0.2s !important;
+}
+
+.ptp-form-input:focus,
+.ptp-form-select:focus,
+.ptp-form-textarea:focus {
+    outline: none !important;
+    border-color: var(--admin-black) !important;
+}
+
+.ptp-form-input::placeholder {
+    color: var(--admin-text-gray) !important;
+}
+
+.ptp-form-help {
+    font-size: 13px !important;
+    color: var(--admin-text-gray) !important;
+    margin-top: var(--admin-space-xs) !important;
+}
+
+
+/* ===========================================
+   SETTINGS TABS
+   =========================================== */
+
+.ptp-settings-tabs {
+    display: flex !important;
+    gap: 0 !important;
+    border-bottom: 2px solid var(--admin-black) !important;
+    margin-bottom: var(--admin-space-xl) !important;
+}
+
+.ptp-settings-tab {
+    padding: 16px 28px !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--admin-text-gray) !important;
+    text-decoration: none !important;
+    border-bottom: 3px solid transparent !important;
+    margin-bottom: -2px !important;
+    transition: all 0.2s !important;
+}
+
+.ptp-settings-tab:hover {
+    color: var(--admin-black) !important;
+    background: var(--admin-off-white) !important;
+}
+
+.ptp-settings-tab.active {
+    color: var(--admin-white) !important;
+    background: var(--admin-black) !important;
+    border-bottom-color: var(--admin-gold) !important;
+}
+
+
+/* ===========================================
+   EMPTY STATE
+   =========================================== */
+
+.ptp-empty-state {
+    text-align: center !important;
+    padding: var(--admin-space-2xl) var(--admin-space-lg) !important;
+}
+
+.ptp-empty-state-icon {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto var(--admin-space-lg) !important;
+    background: var(--admin-light-gray) !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ptp-empty-state-icon .dashicons {
+    font-size: 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    color: var(--admin-text-gray) !important;
+}
+
+.ptp-empty-state h3 {
+    font-family: var(--admin-font-display) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: var(--admin-black) !important;
+    margin: 0 0 var(--admin-space-sm) !important;
+}
+
+.ptp-empty-state p {
+    font-size: 15px !important;
+    color: var(--admin-text-gray) !important;
+    margin: 0 0 var(--admin-space-lg) !important;
+}
+
+
+/* ===========================================
+   ACTIVITY LIST
+   =========================================== */
+
+.ptp-activity-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ptp-activity-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: var(--admin-space-md) !important;
+    padding: var(--admin-space-md) 0 !important;
+    border-bottom: 1px solid var(--admin-light-gray) !important;
+}
+
+.ptp-activity-item:last-child {
+    border-bottom: none !important;
+}
+
+.ptp-activity-icon {
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--admin-light-gray) !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.ptp-activity-icon.green { background: var(--admin-green-light) !important; color: var(--admin-green) !important; }
+.ptp-activity-icon.blue { background: var(--admin-blue-light) !important; color: var(--admin-blue) !important; }
+.ptp-activity-icon.gold { background: var(--admin-gold-light) !important; color: var(--admin-gold) !important; }
+
+.ptp-activity-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.ptp-activity-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--admin-black) !important;
+    margin: 0 0 4px !important;
+}
+
+.ptp-activity-meta {
+    font-size: 13px !important;
+    color: var(--admin-text-gray) !important;
+}
+
+
+/* ===========================================
+   QUICK LINKS
+   =========================================== */
+
+.ptp-quick-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--admin-space-sm) !important;
+}
+
+.ptp-quick-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--admin-space-sm) !important;
+    padding: var(--admin-space-md) !important;
+    background: var(--admin-off-white) !important;
+    text-decoration: none !important;
+    color: var(--admin-text-dark) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s !important;
+    border-left: 3px solid transparent !important;
+}
+
+.ptp-quick-link:hover {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+    border-left-color: var(--admin-gold) !important;
+}
+
+.ptp-quick-link .dashicons {
+    color: var(--admin-gold) !important;
+}
+
+
+/* ===========================================
+   CALENDAR VIEW
+   =========================================== */
+
+.ptp-calendar-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: var(--admin-space-md) !important;
+    background: var(--admin-off-white) !important;
+    border-bottom: 1px solid var(--admin-mid-gray) !important;
+}
+
+.ptp-calendar-title {
+    font-family: var(--admin-font-display) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+}
+
+.ptp-calendar-nav {
+    display: flex !important;
+    gap: var(--admin-space-xs) !important;
+}
+
+.ptp-calendar-nav button {
+    width: 36px !important;
+    height: 36px !important;
+    background: var(--admin-white) !important;
+    border: 1px solid var(--admin-mid-gray) !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.ptp-calendar-nav button:hover {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+    border-color: var(--admin-black) !important;
+}
+
+
+/* ===========================================
+   ALERTS / NOTICES
+   =========================================== */
+
+.ptp-alert {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: var(--admin-space-md) !important;
+    padding: var(--admin-space-lg) !important;
+    margin-bottom: var(--admin-space-lg) !important;
+    border-left: 4px solid var(--admin-mid-gray) !important;
+    background: var(--admin-white) !important;
+}
+
+.ptp-alert-success { border-left-color: var(--admin-green) !important; background: var(--admin-green-light) !important; }
+.ptp-alert-warning { border-left-color: var(--admin-gold) !important; background: var(--admin-gold-light) !important; }
+.ptp-alert-danger { border-left-color: var(--admin-red) !important; background: var(--admin-red-light) !important; }
+.ptp-alert-info { border-left-color: var(--admin-blue) !important; background: var(--admin-blue-light) !important; }
+
+.ptp-alert-icon .dashicons {
+    font-size: 24px !important;
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.ptp-alert-title {
+    font-family: var(--admin-font-display) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    margin: 0 0 var(--admin-space-xs) !important;
+}
+
+.ptp-alert-message {
+    font-size: 14px !important;
+    color: var(--admin-text-dark) !important;
+    margin: 0 !important;
+}
+
+
+/* ===========================================
+   PAGINATION
+   =========================================== */
+
+.ptp-pagination {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--admin-space-xs) !important;
+    padding: var(--admin-space-lg) !important;
+}
+
+.ptp-pagination a,
+.ptp-pagination span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    padding: 0 var(--admin-space-md) !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--admin-text-dark) !important;
+    background: var(--admin-white) !important;
+    border: 1px solid var(--admin-mid-gray) !important;
+    text-decoration: none !important;
+    transition: all 0.2s !important;
+}
+
+.ptp-pagination a:hover {
+    background: var(--admin-off-white) !important;
+    border-color: var(--admin-black) !important;
+}
+
+.ptp-pagination .current {
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+    border-color: var(--admin-black) !important;
+}
+
+
+/* ===========================================
+   TRAINER CARDS (GRID VIEW)
+   =========================================== */
+
+.ptp-trainer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: var(--admin-space-lg) !important;
+}
+
+.ptp-trainer-card {
+    background: var(--admin-white) !important;
+    box-shadow: var(--admin-shadow-sm) !important;
+    overflow: hidden !important;
+    transition: all 0.2s !important;
+}
+
+.ptp-trainer-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: var(--admin-shadow-lg) !important;
+}
+
+.ptp-trainer-card-image {
+    width: 100% !important;
+    aspect-ratio: 4/3 !important;
+    background: var(--admin-light-gray) !important;
+    overflow: hidden !important;
+}
+
+.ptp-trainer-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.ptp-trainer-card-body {
+    padding: var(--admin-space-lg) !important;
+}
+
+.ptp-trainer-card-name {
+    font-family: var(--admin-font-display) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: var(--admin-black) !important;
+    margin: 0 0 var(--admin-space-xs) !important;
+}
+
+.ptp-trainer-card-meta {
+    font-size: 14px !important;
+    color: var(--admin-text-gray) !important;
+    margin-bottom: var(--admin-space-md) !important;
+}
+
+.ptp-trainer-card-stats {
+    display: flex !important;
+    gap: var(--admin-space-md) !important;
+    padding-top: var(--admin-space-md) !important;
+    border-top: 1px solid var(--admin-light-gray) !important;
+}
+
+.ptp-trainer-card-stat {
+    text-align: center !important;
+}
+
+.ptp-trainer-card-stat-value {
+    font-family: var(--admin-font-display) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: var(--admin-black) !important;
+}
+
+.ptp-trainer-card-stat-label {
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--admin-text-gray) !important;
+}
+
+
+/* ===========================================
+   SEARCH & FILTERS
+   =========================================== */
+
+.ptp-filters {
+    display: flex !important;
+    gap: var(--admin-space-md) !important;
+    flex-wrap: wrap !important;
+    margin-bottom: var(--admin-space-xl) !important;
+    padding: var(--admin-space-lg) !important;
+    background: var(--admin-white) !important;
+    box-shadow: var(--admin-shadow-sm) !important;
+}
+
+.ptp-search-box {
+    flex: 1 !important;
+    min-width: 250px !important;
+    position: relative !important;
+}
+
+.ptp-search-box input {
+    width: 100% !important;
+    padding: 14px 18px 14px 48px !important;
+    font-size: 15px !important;
+    border: 2px solid var(--admin-mid-gray) !important;
+    background: var(--admin-white) !important;
+}
+
+.ptp-search-box input:focus {
+    outline: none !important;
+    border-color: var(--admin-black) !important;
+}
+
+.ptp-search-box .dashicons {
+    position: absolute !important;
+    left: 16px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: var(--admin-text-gray) !important;
+}
+
+.ptp-filter-select {
+    padding: 14px 40px 14px 18px !important;
+    font-family: var(--admin-font-display) !important;
+    font-size: 13px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
+    border: 2px solid var(--admin-mid-gray) !important;
+    background: var(--admin-white) !important;
+    cursor: pointer !important;
+}
+
+.ptp-filter-select:focus {
+    outline: none !important;
+    border-color: var(--admin-black) !important;
+}
+
+
+/* ===========================================
+   MODAL
+   =========================================== */
+
+.ptp-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 100000 !important;
+    padding: var(--admin-space-lg) !important;
+}
+
+.ptp-modal {
+    background: var(--admin-white) !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    max-height: 90vh !important;
+    overflow: auto !important;
+    box-shadow: var(--admin-shadow-lg) !important;
+}
+
+.ptp-modal-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: var(--admin-space-lg) !important;
+    background: var(--admin-black) !important;
+    color: var(--admin-white) !important;
+}
+
+.ptp-modal-title {
+    font-family: var(--admin-font-display) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+}
+
+.ptp-modal-close {
+    width: 40px !important;
+    height: 40px !important;
+    background: transparent !important;
+    border: none !important;
+    color: var(--admin-white) !important;
+    cursor: pointer !important;
+    font-size: 24px !important;
+}
+
+.ptp-modal-body {
+    padding: var(--admin-space-xl) !important;
+}
+
+.ptp-modal-footer {
+    display: flex !important;
+    gap: var(--admin-space-md) !important;
+    justify-content: flex-end !important;
+    padding: var(--admin-space-lg) !important;
+    background: var(--admin-off-white) !important;
+    border-top: 1px solid var(--admin-mid-gray) !important;
+}
+
+
+/* ===========================================
+   LOADING STATES
+   =========================================== */
+
+.ptp-loading {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: var(--admin-space-2xl) !important;
+}
+
+.ptp-spinner {
+    width: 40px !important;
+    height: 40px !important;
+    border: 3px solid var(--admin-light-gray) !important;
+    border-top-color: var(--admin-gold) !important;
+    border-radius: 50% !important;
+    animation: ptp-spin 0.8s linear infinite !important;
+}
+
+@keyframes ptp-spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* ===========================================
+   RESPONSIVE UTILITIES
+   =========================================== */
+
+@media (max-width: 782px) {
+    .ptp-admin-wrap {
+        margin: 10px !important;
+        padding: var(--admin-space-md) !important;
+    }
+    
+    .ptp-admin-header {
+        padding: var(--admin-space-lg) !important;
+        flex-direction: column !important;
+        gap: var(--admin-space-md) !important;
+        text-align: center !important;
+    }
+    
+    .ptp-admin-title {
+        font-size: 28px !important;
+    }
+    
+    .ptp-admin-nav {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .ptp-admin-nav-item {
+        padding: 14px 18px !important;
+        font-size: 12px !important;
+    }
+    
+    .ptp-page-title {
+        font-size: 32px !important;
+    }
+    
+    .ptp-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .ptp-dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .ptp-filters {
+        flex-direction: column !important;
+    }
+    
+    .ptp-search-box {
+        min-width: 100% !important;
+    }
+}

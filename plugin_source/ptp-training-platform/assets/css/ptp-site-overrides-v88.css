@@ -1,0 +1,795 @@
+/**
+ * PTP Site Overrides v88.1
+ * ========================
+ * Forces dark header + Custom Google Maps styling
+ * 
+ * This overrides Elementor/theme with nuclear !important rules
+ */
+
+/* ===========================================
+   SITE HEADER - FORCE BLACK (NUCLEAR OVERRIDE)
+   =========================================== */
+
+/* Absolute nuclear option - inline style level specificity */
+header[class],
+header[id],
+header:not(.ptp-auth-card),
+.site-header,
+#masthead,
+#site-header,
+.header,
+header.header,
+.theme-header,
+.ast-header-sections,
+.elementor-location-header,
+.elementor-section-header,
+[data-elementor-type="header"],
+.elementor-location-header *,
+[data-elementor-type="header"] *,
+.e-con[data-settings*="header"],
+body > header,
+body header:first-of-type,
+html body header,
+html body .site-header,
+html body #masthead,
+html body .elementor-location-header,
+html body [data-elementor-type="header"],
+.elementor-location-header .elementor-container,
+.elementor-location-header .elementor-section,
+.elementor-location-header .elementor-element,
+.elementor-location-header .elementor-widget-wrap,
+.elementor-location-header .elementor-column,
+.elementor-location-header .elementor-row,
+.elementor-location-header .e-con,
+.elementor-location-header .e-con-inner,
+.elementor-location-header .e-con-full,
+.elementor-location-header .elementor-section-wrap,
+.elementor-location-header .elementor-section-boxed,
+.elementor-location-header .elementor-section-full_width,
+[data-elementor-type="header"] .elementor-container,
+[data-elementor-type="header"] .elementor-section,
+[data-elementor-type="header"] .elementor-element,
+[data-elementor-type="header"] .elementor-widget-wrap,
+[data-elementor-type="header"] .elementor-column,
+[data-elementor-type="header"] .e-con,
+[data-elementor-type="header"] .e-con-inner {
+    background: #0A0A0A !important;
+    background-color: #0A0A0A !important;
+    background-image: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Extra specificity with body classes */
+body.elementor-page header,
+body.elementor-page .elementor-location-header,
+body.elementor-page [data-elementor-type="header"],
+body.ptp-page header,
+body.ptp-page .site-header,
+body.ptp-page .elementor-location-header {
+    background: #0A0A0A !important;
+    background-color: #0A0A0A !important;
+}
+
+/* Header inner sections - transparent */
+html body .elementor-location-header .elementor-section-wrap,
+html body .elementor-location-header .elementor-inner,
+html body .elementor-location-header .elementor-section-boxed,
+html body .elementor-location-header .elementor-column-wrap,
+html body .elementor-location-header .elementor-widget-wrap,
+html body [data-elementor-type="header"] .elementor-section-wrap,
+html body [data-elementor-type="header"] .elementor-inner,
+html body [data-elementor-type="header"] .elementor-widget-wrap,
+.elementor-location-header .elementor-background-overlay,
+[data-elementor-type="header"] .elementor-background-overlay {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Navigation links - make them white/light */
+html body .elementor-location-header a,
+html body .elementor-location-header .elementor-nav-menu a,
+html body .elementor-location-header .elementor-nav-menu--main a,
+html body .elementor-location-header .elementor-item,
+html body .elementor-location-header .menu-item a,
+html body .elementor-location-header .elementor-nav-menu__container a,
+html body [data-elementor-type="header"] a,
+html body [data-elementor-type="header"] .elementor-nav-menu a,
+html body [data-elementor-type="header"] .elementor-item,
+html body [data-elementor-type="header"] .menu-item a,
+html body .site-header a,
+html body .site-header .menu-item a,
+html body #masthead a,
+html body #masthead .menu-item a,
+html body header .menu-item a,
+html body header nav a,
+body.elementor-page .elementor-location-header a,
+body.elementor-page [data-elementor-type="header"] a,
+.elementor-location-header .elementor-widget-nav-menu a,
+[data-elementor-type="header"] .elementor-widget-nav-menu a {
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: color 0.15s ease !important;
+}
+
+/* Navigation hover state */
+html body .elementor-location-header a:hover,
+html body .elementor-location-header .elementor-nav-menu a:hover,
+html body .elementor-location-header .elementor-item:hover,
+html body .elementor-location-header .menu-item a:hover,
+html body [data-elementor-type="header"] a:hover,
+html body [data-elementor-type="header"] .elementor-item:hover,
+html body .site-header a:hover,
+html body #masthead a:hover,
+html body header .menu-item a:hover,
+.elementor-location-header .elementor-item:hover,
+.elementor-location-header .elementor-item:focus,
+[data-elementor-type="header"] .elementor-item:hover {
+    color: #FCB900 !important;
+}
+
+/* Active navigation item */
+html body .elementor-location-header .elementor-item.elementor-item-active,
+html body .elementor-location-header .current-menu-item > a,
+html body .elementor-location-header .menu-item.current-menu-item a,
+html body [data-elementor-type="header"] .elementor-item.elementor-item-active,
+html body [data-elementor-type="header"] .current-menu-item > a,
+html body .site-header .current-menu-item a,
+html body #masthead .current-menu-item a,
+.elementor-location-header .elementor-item.elementor-item-active,
+[data-elementor-type="header"] .elementor-item.elementor-item-active {
+    color: #FCB900 !important;
+}
+
+/* Dropdown menus */
+html body .elementor-location-header .elementor-nav-menu--dropdown,
+html body .elementor-location-header .sub-menu,
+html body .elementor-location-header .elementor-nav-menu__container.elementor-nav-menu--dropdown,
+html body [data-elementor-type="header"] .elementor-nav-menu--dropdown,
+html body [data-elementor-type="header"] .sub-menu,
+html body .site-header .sub-menu,
+html body #masthead .sub-menu,
+html body header .sub-menu,
+.elementor-nav-menu--dropdown,
+.elementor-nav-menu--dropdown.elementor-nav-menu__container {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+html body .elementor-location-header .sub-menu a,
+html body .elementor-location-header .elementor-nav-menu--dropdown a,
+html body [data-elementor-type="header"] .sub-menu a,
+html body [data-elementor-type="header"] .elementor-nav-menu--dropdown a,
+html body .site-header .sub-menu a,
+html body #masthead .sub-menu a,
+.elementor-nav-menu--dropdown a,
+.elementor-nav-menu--dropdown .elementor-item {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+html body .elementor-location-header .sub-menu a:hover,
+html body .elementor-location-header .elementor-nav-menu--dropdown a:hover,
+html body [data-elementor-type="header"] .sub-menu a:hover,
+html body [data-elementor-type="header"] .elementor-nav-menu--dropdown a:hover,
+html body .site-header .sub-menu a:hover,
+html body #masthead .sub-menu a:hover,
+.elementor-nav-menu--dropdown a:hover,
+.elementor-nav-menu--dropdown .elementor-item:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #FFFFFF !important;
+}
+
+/* Mobile menu hamburger - make it white */
+html body .elementor-location-header .elementor-menu-toggle,
+html body .elementor-location-header .elementor-menu-toggle i,
+html body .elementor-location-header .elementor-menu-toggle svg,
+html body .elementor-location-header .elementor-menu-toggle .eicon-menu-bar,
+html body [data-elementor-type="header"] .elementor-menu-toggle,
+html body [data-elementor-type="header"] .elementor-menu-toggle i,
+html body [data-elementor-type="header"] .elementor-menu-toggle svg,
+html body .site-header .menu-toggle,
+html body #masthead .menu-toggle,
+html body header .hamburger,
+html body header .mobile-menu-toggle,
+.elementor-menu-toggle,
+.elementor-menu-toggle i,
+.elementor-menu-toggle svg,
+.elementor-menu-toggle .eicon-menu-bar {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+}
+
+.elementor-menu-toggle i::before,
+.elementor-menu-toggle i::after,
+html body .elementor-location-header .elementor-menu-toggle i::before,
+html body .elementor-location-header .elementor-menu-toggle i::after {
+    background-color: #FFFFFF !important;
+}
+
+/* Mobile navigation drawer */
+html body .elementor-location-header .elementor-nav-menu--dropdown.elementor-nav-menu__container,
+html body [data-elementor-type="header"] .elementor-nav-menu--dropdown.elementor-nav-menu__container,
+html body .elementor-nav-menu--dropdown.elementor-nav-menu__container,
+.elementor-nav-menu--dropdown.elementor-nav-menu__container {
+    background: #0A0A0A !important;
+    background-color: #0A0A0A !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Logo - ensure it's visible */
+html body .elementor-location-header .elementor-widget-image img,
+html body .elementor-location-header .site-logo img,
+html body .elementor-location-header img.custom-logo,
+html body [data-elementor-type="header"] .elementor-widget-image img,
+html body [data-elementor-type="header"] img.custom-logo,
+html body .site-header .site-logo img,
+html body #masthead .site-logo img,
+html body .custom-logo {
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* CTA Buttons - keep gold */
+html body .elementor-location-header .elementor-button,
+html body .elementor-location-header a.elementor-button,
+html body .elementor-location-header .btn,
+html body .elementor-location-header a.btn,
+html body [data-elementor-type="header"] .elementor-button,
+html body [data-elementor-type="header"] a.elementor-button,
+html body .site-header .btn,
+html body #masthead .btn,
+.elementor-location-header .elementor-button,
+[data-elementor-type="header"] .elementor-button {
+    background: #FCB900 !important;
+    background-color: #FCB900 !important;
+    color: #0A0A0A !important;
+    border-color: #FCB900 !important;
+}
+
+html body .elementor-location-header .elementor-button:hover,
+html body .elementor-location-header a.elementor-button:hover,
+html body [data-elementor-type="header"] .elementor-button:hover,
+html body [data-elementor-type="header"] a.elementor-button:hover,
+.elementor-location-header .elementor-button:hover,
+[data-elementor-type="header"] .elementor-button:hover {
+    background: #E5A800 !important;
+    background-color: #E5A800 !important;
+    border-color: #E5A800 !important;
+}
+
+/* Register button specifically */
+html body .elementor-location-header a[href*="register"],
+html body .elementor-location-header a[href*="signup"],
+html body .elementor-location-header a[href*="sign-up"],
+html body [data-elementor-type="header"] a[href*="register"],
+html body [data-elementor-type="header"] a[href*="signup"],
+html body .site-header a[href*="register"],
+html body #masthead a[href*="register"] {
+    background: #FCB900 !important;
+    background-color: #FCB900 !important;
+    color: #0A0A0A !important;
+    padding: 10px 24px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+/* Sticky header state */
+html body .elementor-location-header.elementor-sticky,
+html body .elementor-location-header.elementor-sticky--active,
+html body .elementor-sticky--active[data-elementor-type="header"],
+html body [data-elementor-type="header"].elementor-sticky--active,
+html body .site-header.sticky,
+html body .site-header.is-sticky,
+html body #masthead.sticky,
+.elementor-location-header.elementor-sticky,
+.elementor-sticky--active,
+[data-elementor-type="header"].elementor-sticky--active {
+    background: rgba(10, 10, 10, 0.98) !important;
+    background-color: rgba(10, 10, 10, 0.98) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Transparent header on hero sections - still dark */
+html body .elementor-location-header.transparent-header,
+html body [data-elementor-type="header"].transparent-header,
+html body header.transparent-header {
+    background: rgba(10, 10, 10, 0.7) !important;
+    background-color: rgba(10, 10, 10, 0.7) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Search icon/button in header */
+html body .elementor-location-header .elementor-search-form,
+html body .elementor-location-header .search-toggle,
+html body .elementor-location-header [class*="search"],
+html body [data-elementor-type="header"] .elementor-search-form,
+html body [data-elementor-type="header"] .search-toggle {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Cart icon in header */
+html body .elementor-location-header .elementor-menu-cart,
+html body .elementor-location-header .cart-icon,
+html body .elementor-location-header .woocommerce-cart-icon,
+html body [data-elementor-type="header"] .elementor-menu-cart,
+html body [data-elementor-type="header"] .cart-icon {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html body .elementor-location-header .elementor-menu-cart .elementor-button-icon,
+html body [data-elementor-type="header"] .elementor-menu-cart .elementor-button-icon {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html body .elementor-location-header .elementor-menu-cart__toggle .elementor-button,
+html body [data-elementor-type="header"] .elementor-menu-cart__toggle .elementor-button {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Cart count badge */
+html body .elementor-location-header .elementor-menu-cart__toggle .elementor-button-text,
+html body .elementor-location-header .cart-count,
+html body .elementor-location-header .wc-cart-count,
+html body [data-elementor-type="header"] .cart-count {
+    background: #FCB900 !important;
+    background-color: #FCB900 !important;
+    color: #0A0A0A !important;
+}
+
+/* ===========================================
+   GOOGLE MAPS CUSTOM STYLING
+   =========================================== */
+
+/* Map container */
+.ptp-map-container,
+.trainer-map-container,
+.map-container,
+#trainer-map,
+#ptp-map,
+.elementor-widget-google_maps,
+[class*="map-widget"],
+.gm-style {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 2px solid #E5E7EB !important;
+}
+
+/* Map wrapper for popup */
+.ptp-map-popup,
+.map-popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 900px;
+    height: 80vh;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Map close button */
+.ptp-map-close,
+.map-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    background: #0A0A0A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.ptp-map-close:hover,
+.map-close-btn:hover {
+    background: #1a1a1a;
+    transform: scale(1.05);
+}
+
+.ptp-map-close svg,
+.map-close-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Google Maps info window - Dark Theme */
+.gm-style .gm-style-iw-c {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    padding: 0 !important;
+    max-width: 300px !important;
+}
+
+.gm-style .gm-style-iw-d {
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+.gm-style .gm-style-iw-tc::after {
+    background: #1a1a1a !important;
+}
+
+/* Arrow pointer */
+.gm-style .gm-style-iw-t::after {
+    background: linear-gradient(45deg, #1a1a1a 50%, rgba(0,0,0,0) 51%, rgba(0,0,0,0) 100%) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* Close button on info window - gold accent */
+.gm-style .gm-style-iw-c button.gm-ui-hover-effect {
+    top: 8px !important;
+    right: 8px !important;
+    width: 28px !important;
+    height: 28px !important;
+    background: rgba(252, 185, 0, 0.15) !important;
+    border-radius: 8px !important;
+    opacity: 1 !important;
+}
+
+.gm-style .gm-style-iw-c button.gm-ui-hover-effect:hover {
+    background: rgba(252, 185, 0, 0.25) !important;
+}
+
+.gm-style .gm-style-iw-c button.gm-ui-hover-effect img {
+    filter: invert(1) !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin: 7px !important;
+}
+
+/* Custom trainer marker popup content - Dark Theme */
+.ptp-map-marker-content,
+.trainer-marker-popup {
+    padding: 16px;
+    min-width: 240px;
+    background: #1a1a1a;
+    color: #FFFFFF;
+}
+
+.ptp-map-marker-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    margin: -16px -16px 12px -16px;
+    width: calc(100% + 32px);
+}
+
+.ptp-map-marker-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0 0 4px;
+}
+
+.ptp-map-marker-title {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin: 0 0 8px;
+}
+
+.ptp-map-marker-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.ptp-map-marker-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.ptp-map-marker-rating svg {
+    width: 14px;
+    height: 14px;
+    fill: #FCB900;
+}
+
+.ptp-map-marker-price {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FCB900;
+}
+
+.ptp-map-marker-price span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #9CA3AF;
+}
+
+.ptp-map-marker-cta {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #FCB900;
+    color: #0A0A0A;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    margin-top: 12px;
+    transition: background 0.15s ease;
+}
+
+.ptp-map-marker-cta:hover {
+    background: #E5A800;
+}
+
+/* Custom gold markers */
+.ptp-map-marker,
+.trainer-map-marker {
+    width: 40px;
+    height: 40px;
+    background: #FCB900;
+    border: 3px solid #0A0A0A;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ptp-map-marker:hover,
+.trainer-map-marker:hover {
+    transform: rotate(-45deg) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.ptp-map-marker-inner {
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0A0A0A;
+}
+
+/* Cluster markers */
+.ptp-map-cluster {
+    width: 48px;
+    height: 48px;
+    background: #0A0A0A;
+    color: #FCB900;
+    border: 3px solid #FCB900;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Google Maps controls styling - Dark Theme */
+.gm-style .gm-style-cc,
+.gm-style .gmnoprint {
+    /* Keep visible with dark styling */
+}
+
+/* Zoom controls - dark */
+.gm-style .gm-bundled-control .gmnoprint > div {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+    overflow: hidden !important;
+}
+
+.gm-style .gm-bundled-control button {
+    background: #1a1a1a !important;
+    border: none !important;
+    color: #FFFFFF !important;
+}
+
+.gm-style .gm-bundled-control button:hover {
+    background: #2d2d2d !important;
+}
+
+.gm-style .gm-bundled-control button img {
+    filter: invert(1) !important;
+}
+
+/* Fullscreen control - dark */
+.gm-style .gm-fullscreen-control {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.gm-style .gm-fullscreen-control img {
+    filter: invert(1) !important;
+}
+
+/* Street view pegman - dark */
+.gm-style .gm-svpc {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 12px !important;
+}
+
+/* Map type controls */
+.gm-style .gm-style-mtc button {
+    background: #FFFFFF !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* ===========================================
+   MAP OVERLAY/SIDEBAR LAYOUT
+   =========================================== */
+
+.ptp-trainers-with-map {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (min-width: 1024px) {
+    .ptp-trainers-with-map {
+        flex-direction: row;
+    }
+    
+    .ptp-trainers-with-map .ptp-trainers-list {
+        flex: 1;
+        max-width: 50%;
+        overflow-y: auto;
+        max-height: calc(100vh - 200px);
+        padding-right: 16px;
+    }
+    
+    .ptp-trainers-with-map .ptp-trainers-map {
+        flex: 1;
+        position: sticky;
+        top: 100px;
+        height: calc(100vh - 200px);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid #E5E7EB;
+    }
+}
+
+/* Mobile map toggle button */
+.ptp-map-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 24px;
+    background: #0A0A0A;
+    color: #FFFFFF;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 100;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+@media (min-width: 1024px) {
+    .ptp-map-toggle {
+        display: none;
+    }
+}
+
+.ptp-map-toggle:hover {
+    background: #1a1a1a;
+}
+
+.ptp-map-toggle:active {
+    transform: translateX(-50%) scale(0.96);
+}
+
+.ptp-map-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Map overlay for mobile */
+.ptp-map-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.ptp-map-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ptp-map-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ptp-map-overlay.open .ptp-map-fullscreen {
+    transform: translateY(0);
+}
+
+/* ===========================================
+   FOOTER - DARK STYLE
+   =========================================== */
+
+footer,
+.site-footer,
+.elementor-location-footer,
+#footer,
+#site-footer,
+[data-elementor-type="footer"] {
+    background: #0A0A0A !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+footer a,
+.site-footer a,
+.elementor-location-footer a {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+footer a:hover,
+.site-footer a:hover,
+.elementor-location-footer a:hover {
+    color: #FCB900 !important;
+}
+
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
+.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4,
+.elementor-location-footer h1, .elementor-location-footer h2, 
+.elementor-location-footer h3, .elementor-location-footer h4 {
+    color: #FFFFFF !important;
+}

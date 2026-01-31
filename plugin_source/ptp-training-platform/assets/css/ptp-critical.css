@@ -1,0 +1,160 @@
+/**
+ * PTP Critical CSS v85.2
+ * Inline this in <head> for fastest paint
+ * Covers above-the-fold content only
+ */
+
+:root {
+    --ptp-gold: #FCB900;
+    --ptp-gold-hover: #E5A800;
+    --ptp-black: #0A0A0A;
+    --ptp-white: #FFFFFF;
+    --ptp-gray-50: #FAFAFA;
+    --ptp-gray-100: #F5F5F5;
+    --ptp-gray-200: #E5E5E5;
+    --ptp-gray-500: #737373;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(252,185,0,0.15);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--ptp-gray-50);
+    color: var(--ptp-black);
+    line-height: 1.5;
+}
+
+/* Skeleton loading - shows while content loads */
+.ptp-skeleton {
+    background: linear-gradient(90deg, var(--ptp-gray-100) 25%, var(--ptp-gray-200) 50%, var(--ptp-gray-100) 75%);
+    background-size: 200% 100%;
+    animation: ptp-shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes ptp-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Hero section - always visible first */
+.ptp-hero {
+    background: var(--ptp-black);
+    padding: 28px 16px 36px;
+    text-align: center;
+}
+
+.ptp-hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ptp-white);
+    line-height: 1.15;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+
+.ptp-hero h1 span {
+    color: var(--ptp-gold);
+}
+
+/* Primary button */
+.ptp-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 24px;
+    background: var(--ptp-gold);
+    color: var(--ptp-black);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Filter bar skeleton */
+.ptp-filters {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ptp-white);
+    border-bottom: 1px solid var(--ptp-gray-200);
+    padding: 12px 0;
+}
+
+/* Card skeleton */
+.ptp-card-skeleton {
+    background: var(--ptp-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.ptp-card-skeleton-img {
+    aspect-ratio: 4/3;
+    background: var(--ptp-gray-100);
+}
+
+.ptp-card-skeleton-body {
+    padding: 16px;
+}
+
+.ptp-card-skeleton-line {
+    height: 16px;
+    background: var(--ptp-gray-100);
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.ptp-card-skeleton-line.short {
+    width: 60%;
+}
+
+/* Hide content until loaded */
+.ptp-loading-hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.ptp-loading-hidden.loaded {
+    opacity: 1;
+}
+
+/* iOS safe area support */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .ptp-sticky-bottom {
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+}
+
+/* Prevent layout shift for common elements */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Font display swap */
+@font-face {
+    font-family: 'Oswald';
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-display: swap;
+}
