@@ -80,10 +80,13 @@ class PTP_Cart_Helper {
         add_action('init', array($this, 'ensure_session'), 1);
         // Use wp_loaded instead of woocommerce_init to ensure WC is fully ready
         add_action('wp_loaded', array($this, 'ensure_wc_session'), 10);
-        
-        // Override WooCommerce cart count to include training items
-        add_filter('woocommerce_cart_contents_count', array($this, 'adjust_cart_count'), 99);
-        
+
+        // v148: WooCommerce filter only if WC is active
+        if (class_exists('WooCommerce')) {
+            // Override WooCommerce cart count to include training items
+            add_filter('woocommerce_cart_contents_count', array($this, 'adjust_cart_count'), 99);
+        }
+
         // Cleanup cron - defer to avoid early scheduling issues
         add_action('wp_loaded', array($this, 'schedule_cleanup_cron'), 20);
     }

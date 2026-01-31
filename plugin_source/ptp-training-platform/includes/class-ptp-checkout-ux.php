@@ -27,21 +27,25 @@ class PTP_Checkout_UX {
     public function __construct() {
         // Fix popup timing - don't show on booking pages
         add_filter('ptp_should_show_exit_popup', array($this, 'smart_popup_timing'), 10, 1);
-        
-        // Improve package selection display on WooCommerce checkout
-        add_action('woocommerce_before_checkout_form', array($this, 'render_training_packages_upsell'), 15);
-        
-        // Add smart cross-sell banner between trainings and camps - DISABLED: interferes with mobile UX
-        // add_action('wp_footer', array($this, 'render_bundle_awareness_banner'));
-        
+
         // Enqueue improved styles
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
-        
-        // Handle cart redirect with better UX
-        add_filter('woocommerce_add_to_cart_redirect', array($this, 'smart_cart_redirect'), 10, 2);
-        
-        // Improve order confirmation page
-        add_action('woocommerce_thankyou', array($this, 'render_improved_thank_you_cta'), 5);
+
+        // v148: Only register WooCommerce hooks if WC is active
+        if (class_exists('WooCommerce')) {
+            // Improve package selection display on WooCommerce checkout
+            add_action('woocommerce_before_checkout_form', array($this, 'render_training_packages_upsell'), 15);
+
+            // Handle cart redirect with better UX
+            add_filter('woocommerce_add_to_cart_redirect', array($this, 'smart_cart_redirect'), 10, 2);
+
+            // Improve order confirmation page
+            add_action('woocommerce_thankyou', array($this, 'render_improved_thank_you_cta'), 5);
+        } else {
+            // Native PTP hooks
+            add_action('ptp_before_checkout_form', array($this, 'render_training_packages_upsell'), 15);
+            add_action('ptp_thankyou', array($this, 'render_improved_thank_you_cta'), 5);
+        }
     }
     
     /**

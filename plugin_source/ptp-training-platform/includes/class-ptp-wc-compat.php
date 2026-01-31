@@ -743,6 +743,113 @@ if (!function_exists('WC') && !class_exists('WooCommerce')) {
     }
 
     /**
+     * get_woocommerce_currency() replacement
+     */
+    if (!function_exists('get_woocommerce_currency')) {
+        function get_woocommerce_currency() {
+            return get_option('ptp_currency', 'USD');
+        }
+    }
+
+    /**
+     * get_woocommerce_currency_symbol() replacement
+     */
+    if (!function_exists('get_woocommerce_currency_symbol')) {
+        function get_woocommerce_currency_symbol($currency = '') {
+            if (!$currency) {
+                $currency = get_woocommerce_currency();
+            }
+            $symbols = array(
+                'USD' => '$',
+                'EUR' => '€',
+                'GBP' => '£',
+                'CAD' => 'CA$',
+                'AUD' => 'A$',
+                'JPY' => '¥',
+                'CNY' => '¥',
+                'INR' => '₹',
+                'BRL' => 'R$',
+                'MXN' => '$',
+            );
+            return $symbols[$currency] ?? '$';
+        }
+    }
+
+    /**
+     * is_wc_endpoint_url() replacement
+     */
+    if (!function_exists('is_wc_endpoint_url')) {
+        function is_wc_endpoint_url($endpoint = '') {
+            // Not applicable in non-WC mode
+            return false;
+        }
+    }
+
+    /**
+     * wc_load_cart() replacement
+     */
+    if (!function_exists('wc_load_cart')) {
+        function wc_load_cart() {
+            // Cart is loaded via ptp_cart() singleton
+            if (function_exists('ptp_cart')) {
+                ptp_cart();
+            }
+        }
+    }
+
+    /**
+     * wc_has_notice() replacement
+     */
+    if (!function_exists('wc_has_notice')) {
+        function wc_has_notice($message = '', $type = 'success') {
+            if (!function_exists('ptp_session')) {
+                return false;
+            }
+            $notices = ptp_session()->get('ptp_notices', array());
+            if (empty($message)) {
+                return !empty($notices);
+            }
+            foreach ($notices as $notice) {
+                if (($notice['message'] ?? '') === $message && ($notice['type'] ?? 'success') === $type) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    /**
+     * wc_get_var() replacement
+     */
+    if (!function_exists('wc_get_var')) {
+        function wc_get_var(&$var, $default = null) {
+            return isset($var) ? $var : $default;
+        }
+    }
+
+    /**
+     * wc_doing_it_wrong() replacement
+     */
+    if (!function_exists('wc_doing_it_wrong')) {
+        function wc_doing_it_wrong($function, $message, $version) {
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                _doing_it_wrong($function, $message, $version);
+            }
+        }
+    }
+
+    /**
+     * wc_setcookie() replacement
+     */
+    if (!function_exists('wc_setcookie')) {
+        function wc_setcookie($name, $value, $expire = 0, $secure = false, $httponly = false) {
+            if (!headers_sent()) {
+                setcookie($name, $value, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure, $httponly);
+            }
+        }
+    }
+
+    /**
      * Simple product compatibility class
      */
     class PTP_WC_Compat_Product {
@@ -831,6 +938,236 @@ if (!function_exists('WC') && !class_exists('WooCommerce')) {
                 error_log("[PTP WC Compat] Unknown product method called: {$method}");
             }
             return null;
+        }
+    }
+
+    /**
+     * WC_Order_Item_Fee compatibility class
+     */
+    if (!class_exists('WC_Order_Item_Fee')) {
+        class WC_Order_Item_Fee {
+            private $data = array(
+                'name' => '',
+                'amount' => 0,
+                'tax_class' => '',
+                'tax_status' => 'none',
+                'total' => 0,
+                'total_tax' => 0,
+            );
+
+            private $id = 0;
+
+            public function __construct($item = 0) {
+                if ($item && is_numeric($item)) {
+                    $this->id = (int) $item;
+                    // Load from database if needed
+                }
+            }
+
+            public function set_name($name) {
+                $this->data['name'] = sanitize_text_field($name);
+            }
+
+            public function get_name($context = 'view') {
+                return $this->data['name'];
+            }
+
+            public function set_amount($amount) {
+                $this->data['amount'] = floatval($amount);
+                $this->data['total'] = floatval($amount);
+            }
+
+            public function get_amount($context = 'view') {
+                return $this->data['amount'];
+            }
+
+            public function set_total($total) {
+                $this->data['total'] = floatval($total);
+            }
+
+            public function get_total($context = 'view') {
+                return $this->data['total'];
+            }
+
+            public function set_tax_class($tax_class) {
+                $this->data['tax_class'] = sanitize_text_field($tax_class);
+            }
+
+            public function get_tax_class($context = 'view') {
+                return $this->data['tax_class'];
+            }
+
+            public function set_tax_status($status) {
+                $this->data['tax_status'] = sanitize_text_field($status);
+            }
+
+            public function get_tax_status($context = 'view') {
+                return $this->data['tax_status'];
+            }
+
+            public function set_total_tax($tax) {
+                $this->data['total_tax'] = floatval($tax);
+            }
+
+            public function get_total_tax($context = 'view') {
+                return $this->data['total_tax'];
+            }
+
+            public function get_id() {
+                return $this->id;
+            }
+
+            public function get_type() {
+                return 'fee';
+            }
+
+            public function get_data() {
+                return $this->data;
+            }
+
+            public function save() {
+                // In standalone mode, fees are stored as part of the order
+                return $this->id;
+            }
+        }
+    }
+
+    /**
+     * WC_Order_Item compatibility class
+     */
+    if (!class_exists('WC_Order_Item')) {
+        class WC_Order_Item {
+            protected $data = array(
+                'order_id' => 0,
+                'name' => '',
+                'quantity' => 1,
+            );
+
+            protected $id = 0;
+            protected $meta_data = array();
+
+            public function __construct($item = 0) {
+                if ($item && is_numeric($item)) {
+                    $this->id = (int) $item;
+                }
+            }
+
+            public function get_id() {
+                return $this->id;
+            }
+
+            public function set_name($name) {
+                $this->data['name'] = sanitize_text_field($name);
+            }
+
+            public function get_name($context = 'view') {
+                return $this->data['name'];
+            }
+
+            public function set_order_id($order_id) {
+                $this->data['order_id'] = (int) $order_id;
+            }
+
+            public function get_order_id() {
+                return $this->data['order_id'];
+            }
+
+            public function set_quantity($qty) {
+                $this->data['quantity'] = (int) $qty;
+            }
+
+            public function get_quantity($context = 'view') {
+                return $this->data['quantity'];
+            }
+
+            public function add_meta_data($key, $value, $unique = false) {
+                $this->meta_data[] = array('key' => $key, 'value' => $value);
+            }
+
+            public function get_meta($key, $single = true, $context = 'view') {
+                foreach ($this->meta_data as $meta) {
+                    if ($meta['key'] === $key) {
+                        return $meta['value'];
+                    }
+                }
+                return $single ? '' : array();
+            }
+
+            public function update_meta_data($key, $value, $meta_id = 0) {
+                foreach ($this->meta_data as &$meta) {
+                    if ($meta['key'] === $key) {
+                        $meta['value'] = $value;
+                        return;
+                    }
+                }
+                $this->add_meta_data($key, $value);
+            }
+
+            public function get_type() {
+                return 'line_item';
+            }
+
+            public function save() {
+                return $this->id;
+            }
+        }
+    }
+
+    /**
+     * WC_Order_Item_Product compatibility class
+     */
+    if (!class_exists('WC_Order_Item_Product')) {
+        class WC_Order_Item_Product extends WC_Order_Item {
+            protected $product_data = array(
+                'product_id' => 0,
+                'variation_id' => 0,
+                'subtotal' => 0,
+                'total' => 0,
+            );
+
+            public function set_product_id($id) {
+                $this->product_data['product_id'] = (int) $id;
+            }
+
+            public function get_product_id($context = 'view') {
+                return $this->product_data['product_id'];
+            }
+
+            public function set_variation_id($id) {
+                $this->product_data['variation_id'] = (int) $id;
+            }
+
+            public function get_variation_id($context = 'view') {
+                return $this->product_data['variation_id'];
+            }
+
+            public function set_subtotal($subtotal) {
+                $this->product_data['subtotal'] = floatval($subtotal);
+            }
+
+            public function get_subtotal($context = 'view') {
+                return $this->product_data['subtotal'];
+            }
+
+            public function set_total($total) {
+                $this->product_data['total'] = floatval($total);
+            }
+
+            public function get_total($context = 'view') {
+                return $this->product_data['total'];
+            }
+
+            public function get_product() {
+                $product_id = $this->get_product_id();
+                if ($product_id) {
+                    return wc_get_product($product_id);
+                }
+                return false;
+            }
+
+            public function get_type() {
+                return 'line_item';
+            }
         }
     }
 

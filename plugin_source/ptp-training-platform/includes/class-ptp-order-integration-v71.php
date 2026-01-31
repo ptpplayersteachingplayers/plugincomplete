@@ -7,42 +7,66 @@
 defined('ABSPATH') || exit;
 
 class PTP_Order_Integration_V71 {
-    
+
     public function __construct() {
+        // v148: Only register WooCommerce hooks if WC is active
+        if (!class_exists('WooCommerce')) {
+            // Register native PTP order hooks instead
+            add_action('ptp_order_created', array($this, 'save_checkout_fields_to_native_order'), 10, 2);
+            add_action('ptp_order_completed', array($this, 'handle_order_completed'));
+            add_action('ptp_order_processing', array($this, 'handle_order_processing'));
+            return;
+        }
+
         // Save custom checkout fields to order meta
         add_action('woocommerce_checkout_create_order', array($this, 'save_checkout_fields_to_order'), 10, 2);
-        
+
         // Display custom fields on order details (admin)
         add_action('woocommerce_admin_order_data_after_billing_address', array($this, 'display_admin_order_meta'));
-        
+
         // Display on thank you page
         add_action('woocommerce_thankyou', array($this, 'display_order_camp_details'), 5);
         add_action('woocommerce_order_details_after_order_table', array($this, 'display_order_camp_details'));
-        
+
         // Display on emails
         add_action('woocommerce_email_after_order_table', array($this, 'display_email_camp_details'), 10, 4);
-        
+
         // Custom order columns
         add_filter('manage_edit-shop_order_columns', array($this, 'add_order_columns'));
         add_action('manage_shop_order_posts_custom_column', array($this, 'render_order_columns'), 10, 2);
-        
+
         // HPOS compatibility
         add_filter('manage_woocommerce_page_wc-orders_columns', array($this, 'add_order_columns'));
         add_action('manage_woocommerce_page_wc-orders_custom_column', array($this, 'render_order_columns_hpos'), 10, 2);
-        
+
         // Save player info from checkout
         add_action('woocommerce_checkout_create_order_line_item', array($this, 'save_player_info_to_item'), 10, 4);
-        
+
         // Display player info on order items
         add_filter('woocommerce_order_item_display_meta_key', array($this, 'format_item_meta_key'), 10, 3);
         add_filter('woocommerce_order_item_display_meta_value', array($this, 'format_item_meta_value'), 10, 3);
-        
+
         // REST API support for orders
         add_filter('woocommerce_rest_prepare_shop_order_object', array($this, 'add_order_rest_data'), 10, 3);
-        
+
         // Order status change hooks for notifications
         add_action('woocommerce_order_status_completed', array($this, 'handle_order_completed'));
         add_action('woocommerce_order_status_processing', array($this, 'handle_order_processing'));
+    }
+
+    /**
+     * v148: Save checkout fields to native PTP order
+     */
+    public function save_checkout_fields_to_native_order($order_id, $order_data) {
+        if (function_exists('ptp_get_order')) {
+            $order = ptp_get_order($order_id);
+            if ($order) {
+                foreach ($order_data as $key => $value) {
+                    $order->update_meta_data($key, $value);
+                }
+                $order->save();
+            }
+        }
     }
     
     /**

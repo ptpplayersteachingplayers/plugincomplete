@@ -43,22 +43,34 @@ class PTP_Crosssell_Engine {
         // Core hooks
         add_action('init', array($this, 'init'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
-        
-        // Cross-sell injection points - Training checkout
+
+        // Cross-sell injection points - Training checkout (WC-independent)
         add_action('ptp_after_booking_confirm', array($this, 'show_post_booking_upsells'), 10, 2);
         add_action('ptp_training_checkout_after_form', array($this, 'show_training_checkout_upsells'), 10, 2);
-        
-        // Cross-sell injection points - WooCommerce checkout (camps)
-        add_action('woocommerce_thankyou', array($this, 'show_training_cta_after_camp'), 5);
-        add_action('woocommerce_after_cart', array($this, 'show_cart_crosssells'));
-        add_action('woocommerce_before_checkout_form', array($this, 'show_checkout_crosssells'), 5);
-        add_action('woocommerce_checkout_before_order_review', array($this, 'show_training_upsell_on_woo_checkout'), 10);
-        
-        // Trainer profile cross-sells
+
+        // v148: WooCommerce hooks only if WC active
+        if (class_exists('WooCommerce')) {
+            // Cross-sell injection points - WooCommerce checkout (camps)
+            add_action('woocommerce_thankyou', array($this, 'show_training_cta_after_camp'), 5);
+            add_action('woocommerce_after_cart', array($this, 'show_cart_crosssells'));
+            add_action('woocommerce_before_checkout_form', array($this, 'show_checkout_crosssells'), 5);
+            add_action('woocommerce_checkout_before_order_review', array($this, 'show_training_upsell_on_woo_checkout'), 10);
+
+            // WooCommerce cart modifications
+            add_action('woocommerce_cart_calculate_fees', array($this, 'apply_bundle_discounts'));
+            add_filter('woocommerce_cart_item_name', array($this, 'add_bundle_badge'), 10, 3);
+        } else {
+            // Native PTP hooks for checkout
+            add_action('ptp_thankyou', array($this, 'show_training_cta_after_camp'), 5);
+            add_action('ptp_after_cart', array($this, 'show_cart_crosssells'));
+            add_action('ptp_before_checkout_form', array($this, 'show_checkout_crosssells'), 5);
+        }
+
+        // Trainer profile cross-sells (WC-independent)
         add_action('ptp_trainer_profile_after_booking', array($this, 'show_trainer_camps'));
         add_action('ptp_trainer_profile_sidebar', array($this, 'show_package_upgrades'));
-        
-        // AJAX handlers
+
+        // AJAX handlers (WC-independent)
         add_action('wp_ajax_ptp_get_recommendations', array($this, 'ajax_get_recommendations'));
         add_action('wp_ajax_nopriv_ptp_get_recommendations', array($this, 'ajax_get_recommendations'));
         add_action('wp_ajax_ptp_apply_package_upgrade', array($this, 'ajax_apply_package_upgrade'));
@@ -67,17 +79,13 @@ class PTP_Crosssell_Engine {
         add_action('wp_ajax_nopriv_ptp_create_bundle', array($this, 'ajax_create_bundle'));
         add_action('wp_ajax_ptp_track_crosssell_click', array($this, 'ajax_track_click'));
         add_action('wp_ajax_nopriv_ptp_track_crosssell_click', array($this, 'ajax_track_click'));
-        
-        // WooCommerce cart modifications
-        add_action('woocommerce_cart_calculate_fees', array($this, 'apply_bundle_discounts'));
-        add_filter('woocommerce_cart_item_name', array($this, 'add_bundle_badge'), 10, 3);
-        
-        // Shortcodes
+
+        // Shortcodes (WC-independent)
         add_shortcode('ptp_smart_crosssell', array($this, 'shortcode_smart_crosssell'));
         add_shortcode('ptp_package_builder', array($this, 'shortcode_package_builder'));
         add_shortcode('ptp_bundle_cta', array($this, 'shortcode_bundle_cta'));
-        
-        // Footer modals
+
+        // Footer modals (WC-independent)
         add_action('wp_footer', array($this, 'render_crosssell_modal'));
         add_action('wp_footer', array($this, 'render_package_builder_modal'));
     }

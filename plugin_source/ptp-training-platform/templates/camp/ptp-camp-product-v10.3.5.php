@@ -46,15 +46,22 @@ class PTP_Camp_Product_Template_V10 {
         add_action('wp_head', array($this, 'add_preload_hints'), 1);
         add_filter('body_class', array($this, 'add_body_classes'));
         add_action('wp_footer', array($this, 'output_inline_js'), 99);
-        add_filter('woocommerce_add_to_cart_redirect', array($this, 'redirect_to_checkout'));
         add_action('add_meta_boxes', array($this, 'add_camp_meta_boxes'));
-        add_action('woocommerce_process_product_meta', array($this, 'save_camp_meta'));
         add_action('wp_ajax_ptp_add_pack_to_cart', array($this, 'ajax_add_pack_to_cart'));
         add_action('wp_ajax_nopriv_ptp_add_pack_to_cart', array($this, 'ajax_add_pack_to_cart'));
         add_action('wp_ajax_ptp_add_multiple_weeks', array($this, 'ajax_add_multiple_weeks'));
         add_action('wp_ajax_nopriv_ptp_add_multiple_weeks', array($this, 'ajax_add_multiple_weeks'));
-        // Apply multiweek discount when multiple camps in cart (priority 25 to run before checkout v98's fees at priority 30)
-        add_action('woocommerce_cart_calculate_fees', array($this, 'apply_multiweek_discount'), 25);
+
+        // v148: WooCommerce hooks only if WC active
+        if (class_exists('WooCommerce')) {
+            add_filter('woocommerce_add_to_cart_redirect', array($this, 'redirect_to_checkout'));
+            add_action('woocommerce_process_product_meta', array($this, 'save_camp_meta'));
+            // Apply multiweek discount when multiple camps in cart (priority 25 to run before checkout v98's fees at priority 30)
+            add_action('woocommerce_cart_calculate_fees', array($this, 'apply_multiweek_discount'), 25);
+        } else {
+            // Native hooks for product save
+            add_action('save_post_product', array($this, 'save_camp_meta'));
+        }
     }
 
     public static function is_early_bird_active() {
@@ -94,9 +101,23 @@ class PTP_Camp_Product_Template_V10 {
         $product_id = isset($_POST['product_id']) ? absint($_POST['product_id']) : 0;
         $quantity = isset($_POST['quantity']) ? absint($_POST['quantity']) : 1;
         if (!$product_id) wp_send_json_error(array('message' => 'Invalid product'));
-        if (!function_exists('WC') || !WC() || !WC()->cart) wp_send_json_error(array('message' => 'Cart not available'));
-        WC()->cart->empty_cart();
-        $cart_item_key = WC()->cart->add_to_cart($product_id, $quantity);
+
+        // v148: Support both WC and native cart
+        if (class_exists('WooCommerce') && function_exists('WC') && WC() && WC()->cart) {
+            WC()->cart->empty_cart();
+            $cart_item_key = WC()->cart->add_to_cart($product_id, $quantity);
+        } elseif (function_exists('ptp_cart')) {
+            ptp_cart()->empty_cart();
+            $price = (float) get_post_meta($product_id, '_price', true);
+            $cart_item_key = ptp_cart()->add_to_cart('camp', $product_id, $quantity, $price, array(
+                'product_id' => $product_id,
+                'name' => get_the_title($product_id)
+            ));
+        } else {
+            wp_send_json_error(array('message' => 'Cart not available'));
+            return;
+        }
+
         if ($cart_item_key) {
             wp_send_json_success(array('redirect' => $this->get_ptp_checkout_url(), 'cart_item_key' => $cart_item_key));
         } else {
@@ -106,49 +127,77 @@ class PTP_Camp_Product_Template_V10 {
 
     public function ajax_add_multiple_weeks() {
         check_ajax_referer('ptp_pack_nonce', 'nonce');
-        
+
         $product_ids = isset($_POST['product_ids']) ? array_map('absint', (array)$_POST['product_ids']) : array();
         $add_world_cup_jersey = isset($_POST['add_world_cup_jersey']) && $_POST['add_world_cup_jersey'] === 'true';
-        
+
         if (empty($product_ids)) {
             wp_send_json_error(array('message' => 'No weeks selected'));
         }
-        
-        if (!function_exists('WC') || !WC() || !WC()->cart) {
-            wp_send_json_error(array('message' => 'Cart not available'));
-        }
-        
-        // Clear cart and add selected camps
-        WC()->cart->empty_cart();
-        
+
         $count = count($product_ids);
-        foreach ($product_ids as $product_id) {
-            WC()->cart->add_to_cart($product_id, 1);
-        }
-        
-        // INTEGRATION WITH class-ptp-camp-checkout-v98.php:
-        // Set session flags that checkout v98 will recognize
-        if (WC()->session) {
-            // Store selection info
-            WC()->session->set('ptp_multiweek_selection', array(
+
+        // v148: Support both WC and native cart
+        if (class_exists('WooCommerce') && function_exists('WC') && WC() && WC()->cart) {
+            // Clear cart and add selected camps
+            WC()->cart->empty_cart();
+
+            foreach ($product_ids as $product_id) {
+                WC()->cart->add_to_cart($product_id, 1);
+            }
+
+            // INTEGRATION WITH class-ptp-camp-checkout-v98.php:
+            // Set session flags that checkout v98 will recognize
+            if (WC()->session) {
+                // Store selection info
+                WC()->session->set('ptp_multiweek_selection', array(
+                    'product_ids' => $product_ids,
+                    'count' => $count,
+                    'selected_from_product_page' => true
+                ));
+
+                // IMPORTANT: Set flag to hide upgrade bumps on checkout
+                // This tells checkout v98 that user already selected multiple camps
+                WC()->session->set('ptp99_camps_in_cart', $count);
+
+                // Clear any previous upgrade_pack selection (user is replacing it with direct selection)
+                WC()->session->set('ptp99_upgrade_pack', '');
+            }
+
+            // Handle World Cup Jersey add-on
+            if ($add_world_cup_jersey && WC()->session) {
+                WC()->session->set('ptp99_jersey', true);
+            }
+        } elseif (function_exists('ptp_cart') && function_exists('ptp_session')) {
+            // Native mode
+            ptp_cart()->empty_cart();
+
+            foreach ($product_ids as $product_id) {
+                $price = (float) get_post_meta($product_id, '_price', true);
+                ptp_cart()->add_to_cart('camp', $product_id, 1, $price, array(
+                    'product_id' => $product_id,
+                    'name' => get_the_title($product_id)
+                ));
+            }
+
+            // Store selection info in native session
+            ptp_session()->set('ptp_multiweek_selection', array(
                 'product_ids' => $product_ids,
                 'count' => $count,
                 'selected_from_product_page' => true
             ));
-            
-            // IMPORTANT: Set flag to hide upgrade bumps on checkout
-            // This tells checkout v98 that user already selected multiple camps
-            WC()->session->set('ptp99_camps_in_cart', $count);
-            
-            // Clear any previous upgrade_pack selection (user is replacing it with direct selection)
-            WC()->session->set('ptp99_upgrade_pack', '');
+
+            ptp_session()->set('ptp99_camps_in_cart', $count);
+            ptp_session()->set('ptp99_upgrade_pack', '');
+
+            if ($add_world_cup_jersey) {
+                ptp_session()->set('ptp99_jersey', true);
+            }
+        } else {
+            wp_send_json_error(array('message' => 'Cart not available'));
+            return;
         }
-        
-        // Handle World Cup Jersey add-on
-        if ($add_world_cup_jersey && WC()->session) {
-            WC()->session->set('ptp99_jersey', true);
-        }
-        
+
         wp_send_json_success(array(
             'redirect' => $this->get_ptp_checkout_url(),
             'items_added' => $count
